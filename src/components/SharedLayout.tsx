@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import logo from "../assets/logo.svg";
-// import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export const SharedLayout: React.FC = () => {
   return (
@@ -34,7 +34,13 @@ export const SharedLayout: React.FC = () => {
             Sign In
           </Link>
         </nav>
-        <nav className="tablet:hidden"></nav>
+        <div className="tablet:hidden">
+          <button type="button">
+            {" "}
+            <GiHamburgerMenu />
+          </button>
+          <nav className="tablet:hidden"></nav>
+        </div>
       </header>
       <Outlet />
     </div>
