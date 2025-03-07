@@ -10,7 +10,7 @@ function App(): React.JSX.Element {
           <Route index element={<div>Home</div>} />
           <Route path="/register" element={<div>Sign In</div>} />
           <Route path="/login" element={<div>Log In</div>} />
-          <Route path="/profile" element={<div>Profile</div>} />
+          <Route path="/settings" element={<div>Profile</div>} />
           <Route path="/dashboard" element={<div>Dashboard</div>} />
           <Route path="*" element={<div>Not found</div>} />
         </Route>
