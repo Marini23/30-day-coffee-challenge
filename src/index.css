@@ -34,7 +34,9 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  background-color: var(--color-secondary);
 }
 
 button {
