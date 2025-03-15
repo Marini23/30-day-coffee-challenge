@@ -11,6 +11,7 @@
   --breakpoint-*: initial;
   --breakpoint-mobile: 22.5rem;
   --breakpoint-tablet: 46.5rem;
+  --breakpoint-laptop: 62rem;
   --breakpoint-desktop: 90rem;
 }
 
@@ -25,6 +26,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: inherit;
 }
@@ -32,7 +38,6 @@ a {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   /* min-width: 320px; */
   width: 100%;
   min-height: 100vh;

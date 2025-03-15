@@ -19,7 +19,7 @@ export const AuthMenu: React.FC = () => {
         to="/register"
         className=" font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
       >
-        Sign In
+        Sign Up
       </Link>
     </nav>
   );
