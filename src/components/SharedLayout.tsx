@@ -20,7 +20,9 @@ export const SharedLayout: React.FC = () => {
         {isLoggedIn ? <UserMenu /> : <AuthMenu />}
         <BurgerMenu />
       </header>
-      <main className="    mt-22 mb-18 px-4 tablet:mt-30 desktop:mt-40 tablet:mb-28 desktop:mb-38 tablet:px-8 desktop:px-12">
+      <main className="flex-grow mt-16 tablet:mt-20 desktop:mt-25 ">
+        {/* className=" mt-22 mb-18 px-4 tablet:mt-30 desktop:mt-40 tablet:mb-28
+        desktop:mb-38 tablet:px-8 desktop:px-12" */}
         <Outlet />
       </main>
       <footer className="h-10 sticky bottom-0 mt-auto flex items-center justify-center bg-primary text-secondary text-[12px] laptop:h-12 laptop:text-[16px]">

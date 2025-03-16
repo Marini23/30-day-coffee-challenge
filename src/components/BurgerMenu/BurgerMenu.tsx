@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const BurgerMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const isLoggedIn: boolean = true;
+  const isLoggedIn: boolean = false;
 
   const toogleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -82,7 +82,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Sign In
+                Sign Up
               </Link>
             </li>
             <li>
