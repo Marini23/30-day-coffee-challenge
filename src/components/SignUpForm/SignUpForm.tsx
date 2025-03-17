@@ -1,123 +1,108 @@
-import React from "react";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import { InputPassword } from "../InputPassword/InputPassword";
+import icon_facebook from "../../assets/icons-facebook.svg";
 
 export const SignUpForm: React.FC = () => {
   return (
     <section>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto ">
-        <div className="w-full  rounded-lg shadow  ">
-          <div className="p-6 space-y-4  ">
-            <h1 className="text-[18px] font-bold  text-espresso ">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-[520px] desktop:max-w-[620px]">
+        <div className="w-full rounded-lg shadow">
+          <div className="p-6 pb-12">
+            <h1 className="flex justify-center text-[18px] font-bold text-espresso desktop:text-[32px]">
               Create an account
             </h1>
-            <form className="space-y-4">
-              <div>
+            <form className="flex flex-col gap-4">
+              <div className="w-full flex flex-col gap-1">
+                <label
+                  htmlFor="name"
+                  className="text-[12px] font-medium text-primary desktop:text-[16px]"
+                >
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                />
+              </div>
+              <div className="w-full flex flex-col gap-1">
                 <label
                   htmlFor="email"
-                  className=" mb-2 text-[16px] font-medium text-espresso"
+                  className="text-[12px] font-medium text-primary desktop:text-[16px]"
                 >
-                  Your email
+                  Email address
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
-                  className=" border border-primary text-espresso text-[14px] rounded-lg focus:outline-none   focus:ring-primary  focus:border-espresso hover:border-primary w-full h-10 px-2"
-                  placeholder="name@gmail.com"
-                  required
+                  autoComplete="off"
+                  className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
                 />
               </div>
-              <div>
+              <InputPassword />
+              <div className="relative w-full flex flex-col gap-1">
                 <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="language"
+                  className="text-[12px] font-medium text-primary desktop:text-[16px]"
                 >
-                  Password
+                  Language
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="confirm-password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                <select
+                  id="language"
+                  className="appearance-none w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
                 >
-                  Confirm password
-                </label>
-                <input
-                  type="password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
-              </div>
-              <div className="flex items-start">
-                <div className="flex items-center h-5">
-                  <input
-                    id="terms"
-                    aria-describedby="terms"
-                    type="checkbox"
-                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    required
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label
-                    htmlFor="terms"
-                    className="font-light text-gray-500 dark:text-gray-300"
+                  <option
+                    value="en"
+                    className="bg-secondary text-espresso border-none"
                   >
-                    I accept the{" "}
-                    <a
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                      href="#"
-                    >
-                      Terms and Conditions
-                    </a>
-                  </label>
-                </div>
+                    English
+                  </option>
+                  <option
+                    value="pl"
+                    className="bg-secondary text-espresso border-none"
+                  >
+                    Polish
+                  </option>
+                </select>
+                <MdKeyboardArrowDown className="absolute right-3 top-[34px] text-espresso pointer-events-none desktop:top-[38px] desktop:w-[24px] desktop:h-[24px]" />
               </div>
               <button
                 type="submit"
-                className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className=" flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px]"
               >
-                Create an account
+                Sign Up
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Login here
-                </a>
-              </p>
             </form>
+            <p className="mt-2 flex justify-center text-[12px]  text-espresso desktop:text-[16px]">
+              Already have an account?{" "}
+              <a
+                href="#"
+                className="font-medium text-espresso hover:underline text-[12px] desktop:text-[16px] "
+              >
+                Login here
+              </a>
+            </p>
+            <div className="flex items-center w-full mt-4 mb-4">
+              <hr className="flex-grow border-t border-gray-300" />
+              <span className=" px-2 text-gray-500 text-sm">or</span>
+              <hr className="flex-grow border-t border-gray-300" />
+            </div>
+            <button
+              type="button"
+              className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px]"
+            >
+              <img
+                src={icon_facebook}
+                alt="icon facebook"
+                className="mr-2 w-[24px] h-[24px]   desktop:w-[32px] desktop:h-[32px]"
+              />
+              Sign up with Facebook
+            </button>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-// export const SignUpForm: React.FC = () => {
-//   return (
-//     <section
-//       className=" h-screen bg-cover bg-center bg-fixed
-//       bg-[url('/src/assets/bg-mobile.jpg')]
-//       tablet:bg-[url('/src/assets/bg-tablet.jpg')]
-//       desktop:bg-[url('/src/assets/bg-desktop.jpg')]"
-//     >
-//       <div className="  h-full w-full bg-gradient-to-tr from-secondary/30 to-secondary/30"></div>
-//       <div className=" z-10 flex justify-center items-center h-full">
-//         <h1 className="text-espresso text-3xl font-bold">Sign Up</h1>
-//       </div>
-//     </section>
-//   );
-// };
