@@ -12,7 +12,7 @@ export const InputPassword: React.FC = () => {
     <div className="relative w-full flex flex-col gap-1">
       <label
         htmlFor="password"
-        className="text-[12px] font-medium text-primary desktop:text-[16px]"
+        className="text-[12px] font-medium text-espresso desktop:text-[16px]"
       >
         Password
       </label>
@@ -21,7 +21,7 @@ export const InputPassword: React.FC = () => {
         name="password"
         id="password"
         autoComplete="current-password"
-        className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+        className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
       />
       <button
         type="button"
@@ -30,9 +30,9 @@ export const InputPassword: React.FC = () => {
         aria-label={isShowPassword ? "Hide password" : "Show password"}
       >
         {isShowPassword ? (
-          <PiEyeLight className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px]" />
+          <PiEyeLight className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] color-espresso" />
         ) : (
-          <PiEyeSlash className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px]" />
+          <PiEyeSlash className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] color-espresso" />
         )}
       </button>
     </div>
