@@ -1,0 +1,30 @@
+{
+  "header": { "home": "Home", "register": "Sign Up", "login": "Log In" },
+  "signUpForm": {
+    "titleSignUpForm": "Create an account",
+    "name": "Full name",
+    "email": "Email address",
+    "password": "Password",
+    "language": "Language",
+    "en": "English",
+    "pl": "Polish",
+    "registerButton": "Sign Up",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log In here",
+    "alternativeLogin": "or",
+    "registerFacebook": "Sign up with Facebook"
+  },
+
+  "loginForm": {
+    "titleLoginForm": "Welcome back!",
+    "email": "Email address",
+    "password": "Password",
+    "loginButton": "Log In",
+    "noHaveAccount": "Don't have an account?",
+    "registerLink": "Sign up now",
+    "alternativeLogin": "or",
+    "loginFacebook": "Log in with Facebook"
+  },
+
+  "logout": "Log Out"
+}
