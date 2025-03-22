@@ -5,6 +5,7 @@ import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { AuthMenu } from "./AuthMenu/AuthMenu";
 import { UserMenu } from "./UserMenu/UserMenu";
 
+
 export const SharedLayout: React.FC = () => {
   const isLoggedIn: boolean = false;
   return (

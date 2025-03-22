@@ -1,0 +1,34 @@
+{
+  "header": {
+    "home": "Strona główna",
+    "register": "Zarejestruj się",
+    "login": "Zaloguj się"
+  },
+  "signUpForm": {
+    "titleSignUpForm": "Utwórz konto",
+    "name": "Imię i nazwisko",
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "language": "Język",
+    "en": "Angielski",
+    "pl": "Polski",
+    "registerButton": "Zarejestruj się",
+    "haveAccount": "Masz już konto?",
+    "loginLink": "Zaloguj się tutaj",
+    "alternativeLogin": "lub",
+    "registerFacebook": "Zarejestruj się przez Facebook"
+  },
+
+  "loginForm": {
+    "titleLoginForm": "Witamy ponownie!",
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "loginButton": "Zaloguj się",
+    "noHaveAccount": "Nie masz konta?",
+    "registerLink": "Zarejestruj się teraz",
+    "alternativeLogin": "lub",
+    "loginFacebook": "Zaloguj się przez Facebook"
+  },
+
+  "logout": "Wyloguj się"
+}
