@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 export const InputEmail: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="w-full flex flex-col gap-1">
       <label
         htmlFor="email"
         className="text-[12px] font-medium text-espresso desktop:text-[16px]"
       >
-        Email address
+        {t("inputs.email")}
       </label>
       <input
         type="email"

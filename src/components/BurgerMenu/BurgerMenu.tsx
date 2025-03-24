@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 export const BurgerMenu: React.FC = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const isLoggedIn: boolean = false;
 
@@ -35,7 +37,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Home
+                {t("header.home")}
               </Link>
             </li>
             <li>
@@ -44,7 +46,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Dashboard
+                {t("header.dashboard")}
               </Link>
             </li>
             <li>
@@ -53,7 +55,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Settings
+                {t("header.settings")}
               </Link>
             </li>
             <li>
@@ -61,7 +63,7 @@ export const BurgerMenu: React.FC = () => {
                 type="button"
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
               >
-                Log out
+                {t("header.logout")}
               </button>
             </li>
           </ul>
@@ -73,7 +75,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Home
+                {t("header.home")}
               </Link>
             </li>
             <li>
@@ -82,7 +84,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Sign Up
+                {t("header.register")}
               </Link>
             </li>
             <li>
@@ -91,7 +93,7 @@ export const BurgerMenu: React.FC = () => {
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleMenu}
               >
-                Log In
+                {t("header.login")}
               </Link>
             </li>
           </ul>

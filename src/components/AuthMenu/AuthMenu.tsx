@@ -15,13 +15,13 @@ export const AuthMenu: React.FC = () => {
         to="/login"
         className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
       >
-        Log In
+        {t("header.login")}
       </Link>
       <Link
         to="/register"
         className=" font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
       >
-        Sign Up
+        {t("header.register")}
       </Link>
     </nav>
   );

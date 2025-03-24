@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { PiEyeLight, PiEyeSlash } from "react-icons/pi";
 
 export const InputPassword: React.FC = () => {
+  const { t } = useTranslation();
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const toggleVisibilityPassword = () => {
@@ -14,7 +16,7 @@ export const InputPassword: React.FC = () => {
         htmlFor="password"
         className="text-[12px] font-medium text-espresso desktop:text-[16px]"
       >
-        Password
+        {t("inputs.password")}
       </label>
       <input
         type={isShowPassword ? "text" : "password"}

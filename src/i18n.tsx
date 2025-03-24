@@ -10,10 +10,16 @@ i18n
   .use(initReactI18next)
   .init({
     supportedLngs: ["en", "pl"],
-    fallbackLng: "en",
+    fallbackLng: "pl",
     debug: true,
     interpolation: {
       escapeValue: false,
+    },
+    detection: {
+      order: ["localStorage", "cookie"], // Ignore browser language
+      caches: ["localStorage"], // Only cache in localStorage
+      lookupLocalStorage: "i18nextLng", // Explicit cache key
+      excludeCacheFor: ["cimode"],
     },
     backend: {
       loadPath: "/30-day-coffee-challenge/locales/{{lng}}/translation.json",
