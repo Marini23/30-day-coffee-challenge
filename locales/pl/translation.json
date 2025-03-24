@@ -2,33 +2,34 @@
   "header": {
     "home": "Strona główna",
     "register": "Zarejestruj się",
-    "login": "Zaloguj się"
+    "login": "Zaloguj się",
+    "dashboard": "Panel",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się"
   },
-  "signUpForm": {
-    "titleSignUpForm": "Utwórz konto",
+  "inputs": {
     "name": "Imię i nazwisko",
     "email": "Adres e-mail",
     "password": "Hasło",
     "language": "Język",
     "en": "Angielski",
-    "pl": "Polski",
+    "pl": "Polski"
+  },
+  "signUpForm": {
+    "title": "Utwórz konto",
     "registerButton": "Zarejestruj się",
     "haveAccount": "Masz już konto?",
     "loginLink": "Zaloguj się tutaj",
-    "alternativeLogin": "lub",
+    "alternativeSignUp": "lub",
     "registerFacebook": "Zarejestruj się przez Facebook"
   },
 
   "loginForm": {
-    "titleLoginForm": "Witamy ponownie!",
-    "email": "Adres e-mail",
-    "password": "Hasło",
+    "title": "Witamy ponownie!",
     "loginButton": "Zaloguj się",
     "noHaveAccount": "Nie masz konta?",
     "registerLink": "Zarejestruj się teraz",
     "alternativeLogin": "lub",
     "loginFacebook": "Zaloguj się przez Facebook"
-  },
-
-  "logout": "Wyloguj się"
+  }
 }
