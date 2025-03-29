@@ -1,12 +1,18 @@
+import { useForm } from "react-hook-form";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { InputPassword } from "../InputPassword/InputPassword";
 import icon_facebook from "../../assets/icons-facebook.svg";
 import { Link } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
+import { UserRegistration } from "../../types/user";
 
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
+  const { register, setValue, handleSubmit } = useForm<UserRegistration>();
+  const onSubmit = (data: UserRegistration) => {
+    console.log("Form Submitted:", data);
+  };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
       <div className=" flex flex-col items-center justify-center  px-6 py-6 mx-auto max-w-[520px] desktop:max-w-[620px] desktop:pt-12  ">
@@ -14,23 +20,46 @@ export const SignUpForm: React.FC = () => {
           <h1 className="flex justify-center text-[18px] font-bold text-espresso desktop:text-[32px]">
             {t("signUpForm.title")}
           </h1>
-          <form className="flex flex-col gap-3 ">
+          <form
+            className="flex flex-col gap-3 "
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="w-full flex flex-col gap-1">
               <label
                 htmlFor="name"
                 className="text-[12px] font-medium text-espresso desktop:text-[16px]"
               >
-                {t("inputs.name")}
+                {t("inputs.firstname")}
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="firstname"
                 className="w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                {...register("firstName")}
+                onChange={(e) => setValue("firstName", e.target.value)}
               />
             </div>
-            <InputEmail />
-            <InputPassword />
+            <div className="w-full flex flex-col gap-1">
+              <label
+                htmlFor="name"
+                className="text-[12px] font-medium text-espresso desktop:text-[16px]"
+              >
+                {t("inputs.lastname")}
+              </label>
+              <input
+                type="text"
+                id="lastname"
+                className="w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                {...register("lastName")}
+                onChange={(e) => setValue("lastName", e.target.value)}
+              />
+            </div>
+            <InputEmail register={register} setValue={setValue} name="email" />
+            <InputPassword
+              register={register}
+              setValue={setValue}
+              name="password"
+            />
             <div className="relative w-full flex flex-col gap-1">
               <label
                 htmlFor="language"
@@ -41,6 +70,8 @@ export const SignUpForm: React.FC = () => {
               <select
                 id="language"
                 className="appearance-none w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                {...register("language")}
+                onChange={(e) => setValue("lastName", e.target.value)}
               >
                 <option
                   value="en"

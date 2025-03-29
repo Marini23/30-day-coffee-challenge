@@ -8,7 +8,8 @@
     "logout": "Wyloguj się"
   },
   "inputs": {
-    "name": "Imię i nazwisko",
+    "firstname": "Imię",
+    "lastname": "Nazwisko",
     "email": "Adres e-mail",
     "password": "Hasło",
     "language": "Język",

@@ -1,8 +1,25 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  UseFormRegister,
+  UseFormSetValue,
+  FieldValues,
+  Path,
+  PathValue,
+} from "react-hook-form";
 import { PiEyeLight, PiEyeSlash } from "react-icons/pi";
 
-export const InputPassword: React.FC = () => {
+interface InputPasswordProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  setValue: UseFormSetValue<T>;
+  name: Path<T>;
+}
+
+export const InputPassword = <T extends FieldValues>({
+  register,
+  setValue,
+  name,
+}: InputPasswordProps<T>) => {
   const { t } = useTranslation();
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -20,10 +37,13 @@ export const InputPassword: React.FC = () => {
       </label>
       <input
         type={isShowPassword ? "text" : "password"}
-        name="password"
         id="password"
         autoComplete="current-password"
         className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+        {...register(name)}
+        onChange={(e) =>
+          setValue(name, e.target.value as PathValue<T, Path<T>>)
+        }
       />
       <button
         type="button"

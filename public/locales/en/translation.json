@@ -8,7 +8,8 @@
     "logout": "Log Out"
   },
   "inputs": {
-    "name": "Full name",
+    "firstname": "First name",
+    "lastname": "Last name",
     "email": "Email address",
     "password": "Password",
     "language": "Language",
