@@ -6,6 +6,7 @@ import {
   FieldValues,
   Path,
   PathValue,
+  FieldError,
 } from "react-hook-form";
 import { PiEyeLight, PiEyeSlash } from "react-icons/pi";
 
@@ -13,12 +14,16 @@ interface InputPasswordProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   setValue: UseFormSetValue<T>;
   name: Path<T>;
+  validation?: object;
+  error?: FieldError;
 }
 
 export const InputPassword = <T extends FieldValues>({
   register,
   setValue,
   name,
+  validation,
+  error,
 }: InputPasswordProps<T>) => {
   const { t } = useTranslation();
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -28,7 +33,7 @@ export const InputPassword = <T extends FieldValues>({
   };
 
   return (
-    <div className="relative w-full flex flex-col gap-1">
+    <div className="relative w-full flex flex-col ">
       <label
         htmlFor="password"
         className="text-[12px] font-medium text-espresso desktop:text-[16px]"
@@ -38,9 +43,10 @@ export const InputPassword = <T extends FieldValues>({
       <input
         type={isShowPassword ? "text" : "password"}
         id="password"
+        aria-invalid={error ? "true" : "false"}
         autoComplete="current-password"
         className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
-        {...register(name)}
+        {...register(name, validation)}
         onChange={(e) =>
           setValue(name, e.target.value as PathValue<T, Path<T>>)
         }
@@ -57,6 +63,9 @@ export const InputPassword = <T extends FieldValues>({
           <PiEyeSlash className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] color-espresso" />
         )}
       </button>
+      <p className="h-4 text-red text-[12px] desktop:text-[14px]">
+        {error?.message}
+      </p>
     </div>
   );
 };
