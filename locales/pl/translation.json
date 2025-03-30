@@ -32,5 +32,21 @@
     "registerLink": "Zarejestruj się teraz",
     "alternativeLogin": "lub",
     "loginFacebook": "Zaloguj się przez Facebook"
+  },
+  "validation": {
+    "firstName": {
+      "required": "Imię jest wymagane",
+      "minLength": "Imię musi mieć co najmniej 2 znaki"
+    },
+    "lastName": {
+      "required": "Nazwisko jest wymagane",
+      "minLength": "Nazwisko musi mieć co najmniej 2 znaki"
+    },
+    "email": "Email jest wymagany",
+    "password": {
+      "required": "Hasło jest wymagane",
+      "minLength": "Hasło musi mieć co najmniej 8 znaków",
+      "pattern": "Hasło musi zawierać wielką literę i symbol"
+    }
   }
 }
