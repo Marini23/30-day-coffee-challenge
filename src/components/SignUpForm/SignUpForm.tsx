@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserRegistration } from "../../types/user";
+import { SignUpWithEmailPassword } from "../../firebase/firebaseAuth";
 
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<UserRegistration>();
   const onSubmit = (data: UserRegistration) => {
-    console.log("Form Submitted:", data);
+    SignUpWithEmailPassword(data);
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">

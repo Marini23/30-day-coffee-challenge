@@ -10,13 +10,11 @@ export type User = {
 };
 
 export type UserRegistration = {
-  uid: string;
   email: string;
   firstName: string;
   lastName: string;
   password: string;
   language: "en" | "pl";
-  createdAt: Timestamp;
 };
 
 export type UserLogin = {
