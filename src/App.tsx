@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { SharedLayout } from "./components/SharedLayout";
 import { SettingsPage } from "./pages/SettingsPage";
 import { SignUpPage } from "./pages/SignUpPage";
@@ -17,6 +18,7 @@ function App(): React.JSX.Element {
           <Route path="*" element={<div>Not found</div>} />
         </Route>
       </Routes>
+      <ToastContainer position="top-center" autoClose={1000} />
     </div>
   );
 }

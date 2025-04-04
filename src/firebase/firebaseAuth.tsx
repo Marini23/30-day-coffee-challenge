@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User, UserRegistration } from "../types/user";
 
@@ -32,8 +33,15 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
       createdAt: serverTimestamp(),
     });
 
-    console.log("User registered & data saved:", user);
+    toast.success("You registered successfully!");
   } catch (error) {
-    console.error("Error registering user:", error);
+    if (error instanceof Error) {
+      toast.error("Registration error: " + error.message);
+    } else {
+      toast.error("An unknown error occurred.");
+      console.error("Unknown error:", error);
+    }
   }
 };
+
+// Log in
