@@ -1,5 +1,8 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User, UserRegistration } from "../types/user";
@@ -45,3 +48,37 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
 };
 
 // Log in
+
+export const LogInWithEmailPassword = async (
+  email: string,
+  password: string
+): Promise<User | null> => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    const userDocRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userDocRef);
+
+    if (userSnap.exists()) {
+      const userData = userSnap.data() as User;
+      toast.success(`Welcome back, ${userData.firstName}!`);
+      return userData;
+    } else {
+      toast.error("User data not found in Firestore.");
+      return null;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      toast.error("Login error: " + error.message);
+    } else {
+      toast.error("An unknown login error occurred.");
+      console.error("Unknown login error:", error);
+    }
+    return null;
+  }
+};
