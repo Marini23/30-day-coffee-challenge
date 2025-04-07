@@ -9,7 +9,7 @@ export const UserMenu: React.FC = () => {
     setIsComponentVisible(!isComponentVisible);
   };
   return (
-    <div className="hidden tablet:flex flex-1 items-center  tablet:w-150 desktop:w-[600px]">
+    <div className="hidden laptop:flex flex-1 items-center  tablet:w-150 desktop:w-[600px]">
       <p className="font-medium tablet:text-[24px] desktop:text-[32px] ml-[30px]">
         Day 7/30
       </p>

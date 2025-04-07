@@ -14,7 +14,7 @@ export const BurgerMenu: React.FC = () => {
   };
   return (
     <>
-      <button type="button" onClick={toogleMenu} className="tablet:hidden mr-4">
+      <button type="button" onClick={toogleMenu} className="laptop:hidden mr-4">
         {isMenuOpen ? (
           <IoCloseSharp size={28} />
         ) : (
@@ -76,6 +76,16 @@ export const BurgerMenu: React.FC = () => {
                 onClick={toogleMenu}
               >
                 {t("header.home")}
+              </Link>
+            </li>
+            <li>
+              {" "}
+              <Link
+                to="/dashboard"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                onClick={toogleMenu}
+              >
+                {t("header.dashboard")}
               </Link>
             </li>
             <li>
