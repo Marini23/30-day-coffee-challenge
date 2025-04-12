@@ -4,6 +4,7 @@ import { SharedLayout } from "./components/SharedLayout";
 import { SettingsPage } from "./pages/SettingsPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { LogInPage } from "./pages/LogInPage";
+import { DashboardPage } from "./pages/DashboardPage";
 
 function App(): React.JSX.Element {
   return (
@@ -14,7 +15,7 @@ function App(): React.JSX.Element {
           <Route path="/register" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/dashboard" element={<div>Dashboard</div>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="*" element={<div>Not found</div>} />
         </Route>
       </Routes>
