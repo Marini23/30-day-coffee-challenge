@@ -1,4 +1,4 @@
-import { Achievments } from "../components/Achievements/Achievements";
+import { Achievements } from "../components/Achievements/Achievements";
 
 export const DashboardPage: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ export const DashboardPage: React.FC = () => {
         <div>
           <div>Progress bar</div>
           <div>
-            <Achievments />
+            <Achievements />
           </div>
         </div>
         <div>Calendar</div>
