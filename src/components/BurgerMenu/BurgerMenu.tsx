@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export const BurgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const isLoggedIn: boolean = false;
+  const isLoggedIn: boolean = true;
 
   const toogleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

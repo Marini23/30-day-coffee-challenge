@@ -6,9 +6,9 @@ export const DashboardPage: React.FC = () => {
       <div>
         <div>
           <div>Progress bar</div>
-          <div>
+          <section>
             <Achievements />
-          </div>
+          </section>
         </div>
         <div>Calendar</div>
       </div>

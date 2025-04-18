@@ -48,5 +48,10 @@
       "minLength": "Password must be at least 8 characters",
       "pattern": "Password must contain an uppercase letter and a symbol"
     }
+  },
+  "achievements": {
+    "brew_master": "Brew Coffee\nMaster",
+    "coffee_ambassador": "World Coffee\nAmbassador",
+    "flavor_alchemist": "Coffee Flavor\nAlchemist"
   }
 }
