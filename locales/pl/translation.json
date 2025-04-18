@@ -48,5 +48,10 @@
       "minLength": "Hasło musi mieć co najmniej 8 znaków",
       "pattern": "Hasło musi zawierać wielką literę i symbol"
     }
+  },
+  "achievements": {
+    "brew_master": "Mistrz parzenia kawy",
+    "coffee_ambassador": "Światowy ambasador kawy",
+    "flavor_alchemist": "Alchemik smaków kawy"
   }
 }
