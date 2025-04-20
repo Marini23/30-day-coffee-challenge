@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 export const BurgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const isLoggedIn: boolean = true;
+  const isLoggedIn: boolean = false;
 
   const toogleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
     <>
-      <button type="button" onClick={toogleMenu} className="laptop:hidden mr-4">
+      <button type="button" onClick={toogleMenu} className="tablet:hidden mr-4">
         {isMenuOpen ? (
           <IoCloseSharp size={28} />
         ) : (

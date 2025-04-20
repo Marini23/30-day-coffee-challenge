@@ -3,7 +3,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 export const UserProfile: React.FC = () => {
   return (
-    <section className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 ">
+    <section className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10">
       <div className="laptop:w-1/3">
         <h2 className="font-bold text-espresso text-[20px] tablet:text-[24px] desktop:text-[32px] ">
           Personal Information

@@ -5,7 +5,8 @@
     "login": "Zaloguj się",
     "dashboard": "Panel",
     "settings": "Ustawienia",
-    "logout": "Wyloguj się"
+    "logout": "Wyloguj się",
+    "day": "Dzień"
   },
   "inputs": {
     "firstname": "Imię",

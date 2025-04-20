@@ -5,7 +5,8 @@
     "login": "Log In",
     "dashboard": "dashboard",
     "settings": "Settings",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "day": "Day"
   },
   "inputs": {
     "firstname": "First name",

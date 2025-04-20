@@ -6,6 +6,8 @@ import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User, UserRegistration } from "../types/user";
+import { createUserAchievements } from "./firebaseAchievements";
+import { createUserTasks } from "./firebaseTasks";
 
 // Signed up
 
@@ -35,6 +37,9 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
       ...newUser,
       createdAt: serverTimestamp(),
     });
+
+    await createUserAchievements(user.uid);
+    await createUserTasks(user.uid);
 
     toast.success("You registered successfully!");
   } catch (error) {
