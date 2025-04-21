@@ -19,7 +19,7 @@ function App(): React.JSX.Element {
           <Route path="*" element={<div>Not found</div>} />
         </Route>
       </Routes>
-      <ToastContainer position="top-center" autoClose={1000} />
+      <ToastContainer position="top-center" autoClose={10000} />
     </div>
   );
 }

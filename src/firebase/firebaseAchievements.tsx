@@ -10,7 +10,7 @@ export const createUserAchievements = async (userId: string) => {
       id: "brew_master",
       icon: "icon-Frame-3",
       completed: true,
-      createdAt: serverTimestamp(),
+      createdAt: now,
       updatedAt: now,
     },
     {
@@ -29,5 +29,12 @@ export const createUserAchievements = async (userId: string) => {
     },
   ];
 
-  await setDoc(doc(db, "achievements", userId), { achievements });
+  for (const achievement of achievements) {
+    await setDoc(
+      doc(db, "achievements", userId, "user_achievements", achievement.id),
+      achievement
+    );
+  }
+
+  // await setDoc(doc(db, "achievements", userId), { achievements });
 };

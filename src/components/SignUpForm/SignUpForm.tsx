@@ -17,7 +17,11 @@ export const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<UserRegistration>();
   const onSubmit = (data: UserRegistration) => {
-    SignUpWithEmailPassword(data);
+    const language: "en" | "pl" = ["en", "pl"].includes(data.language)
+      ? data.language
+      : "en";
+
+    SignUpWithEmailPassword({ ...data, language });
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
@@ -114,7 +118,9 @@ export const SignUpForm: React.FC = () => {
               <select
                 id="language"
                 className="appearance-none w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
-                onChange={(e) => setValue("lastName", e.target.value)}
+                {...register("language", {
+                  required: true,
+                })}
               >
                 <option
                   value="en"
