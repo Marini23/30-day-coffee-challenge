@@ -14,8 +14,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Coffee-to-Water Ratio",
           description:
             "Brew coffee using a 1:16 ratio (e.g., 20g coffee to 320g water).",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -23,8 +23,8 @@ export const createUserTasks = async (userId: string) => {
           number: 2,
           title: "Taste the Difference",
           description: "Compare light vs. dark roast coffee side by side.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -33,8 +33,8 @@ export const createUserTasks = async (userId: string) => {
           title: "French Press Plunge",
           description:
             "Brew coffee using a French Press with a 4-minute steep time.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -42,8 +42,8 @@ export const createUserTasks = async (userId: string) => {
           number: 4,
           title: "Test Grind Sizes",
           description: "Try coffee with coarse, medium, and fine grinds.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -51,8 +51,8 @@ export const createUserTasks = async (userId: string) => {
           number: 5,
           title: "Water Wisdom",
           description: "Brew coffee with distilled water vs. filtered water.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -61,8 +61,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Pour-Over Practice",
           description:
             "Brew a cup using a pour-over method, pouring water in a slow spiral.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -71,8 +71,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Cold Brew Soak",
           description:
             "Make cold brew concentrate by steeping grounds in cold water for 12+ hours.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -80,8 +80,8 @@ export const createUserTasks = async (userId: string) => {
           number: 8,
           title: "Master the Moka Pot",
           description: "Make stovetop espresso using a Moka Pot.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -89,8 +89,8 @@ export const createUserTasks = async (userId: string) => {
           number: 9,
           title: "Drip It Good",
           description: "Try a classic drip coffee.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -98,8 +98,8 @@ export const createUserTasks = async (userId: string) => {
           number: 10,
           title: "Two Beans, One Brew",
           description: "Mix two bean types and brew.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
       ],
@@ -113,8 +113,8 @@ export const createUserTasks = async (userId: string) => {
           number: 11,
           title: "Italian Espresso",
           description: "Drink espresso like Italians: quick & strong.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -123,8 +123,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Colombian Supremo",
           description:
             "Brew a pour-over with Colombian beans and taste their caramel sweetness.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -132,8 +132,8 @@ export const createUserTasks = async (userId: string) => {
           number: 13,
           title: "Moroccan Spiced Coffee",
           description: "Brew with cinnamon and nutmeg.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -142,8 +142,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Greek Frappé",
           description:
             "Shake instant coffee, water, sugar, and ice for a frothy frappé.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -151,8 +151,8 @@ export const createUserTasks = async (userId: string) => {
           number: 15,
           title: "French Café au Lait",
           description: "Mix drip coffee with steamed milk.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -160,8 +160,8 @@ export const createUserTasks = async (userId: string) => {
           number: 16,
           title: "Swedish Fika",
           description: "Enjoy coffee with a small pastry or bun.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -169,8 +169,8 @@ export const createUserTasks = async (userId: string) => {
           number: 17,
           title: "Puerto Rican Café Cortao",
           description: "Mix equal parts espresso and steamed milk.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -179,8 +179,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Vietnamese Iced Coffee",
           description:
             "Mix strong drip coffee with sweetened condensed milk over ice.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -188,8 +188,8 @@ export const createUserTasks = async (userId: string) => {
           number: 19,
           title: "Viennese Melange",
           description: "Prepare coffee with steamed milk and whipped cream.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -197,8 +197,8 @@ export const createUserTasks = async (userId: string) => {
           number: 20,
           title: "Brazilian Cafézinho",
           description: "Sweet and bold traditional coffee.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
       ],
@@ -212,8 +212,8 @@ export const createUserTasks = async (userId: string) => {
           number: 21,
           title: "New Café Visit",
           description: "Try a coffee shop you've never been to before.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -222,8 +222,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Flavor Mad Scientist",
           description:
             "Mix coffee with an unexpected ingredient (e.g., chili, lavender).",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -231,8 +231,8 @@ export const createUserTasks = async (userId: string) => {
           number: 23,
           title: "Coffee & Ice Cream Pairing",
           description: "Create a dessert combo with coffee.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -240,8 +240,8 @@ export const createUserTasks = async (userId: string) => {
           number: 24,
           title: "Barista for a Day",
           description: "Practice latte art or milk frothing at home.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -249,8 +249,8 @@ export const createUserTasks = async (userId: string) => {
           number: 25,
           title: "Signature Drink",
           description: "Invent your own coffee drink and give it a cool name.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -259,8 +259,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Spice It Up",
           description:
             "Add spices like cardamom, ginger, or cloves and rate the flavor.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -269,8 +269,8 @@ export const createUserTasks = async (userId: string) => {
           title: "Cold Brew Soak",
           description:
             "Make cold brew concentrate by steeping grounds in cold water for 12+ hours.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -278,8 +278,8 @@ export const createUserTasks = async (userId: string) => {
           number: 28,
           title: "Coffee-Inspired Bake",
           description: "Bake coffee-infused cookies or tiramisu.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -287,8 +287,8 @@ export const createUserTasks = async (userId: string) => {
           number: 29,
           title: "Blind Taste Test",
           description: "Taste two coffees blindfolded and guess the bean.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
         {
@@ -296,8 +296,8 @@ export const createUserTasks = async (userId: string) => {
           number: 30,
           title: "Travel Mug Adventure",
           description: "Take coffee outside—park, hike, or walk.",
-          createdAt: null,
-          updatedAt: null,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
           completed: false,
         },
       ],

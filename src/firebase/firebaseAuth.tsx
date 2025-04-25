@@ -32,7 +32,6 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
     const user = userCredential.user;
 
     const newUser = createUserFromRegistration(data, user.uid);
-    console.log(newUser);
 
     await setDoc(doc(db, "users", user.uid), {
       ...newUser,
