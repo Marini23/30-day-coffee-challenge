@@ -45,7 +45,7 @@ export const SignUpForm: React.FC = () => {
                 type="text"
                 id="firstname"
                 aria-invalid={errors.firstName ? "true" : "false"}
-                className="w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                className=" w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
                 {...register("firstName", {
                   required: t("validation.firstName.required"),
                   minLength: {
