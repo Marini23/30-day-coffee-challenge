@@ -54,5 +54,140 @@
     "brew_master": "Mistrz parzenia kawy",
     "coffee_ambassador": "Światowy ambasador kawy",
     "flavor_alchemist": "Alchemik smaków kawy"
+  },
+  "progress": {
+    "title": "Twój postęp",
+    "completed": "ukończono"
+  },
+  "tasks": {
+    "brewingBasics": {
+      "title": "Podstawy parzenia",
+      "task1": {
+        "title": "Proporcja kawy do wody",
+        "description": "Zaparz kawę w proporcji 1:16 (np. 20g kawy na 320g wody)."
+      },
+      "task2": {
+        "title": "Poczuj różnicę",
+        "description": "Porównaj smak kawy jasnopalonej i ciemnopalonej."
+      },
+      "task3": {
+        "title": "French Press",
+        "description": "Zaparz kawę w French Pressie przez 4 minuty."
+      },
+      "task4": {
+        "title": "Test mielenia",
+        "description": "Wypróbuj kawę zmieloną na grubo, średnio i drobno."
+      },
+      "task5": {
+        "title": "Mądrość wody",
+        "description": "Zaparz kawę używając wody destylowanej i filtrowanej."
+      },
+      "task6": {
+        "title": "Ćwiczenie pour-over",
+        "description": "Zaparz kawę metodą pour-over, powoli wlewając wodę spiralnie."
+      },
+      "task7": {
+        "title": "Zimne parzenie",
+        "description": "Przygotuj koncentrat cold brew, mocząc kawę w zimnej wodzie przez 12+ godzin."
+      },
+      "task8": {
+        "title": "Opanuj Moka Pot",
+        "description": "Zaparz espresso na kuchence w Moka Pot."
+      },
+      "task9": {
+        "title": "Tradycyjny drip",
+        "description": "Spróbuj klasycznej kawy przelewowej (drip)."
+      },
+      "task10": {
+        "title": "Dwie kawy, jedno parzenie",
+        "description": "Wymieszaj dwa rodzaje ziaren i zaparz razem."
+      }
+    },
+    "globalCoffeeTour": {
+      "title": "Światowa podróż kawowa",
+      "task11": {
+        "title": "Włoskie espresso",
+        "description": "Wypij espresso jak Włosi: szybko i mocno."
+      },
+      "task12": {
+        "title": "Kolumbijski Supremo",
+        "description": "Zaparz kawę przelewową z kolumbijskich ziaren o karmelowej słodyczy."
+      },
+      "task13": {
+        "title": "Marokańska kawa z przyprawami",
+        "description": "Zaparz kawę z cynamonem i gałką muszkatołową."
+      },
+      "task14": {
+        "title": "Grecki frappé",
+        "description": "Wstrząśnij kawę rozpuszczalną z wodą, cukrem i lodem, tworząc piankę."
+      },
+      "task15": {
+        "title": "Francuskie Café au Lait",
+        "description": "Połącz kawę przelewową z podgrzanym mlekiem."
+      },
+      "task16": {
+        "title": "Szwedzka fika",
+        "description": "Wypij kawę z małym ciastkiem lub bułeczką."
+      },
+      "task17": {
+        "title": "Portorykańskie Café Cortao",
+        "description": "Wymieszaj espresso z mlekiem w proporcji pół na pół."
+      },
+      "task18": {
+        "title": "Wietnamska kawa mrożona",
+        "description": "Połącz mocną kawę z mlekiem skondensowanym i lodem."
+      },
+      "task19": {
+        "title": "Wiedeńska Melange",
+        "description": "Przygotuj kawę z mlekiem i bitą śmietaną."
+      },
+      "task20": {
+        "title": "Brazylijskie Cafézinho",
+        "description": "Słodka i intensywna tradycyjna kawa brazylijska."
+      }
+    },
+    "creativitySkills": {
+      "title": "Kreatywność i umiejętności",
+      "task21": {
+        "title": "Wizyta w nowej kawiarni",
+        "description": "Odwiedź kawiarnię, w której jeszcze nie byłeś."
+      },
+      "task22": {
+        "title": "Kawowy szalony naukowiec",
+        "description": "Dodaj do kawy nietypowy składnik (np. chili, lawendę)."
+      },
+      "task23": {
+        "title": "Kawa i lody",
+        "description": "Stwórz deserowe połączenie kawy i lodów."
+      },
+      "task24": {
+        "title": "Domowy barista",
+        "description": "Ćwicz latte art lub spienianie mleka w domu."
+      },
+      "task25": {
+        "title": "Autorski napój",
+        "description": "Wymyśl własny napój kawowy i nadaj mu nazwę."
+      },
+      "task26": {
+        "title": "Dodaj przyprawy",
+        "description": "Dodaj przyprawy (kardamon, imbir, goździki) i oceń smak."
+      },
+      "task27": {
+        "title": "Zimne parzenie",
+        "description": "Przygotuj koncentrat cold brew, mocząc kawę w zimnej wodzie przez 12+ godzin."
+      },
+      "task28": {
+        "title": "Wypiek z kawą",
+        "description": "Upiecz ciastka z kawą lub przygotuj tiramisu."
+      },
+      "task29": {
+        "title": "Ślepy test smaku",
+        "description": "Spróbuj dwóch kaw w ciemno i odgadnij rodzaj ziaren."
+      },
+      "task30": {
+        "title": "Przygoda z kubkiem",
+        "description": "Zabierz kawę na spacer, do parku lub na wycieczkę."
+      }
+    }
   }
 }
