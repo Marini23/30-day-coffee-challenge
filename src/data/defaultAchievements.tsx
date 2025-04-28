@@ -1,14 +1,17 @@
 export const defaultAchievements = [
   {
-    title: "Brew Master",
-    icon: "icon-Frame-3",
+    id: "brew_master",
+    icon: "icon-beans",
+    completed: true,
   },
   {
-    title: "Coffee Ambassador",
-    icon: "icon-Frame-2",
+    id: "coffee_ambassador",
+    icon: "icon-world",
+    completed: false,
   },
   {
-    title: "Flavor Alchemist",
-    icon: "icon-Frame-1",
+    id: "flavor_alchemist",
+    icon: "icon-cup",
+    completed: true,
   },
 ];

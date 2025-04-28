@@ -7,9 +7,9 @@ export type IconProps = {
   color?: string;
 };
 
-export const Icon: React.FC<IconProps> = ({ name, size, className, color }) => {
+export const Icon: React.FC<IconProps> = ({ name, size, className }) => {
   return (
-    <svg width={size} height={size} className={className} fill={color}>
+    <svg width={size} height={size} className={className}>
       <use xlinkHref={`${sprite}#${name}`} />
     </svg>
   );

@@ -1,6 +1,8 @@
 import * as Progress from "@radix-ui/react-progress";
+import { useTranslation } from "react-i18next";
 
 export const ProgressLinear: React.FC = () => {
+  const { t } = useTranslation();
   const progress: number = 50;
   return (
     <div className="flex flex-col justify-center items-center gap-1">
@@ -16,7 +18,9 @@ export const ProgressLinear: React.FC = () => {
           style={{ transform: `translateX(-${100 - progress}%)` }}
         />
       </Progress.Root>
-      <p className="text-espresso text-[14px]">{progress}% completed</p>
+      <p className="text-espresso text-[14px]">
+        {progress}% {t(`progress.completed`)}
+      </p>
     </div>
   );
 };
