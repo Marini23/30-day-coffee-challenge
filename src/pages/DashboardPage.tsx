@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Achievements } from "../components/Achievements/Achievements";
 import { ProgressLinear } from "../components/ProgressBar/ProgressLinear";
+import { TasksList } from "../components/Tasks/Tasks";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -15,7 +16,9 @@ export const DashboardPage: React.FC = () => {
       </section>
       <div>Calendar</div>
       <div>
-        <div>Tasks list</div>
+        <div>
+          <TasksList />
+        </div>
         <div>Community</div>
       </div>
     </div>

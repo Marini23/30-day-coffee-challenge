@@ -1,60 +1,48 @@
-export const defaultTasks = [
+import { DefaultSection } from "../types/tasks";
+
+export const defaultTasks: DefaultSection[] = [
   {
     title: "Brewing Basics",
     tasks: [
       {
         number: 1,
-        title: "Coffee-to-Water Ratio",
-        description:
-          "Brew coffee using a 1:16 ratio (e.g., 20g coffee to 320g water).",
+        completed: false,
       },
       {
         number: 2,
-        title: "Taste the Difference",
-        description: "Compare light vs. dark roast coffee side by side.",
+        completed: false,
       },
       {
         number: 3,
-        title: "French Press Plunge",
-        description:
-          "Brew coffee using a French Press with a 4-minute steep time.",
+        completed: false,
       },
       {
         number: 4,
-        title: "Test Grind Sizes",
-        description: "Try coffee with coarse, medium, and fine grinds.",
+        completed: false,
       },
       {
         number: 5,
-        title: "Water Wisdom",
-        description: "Brew coffee with distilled water vs. filtered water.",
+        completed: false,
       },
       {
         number: 6,
-        title: "Pour-Over Practice",
-        description:
-          "Brew a cup using a pour-over method, pouring water in a slow spiral.",
+        completed: false,
       },
       {
         number: 7,
-        title: "Cold Brew Soak",
-        description:
-          "Make cold brew concentrate by steeping grounds in cold water for 12+ hours.",
+        completed: false,
       },
       {
         number: 8,
-        title: "Master the Moka Pot",
-        description: "Make stovetop espresso using a Moka Pot.",
+        completed: false,
       },
       {
         number: 9,
-        title: "Drip It Good",
-        description: "Try a classic drip coffee.",
+        completed: false,
       },
       {
         number: 10,
-        title: "Two Beans, One Brew",
-        description: "Mix two bean types and brew.",
+        completed: false,
       },
     ],
   },
@@ -63,56 +51,43 @@ export const defaultTasks = [
     tasks: [
       {
         number: 11,
-        title: "Italian Espresso",
-        description: "Drink espresso like Italians: quick & strong.",
+        completed: false,
       },
       {
         number: 12,
-        title: "Colombian Supremo",
-        description:
-          "Brew a pour-over with Colombian beans and taste their caramel sweetness.",
+        completed: false,
       },
       {
         number: 13,
-        title: "Moroccan Spiced Coffee",
-        description: "Brew with cinnamon and nutmeg.",
+        completed: false,
       },
       {
         number: 14,
-        title: "Greek Frappé",
-        description:
-          "Shake instant coffee, water, sugar, and ice for a frothy frappé.",
+        completed: false,
       },
       {
         number: 15,
-        title: "French Café au Lait",
-        description: "Mix drip coffee with steamed milk.",
+        completed: false,
       },
       {
         number: 16,
-        title: "Swedish Fika",
-        description: "Enjoy coffee with a small pastry or bun.",
+        completed: false,
       },
       {
         number: 17,
-        title: "Puerto Rican Café Cortao",
-        description: "Mix equal parts espresso and steamed milk.",
+        completed: false,
       },
       {
         number: 18,
-        title: "Vietnamese Iced Coffee",
-        description:
-          "Mix strong drip coffee with sweetened condensed milk over ice.",
+        completed: false,
       },
       {
         number: 19,
-        title: "Viennese Melange",
-        description: "Prepare coffee with steamed milk and whipped cream.",
+        completed: false,
       },
       {
         number: 20,
-        title: "Brazilian Cafézinho",
-        description: "Sweet and bold traditional coffee.",
+        completed: false,
       },
     ],
   },
@@ -121,56 +96,43 @@ export const defaultTasks = [
     tasks: [
       {
         number: 21,
-        title: "New Café Visit",
-        description: "Try a coffee shop you've never been to before.",
+        completed: false,
       },
       {
         number: 22,
-        title: "Flavor Mad Scientist",
-        description:
-          "Mix coffee with an unexpected ingredient (e.g., chili, lavender).",
+        completed: false,
       },
       {
         number: 23,
-        title: "Coffee & Ice Cream Pairing",
-        description: "Create a dessert combo with coffee.",
+        completed: false,
       },
       {
         number: 24,
-        title: "Barista for a Day",
-        description: "Practice latte art or milk frothing at home.",
+        completed: false,
       },
       {
         number: 25,
-        title: "Signature Drink",
-        description: "Invent your own coffee drink and give it a cool name.",
+        completed: false,
       },
       {
         number: 26,
-        title: "Spice It Up",
-        description:
-          "Add spices like cardamom, ginger, or cloves and rate the flavor.",
+        completed: false,
       },
       {
         number: 27,
-        title: "Cold Brew Soak",
-        description:
-          "Make cold brew concentrate by steeping grounds in cold water for 12+ hours.",
+        completed: false,
       },
       {
         number: 28,
-        title: "Coffee-Inspired Bake",
-        description: "Bake coffee-infused cookies or tiramisu.",
+        completed: false,
       },
       {
         number: 29,
-        title: "Blind Taste Test",
-        description: "Taste two coffees blindfolded and guess the bean.",
+        completed: false,
       },
       {
         number: 30,
-        title: "Travel Mug Adventure",
-        description: "Take coffee outside—park, hike, or walk.",
+        completed: false,
       },
     ],
   },
