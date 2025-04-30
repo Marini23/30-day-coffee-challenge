@@ -59,135 +59,131 @@
     "title": "Your progress",
     "completed": "completed"
   },
+  "sectionsTasks": {
+    "Brewing Basics": "Brewing Basics",
+    "Global Coffee Tour": "Global Coffee Tour",
+    "Creativity & Skills": "Creativity & Skills"
+  },
   "tasks": {
-    "brewingBasics": {
-      "title": "Brewing Basics",
-      "task1": {
-        "title": "Coffee-to-Water Ratio",
-        "description": "Brew coffee using a 1:16 ratio (e.g., 20g coffee to 320g water)."
-      },
-      "task2": {
-        "title": "Taste the Difference",
-        "description": "Compare light vs. dark roast coffee side by side."
-      },
-      "task3": {
-        "title": "French Press Plunge",
-        "description": "Brew coffee using a French Press with a 4-minute steep time."
-      },
-      "task4": {
-        "title": "Test Grind Sizes",
-        "description": "Try coffee with coarse, medium, and fine grinds."
-      },
-      "task5": {
-        "title": "Water Wisdom",
-        "description": "Brew coffee with distilled water vs. filtered water."
-      },
-      "task6": {
-        "title": "Pour-Over Practice",
-        "description": "Brew a cup using a pour-over method, pouring water in a slow spiral."
-      },
-      "task7": {
-        "title": "Cold Brew Soak",
-        "description": "Make cold brew concentrate by steeping grounds in cold water for 12+ hours."
-      },
-      "task8": {
-        "title": "Master the Moka Pot",
-        "description": "Make stovetop espresso using a Moka Pot."
-      },
-      "task9": {
-        "title": "Drip It Good",
-        "description": "Try a classic drip coffee."
-      },
-      "task10": {
-        "title": "Two Beans, One Brew",
-        "description": "Mix two bean types and brew."
-      }
+    "1": {
+      "title": "Coffee-to-Water Ratio",
+      "description": "Brew coffee using a 1:16 ratio (e.g., 20g coffee to 320g water)."
     },
-    "globalCoffeeTour": {
-      "title": "Global Coffee Tour",
-      "task11": {
-        "title": "Italian Espresso",
-        "description": "Drink espresso like Italians: quick & strong."
-      },
-      "task12": {
-        "title": "Colombian Supremo",
-        "description": "Brew a pour-over with Colombian beans and taste their caramel sweetness."
-      },
-      "task13": {
-        "title": "Moroccan Spiced Coffee",
-        "description": "Brew with cinnamon and nutmeg."
-      },
-      "task14": {
-        "title": "Greek Frappé",
-        "description": "Shake instant coffee, water, sugar, and ice for a frothy frappé."
-      },
-      "task15": {
-        "title": "French Café au Lait",
-        "description": "Mix drip coffee with steamed milk."
-      },
-      "task16": {
-        "title": "Swedish Fika",
-        "description": "Enjoy coffee with a small pastry or bun."
-      },
-      "task17": {
-        "title": "Puerto Rican Café Cortao",
-        "description": "Mix equal parts espresso and steamed milk."
-      },
-      "task18": {
-        "title": "Vietnamese Iced Coffee",
-        "description": "Mix strong drip coffee with sweetened condensed milk over ice."
-      },
-      "task19": {
-        "title": "Viennese Melange",
-        "description": "Prepare coffee with steamed milk and whipped cream."
-      },
-      "task20": {
-        "title": "Brazilian Cafézinho",
-        "description": "Sweet and bold traditional coffee."
-      }
+    "2": {
+      "title": "Taste the Difference",
+      "description": "Compare light vs. dark roast coffee side by side."
     },
-    "creativitySkills": {
-      "title": "Creativity & Skills",
-      "task21": {
-        "title": "New Café Visit",
-        "description": "Try a coffee shop you've never been to before."
-      },
-      "task22": {
-        "title": "Flavor Mad Scientist",
-        "description": "Mix coffee with an unexpected ingredient (e.g., chili, lavender)."
-      },
-      "task23": {
-        "title": "Coffee & Ice Cream Pairing",
-        "description": "Create a dessert combo with coffee."
-      },
-      "task24": {
-        "title": "Barista for a Day",
-        "description": "Practice latte art or milk frothing at home."
-      },
-      "task25": {
-        "title": "Signature Drink",
-        "description": "Invent your own coffee drink and give it a cool name."
-      },
-      "task26": {
-        "title": "Spice It Up",
-        "description": "Add spices like cardamom, ginger, or cloves and rate the flavor."
-      },
-      "task27": {
-        "title": "Cold Brew Soak",
-        "description": "Make cold brew concentrate by steeping grounds in cold water for 12+ hours."
-      },
-      "task28": {
-        "title": "Coffee-Inspired Bake",
-        "description": "Bake coffee-infused cookies or tiramisu."
-      },
-      "task29": {
-        "title": "Blind Taste Test",
-        "description": "Taste two coffees blindfolded and guess the bean."
-      },
-      "task30": {
-        "title": "Travel Mug Adventure",
-        "description": "Take coffee outside—park, hike, or walk."
-      }
+    "3": {
+      "title": "French Press Plunge",
+      "description": "Brew coffee using a French Press with a 4-minute steep time."
+    },
+    "4": {
+      "title": "Test Grind Sizes",
+      "description": "Try coffee with coarse, medium, and fine grinds."
+    },
+    "5": {
+      "title": "Water Wisdom",
+      "description": "Brew coffee with distilled water vs. filtered water."
+    },
+    "6": {
+      "title": "Pour-Over Practice",
+      "description": "Brew a cup using a pour-over method, pouring water in a slow spiral."
+    },
+    "7": {
+      "title": "Cold Brew Soak",
+      "description": "Make cold brew concentrate by steeping grounds in cold water for 12+ hours."
+    },
+    "8": {
+      "title": "Master the Moka Pot",
+      "description": "Make stovetop espresso using a Moka Pot."
+    },
+    "9": {
+      "title": "Drip It Good",
+      "description": "Try a classic drip coffee."
+    },
+    "10": {
+      "title": "Two Beans, One Brew",
+      "description": "Mix two bean types and brew."
+    },
+    "11": {
+      "title": "Italian Espresso",
+      "description": "Drink espresso like Italians: quick & strong."
+    },
+    "12": {
+      "title": "Colombian Supremo",
+      "description": "Brew a pour-over with Colombian beans and taste their caramel sweetness."
+    },
+    "13": {
+      "title": "Moroccan Spiced Coffee",
+      "description": "Brew with cinnamon and nutmeg."
+    },
+    "14": {
+      "title": "Greek Frappé",
+      "description": "Shake instant coffee, water, sugar, and ice for a frothy frappé."
+    },
+    "15": {
+      "title": "French Café au Lait",
+      "description": "Mix drip coffee with steamed milk."
+    },
+    "16": {
+      "title": "Swedish Fika",
+      "description": "Enjoy coffee with a small pastry or bun."
+    },
+    "17": {
+      "title": "Puerto Rican Café Cortao",
+      "description": "Mix equal parts espresso and steamed milk."
+    },
+    "18": {
+      "title": "Vietnamese Iced Coffee",
+      "description": "Mix strong drip coffee with sweetened condensed milk over ice."
+    },
+    "19": {
+      "title": "Viennese Melange",
+      "description": "Prepare coffee with steamed milk and whipped cream."
+    },
+    "20": {
+      "title": "Brazilian Cafézinho",
+      "description": "Sweet and bold traditional coffee."
+    },
+    "21": {
+      "title": "New Café Visit",
+      "description": "Try a coffee shop you've never been to before."
+    },
+    "22": {
+      "title": "Flavor Mad Scientist",
+      "description": "Mix coffee with an unexpected ingredient (e.g., chili, lavender)."
+    },
+    "23": {
+      "title": "Coffee & Ice Cream Pairing",
+      "description": "Create a dessert combo with coffee."
+    },
+    "24": {
+      "title": "Barista for a Day",
+      "description": "Practice latte art or milk frothing at home."
+    },
+    "25": {
+      "title": "Signature Drink",
+      "description": "Invent your own coffee drink and give it a cool name."
+    },
+    "26": {
+      "title": "Spice It Up",
+      "description": "Add spices like cardamom, ginger, or cloves and rate the flavor."
+    },
+    "27": {
+      "title": "Cold Brew Soak",
+      "description": "Make cold brew concentrate by steeping grounds in cold water for 12+ hours."
+    },
+    "28": {
+      "title": "Coffee-Inspired Bake",
+      "description": "Bake coffee-infused cookies or tiramisu."
+    },
+    "29": {
+      "title": "Blind Taste Test",
+      "description": "Taste two coffees blindfolded and guess the bean."
+    },
+    "30": {
+      "title": "Travel Mug Adventure",
+      "description": "Take coffee outside—park, hike, or walk."
     }
   }
 }
