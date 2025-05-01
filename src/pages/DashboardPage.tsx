@@ -14,13 +14,11 @@ export const DashboardPage: React.FC = () => {
         <ProgressLinear />
         <Achievements />
       </section>
-      <div>Calendar</div>
-      <div>
-        <div>
-          <TasksList />
-        </div>
-        <div>Community</div>
-      </div>
+
+      <section>
+        <TasksList />
+      </section>
+      <div>Community</div>
     </div>
   );
 };

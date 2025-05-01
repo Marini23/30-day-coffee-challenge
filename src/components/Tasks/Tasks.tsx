@@ -1,36 +1,66 @@
 import { useTranslation } from "react-i18next";
 import { defaultTasks } from "../../data/defaultTasks";
+import { Icon } from "../../utils/Icon";
+import { ProgressSection } from "../ProgressBar/ProgressSection";
 
 export const TasksList: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-10">
-      {defaultTasks.map((section, sectionIndex) => (
-        <div key={sectionIndex}>
-          <h2 className="text-2xl font-bold mb-4">
-            {t(`sectionsTasks.${section.title}`)}
-          </h2>
-          <ul className="flex flex-col gap-4">
-            {section.tasks.map((task) => (
-              <li
-                key={task.number}
-                className="flex border rounded-xl p-4 bg-latte text-espresso shadow-sm"
-              >
-                <div>{task.number}</div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-2">
-                    {" "}
-                    {t(`tasks.${task.number}.title`)}
-                  </h3>
-                  <p className="text-base">
-                    {t(`tasks.${task.number}.description`)}
+      {defaultTasks.map((section, sectionIndex) => {
+        const total = section.tasks.length;
+        const completed = section.tasks.filter((task) => task.completed).length;
+
+        return (
+          <section key={sectionIndex}>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">
+                {t(`sectionsTasks.${section.title}`)}
+              </h2>
+              <ProgressSection completed={completed} total={total} />
+            </div>
+
+            <ul className="flex flex-col gap-6">
+              {section.tasks.map((task) => (
+                <li
+                  key={task.number}
+                  className="flex items-center justify-between gap-4 p-4 rounded-xl shadow-[0_2px_8px_theme('colors.espresso')] text-espresso"
+                >
+                  <div className="w-8 h-8 flex-shrink-0">
+                    {task.completed ? (
+                      <Icon
+                        name="icon-completed"
+                        size={32}
+                        className="fill-active"
+                      />
+                    ) : (
+                      <Icon
+                        name="icon-empty"
+                        size={32}
+                        className="fill-latte"
+                      />
+                    )}
+                  </div>
+
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold">
+                      {t(`tasks.${task.number}.title`)}
+                    </h3>
+                    <p className="text-base">
+                      {t(`tasks.${task.number}.description`)}
+                    </p>
+                  </div>
+
+                  <p className="italic font-bold text-right w-8">
+                    {String(task.number).padStart(2, "0")}
                   </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
     </div>
   );
 };

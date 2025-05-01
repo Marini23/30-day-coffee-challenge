@@ -10,7 +10,7 @@ export const defaultTasks: DefaultSection[] = [
       },
       {
         number: 2,
-        completed: false,
+        completed: true,
       },
       {
         number: 3,
