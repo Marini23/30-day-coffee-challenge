@@ -7,14 +7,14 @@ export const TasksList: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-6">
       {defaultTasks.map((section, sectionIndex) => {
         const total = section.tasks.length;
         const completed = section.tasks.filter((task) => task.completed).length;
 
         return (
           <section key={sectionIndex}>
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold">
                 {t(`sectionsTasks.${section.title}`)}
               </h2>

@@ -9,6 +9,7 @@ import { User, UserRegistration } from "../types/user";
 import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
 
+
 // Signed up
 
 const createUserFromRegistration = (
@@ -20,6 +21,7 @@ const createUserFromRegistration = (
   firstName: registration.firstName,
   lastName: registration.lastName,
   language: registration.language,
+  completedDays: registration.completedDays,
 });
 
 export const SignUpWithEmailPassword = async (data: UserRegistration) => {
@@ -88,3 +90,6 @@ export const LogInWithEmailPassword = async (
     return null;
   }
 };
+
+// get user data
+

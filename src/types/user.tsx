@@ -6,6 +6,7 @@ export type User = {
   firstName: string;
   lastName: string;
   language: "en" | "pl";
+  completedDays: number[];
   createdAt: Timestamp;
 };
 
@@ -15,9 +16,21 @@ export type UserRegistration = {
   lastName: string;
   password: string;
   language: "en" | "pl";
+  completedDays: number[];
 };
 
 export type UserLogin = {
   email: string;
   password: string;
+};
+
+export type UserState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  language: string;
+  completedDays: number[];
+  isLoggedIn: boolean;
+  setUser: (user: Partial<UserState>) => void;
+  logout: () => void;
 };
