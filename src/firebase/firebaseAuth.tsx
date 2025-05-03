@@ -8,7 +8,7 @@ import { auth, db } from "./firebase";
 import { User, UserRegistration } from "../types/user";
 import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
-
+import { useUserStore } from "../store/userStore";
 
 // Signed up
 
@@ -21,7 +21,7 @@ const createUserFromRegistration = (
   firstName: registration.firstName,
   lastName: registration.lastName,
   language: registration.language,
-  completedDays: registration.completedDays,
+  completedDays: [],
 });
 
 export const SignUpWithEmailPassword = async (data: UserRegistration) => {
@@ -42,6 +42,10 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
 
     await createUserAchievements(user.uid);
     await createUserTasks(user.uid);
+
+    useUserStore.getState().setUser({
+      ...newUser,
+    });
 
     toast.success("You registered successfully!");
   } catch (error) {
@@ -74,6 +78,9 @@ export const LogInWithEmailPassword = async (
 
     if (userSnap.exists()) {
       const userData = userSnap.data() as User;
+      useUserStore.getState().setUser({
+        ...userData,
+      });
       toast.success(`Welcome back, ${userData.firstName}!`);
       return userData;
     } else {
@@ -90,6 +97,3 @@ export const LogInWithEmailPassword = async (
     return null;
   }
 };
-
-// get user data
-

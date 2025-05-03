@@ -2,6 +2,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User } from "../types/user";
+import { useUserStore } from "../store/userStore";
+import { onAuthStateChanged } from "firebase/auth";
+
+// get user data
+
 const getUserData = async (uid: string): Promise<User | null> => {
   try {
     const userDocRef = doc(db, "users", uid);
@@ -19,17 +24,19 @@ const getUserData = async (uid: string): Promise<User | null> => {
   }
 };
 
-export const fetchUser = async () => {
-  const uid = auth.currentUser?.uid;
-  if (uid) {
-    try {
-      const userData = await getUserData(uid);
-      if (userData) {
-        console.log("User data:", userData);
+export const fetchUser = () => {
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      try {
+        const userData = await getUserData(user.uid);
+        if (userData) {
+          console.log("User data:", userData);
+          useUserStore.getState().setUser(userData);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        toast.error("Failed to fetch user data.");
       }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      toast.error("Failed to fetch user data.");
     }
-  }
+  });
 };

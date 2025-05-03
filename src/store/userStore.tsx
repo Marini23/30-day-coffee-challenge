@@ -8,7 +8,7 @@ export const useUserStore = create<UserState>((set) => ({
   language: "en",
   completedDays: [],
   isLoggedIn: false,
-  setUser: (user) => set((state) => ({ ...state, ...user })),
+  setUser: (user) => set((state) => ({ ...state, ...user, isLoggedIn: true })),
   logout: () =>
     set({
       firstName: "",

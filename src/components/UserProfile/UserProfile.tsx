@@ -1,7 +1,9 @@
 import { RxAvatar } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
+import { useUserStore } from "../../store/userStore";
 
 export const UserProfile: React.FC = () => {
+  const { firstName, lastName, email, language } = useUserStore();
   return (
     <section className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10">
       <div className="laptop:w-1/3">
@@ -37,7 +39,7 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                defaultValue="Maryna"
+                defaultValue={firstName}
                 className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
               />
             </div>
@@ -47,7 +49,7 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                defaultValue="Udovychenko"
+                defaultValue={lastName}
                 className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
               />
             </div>
@@ -58,7 +60,7 @@ export const UserProfile: React.FC = () => {
             </label>
             <input
               type="email"
-              defaultValue="marina.smile1m@gmail.com"
+              defaultValue={email}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
             />
           </div>
@@ -66,7 +68,10 @@ export const UserProfile: React.FC = () => {
             <label className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px]">
               Language
             </label>
-            <select className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso">
+            <select
+              value={language}
+              className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso"
+            >
               <option
                 value="en"
                 className="bg-secondary text-espresso borde-none hover:bg-espresso"

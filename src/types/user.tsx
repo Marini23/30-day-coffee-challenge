@@ -16,7 +16,6 @@ export type UserRegistration = {
   lastName: string;
   password: string;
   language: "en" | "pl";
-  completedDays: number[];
 };
 
 export type UserLogin = {

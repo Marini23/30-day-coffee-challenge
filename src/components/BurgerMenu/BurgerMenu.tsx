@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../../store/userStore";
 
 export const BurgerMenu: React.FC = () => {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const isLoggedIn: boolean = false;
+
+  const { isLoggedIn } = useUserStore();
 
   const toogleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

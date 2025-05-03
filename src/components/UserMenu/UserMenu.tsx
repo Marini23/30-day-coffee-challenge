@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
+import { useUserStore } from "../../store/userStore";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
+  const { completedDays } = useUserStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>();
 
@@ -13,7 +15,7 @@ export const UserMenu: React.FC = () => {
   return (
     <div className="hidden tablet:flex flex-1 items-center justify-between  tablet:w-150 desktop:w-[600px]">
       <p className="font-medium tablet:text-[24px] desktop:text-[32px] ml-[30px]">
-        {t("header.day")} 7/30
+        {t("header.day")} {completedDays}/30
       </p>
       <nav className="  ml-auto flex gap-10 mr-[50px]">
         <Link

@@ -5,8 +5,14 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { LogInPage } from "./pages/LogInPage";
 import { DashboardPage } from "./pages/DashboardPage";
+import { useEffect } from "react";
+import { fetchUser } from "./firebase/userDataService";
 
 function App(): React.JSX.Element {
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   return (
     <div>
       <Routes>
