@@ -57,7 +57,7 @@
   },
   "progress": {
     "title": "Your progress",
-    "completed": "completed"
+    "completed": "of 30 completed"
   },
   "sectionsTasks": {
     "Brewing Basics": "Brewing Basics",

@@ -1,9 +1,11 @@
 import * as Progress from "@radix-ui/react-progress";
 import { useTranslation } from "react-i18next";
+import { useUserStore } from "../../store/userStore";
 
 export const ProgressLinear: React.FC = () => {
   const { t } = useTranslation();
-  const progress: number = 50;
+  const { completedDays } = useUserStore();
+  const progress: number = (completedDays.length / 30) * 100;
   return (
     <div className="flex flex-col justify-center items-center gap-1">
       <Progress.Root
@@ -19,7 +21,7 @@ export const ProgressLinear: React.FC = () => {
         />
       </Progress.Root>
       <p className="text-espresso text-[14px]">
-        {progress}% {t(`progress.completed`)}
+        {completedDays.length ?? 0} {t(`progress.completed`)}
       </p>
     </div>
   );

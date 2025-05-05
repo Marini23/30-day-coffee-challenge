@@ -24,6 +24,7 @@ export type UserLogin = {
 };
 
 export type UserState = {
+  uid: string;
   firstName: string;
   lastName: string;
   email: string;

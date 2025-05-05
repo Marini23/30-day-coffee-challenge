@@ -2,7 +2,7 @@ export const defaultAchievements = [
   {
     id: "brew_master",
     icon: "icon-beans",
-    completed: true,
+    completed: false,
   },
   {
     id: "coffee_ambassador",
@@ -12,6 +12,6 @@ export const defaultAchievements = [
   {
     id: "flavor_alchemist",
     icon: "icon-cup",
-    completed: true,
+    completed: false,
   },
 ];

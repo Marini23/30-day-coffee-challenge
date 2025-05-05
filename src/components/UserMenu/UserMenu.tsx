@@ -5,7 +5,7 @@ import { useUserStore } from "../../store/userStore";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
-  const { completedDays } = useUserStore();
+  const { completedDays, firstName, lastName } = useUserStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>();
 
@@ -15,7 +15,7 @@ export const UserMenu: React.FC = () => {
   return (
     <div className="hidden tablet:flex flex-1 items-center justify-between  tablet:w-150 desktop:w-[600px]">
       <p className="font-medium tablet:text-[24px] desktop:text-[32px] ml-[30px]">
-        {t("header.day")} {completedDays}/30
+        {t("header.day")} {completedDays?.length ?? 0}/30
       </p>
       <nav className="  ml-auto flex gap-10 mr-[50px]">
         <Link
@@ -37,7 +37,7 @@ export const UserMenu: React.FC = () => {
           onClick={toogleDropdown}
           className="  mr-2 focus:outline-none bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[40px] desktop:w-[50px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[18px] desktop:text-[24px] hover:bg-gold focus:bg-gold"
         >
-          JS
+          {`${firstName?.[0]?.toUpperCase()}${lastName?.[0]?.toUpperCase()}`}
         </button>
         {isComponentVisible && (
           <div className="absolute right-0  mt-2 w-32 tablet:w-48 desktop:w-58 bg-latte  rounded-lg py-4 flex flex-col aligns-center justify-center gap-2">
