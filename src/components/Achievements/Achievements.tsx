@@ -11,7 +11,6 @@ export const Achievements: React.FC = () => {
   const { uid } = useUserStore();
   const [achievements, setAchievements] =
     useState<Achievement[]>(defaultAchievements);
-  console.log(uid);
   useEffect(() => {
     const fetchAchievements = async () => {
       if (!uid) {

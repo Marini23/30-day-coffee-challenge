@@ -26,30 +26,12 @@ export const createUserAchievements = async (userId: string) => {
       updatedAt: Date.now(),
     },
   ];
-
-  // const achievementDocRef = doc(db, "achievements", userId);
   const achievementDocRef = collection(db, "achievements");
   await setDoc(doc(achievementDocRef, userId), {
     achievements,
   });
-  // await setDoc(achievementDocRef, { achievements });
 };
 
-// export const getUserAchievements = async (userId: string) => {
-//   try {
-//     const achievementDocRef = doc(db, "achievements", userId);
-//     console.log("Document path:", achievementDocRef.path);
-//     const docSnap = await getDoc(achievementDocRef);
-//     if (docSnap.exists()) {
-//       console.log("Document data:", docSnap.data());
-//     } else {
-//       // docSnap.data() will be undefined in this case
-//       console.log("No such document!");
-//     }
-//   } catch (error) {
-//     console.error("Error fetching user achievements:", error);
-//   }
-// };
 export const getUserAchievements = async (userId: string) => {
   console.log(userId);
   if (!userId) {

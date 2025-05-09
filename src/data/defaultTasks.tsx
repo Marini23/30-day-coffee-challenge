@@ -1,6 +1,6 @@
-import { DefaultSection } from "../types/tasks";
+import { Section } from "../types/tasks";
 
-export const defaultTasks: DefaultSection[] = [
+export const defaultTasks: Section[] = [
   {
     title: "Brewing Basics",
     tasks: [

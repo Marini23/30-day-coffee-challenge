@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Section } from "../types/tasks";
 
@@ -202,4 +202,24 @@ export const createUserTasks = async (userId: string) => {
   ];
 
   await setDoc(doc(db, "tasks", userId), { tasksList });
+};
+
+export const getUserTasks = async (userId: string) => {
+  console.log(userId);
+  if (!userId) {
+    return;
+  }
+
+  try {
+    const tasksDocRef = doc(db, "tasks", userId);
+    const docSnap = await getDoc(tasksDocRef);
+    if (docSnap.exists()) {
+      return docSnap.data().tasksList;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error("Error fetching user tasks:", error);
+    throw error;
+  }
 };

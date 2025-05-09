@@ -1,7 +1,7 @@
 export type Task = {
   number: number;
-  createdAt: number;
-  updatedAt: number;
+  createdAt?: number;
+  updatedAt?: number;
   completed: boolean;
 };
 
@@ -10,12 +10,12 @@ export type Section = {
   tasks: Task[];
 };
 
-export type DefaultTask = {
-  number: number;
-  completed: boolean;
-};
+// export type DefaultTask = {
+//   number: number;
+//   completed: boolean;
+// };
 
-export type DefaultSection = {
-  title: string;
-  tasks: DefaultTask[];
-};
+// export type DefaultSection = {
+//   title: string;
+//   tasks: DefaultTask[];
+// };
