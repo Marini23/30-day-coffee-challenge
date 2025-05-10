@@ -223,3 +223,44 @@ export const getUserTasks = async (userId: string) => {
     throw error;
   }
 };
+
+// export const updateTaskCompleted = async (
+//   userId: string,
+//   taskNumber: number
+// ) => {
+//   const tasksDocRef = doc(db, "tasks", userId);
+//   const docSnap = await getDoc(tasksDocRef);
+
+//   if (!docSnap.exists()) {
+//     throw new Error("Tasks not found for this user");
+//   }
+
+//   const tasksList: Section[] = docSnap.data().tasksList;
+
+//   // Toggle the completed status for the matching task
+//   const updatedTasksList = tasksList.map((section) => ({
+//     ...section,
+//     tasks: section.tasks.map((task) =>
+//       task.number === taskNumber
+//         ? {
+//             ...task,
+//             completed: !task.completed,
+//             updatedAt: Date.now(),
+//           }
+//         : task
+//     ),
+//   }));
+
+//   // Update only the tasksList field in Firestore
+//   await updateDoc(tasksDocRef, {
+//     tasksList: updatedTasksList,
+//   });
+// };
+
+export const updateUserTasks = async (
+  userId: string,
+  updatedTasks: Section[]
+) => {
+  const ref = doc(db, "tasks", userId);
+  await setDoc(ref, { tasksList: updatedTasks });
+};

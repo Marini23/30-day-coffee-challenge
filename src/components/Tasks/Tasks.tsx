@@ -5,7 +5,7 @@ import { ProgressSection } from "../ProgressBar/ProgressSection";
 import { useUserStore } from "../../store/userStore";
 import { Section } from "../../types/tasks";
 import { useEffect, useState } from "react";
-import { getUserTasks } from "../../firebase/firebaseTasks";
+import { getUserTasks, updateUserTasks } from "../../firebase/firebaseTasks";
 
 export const TasksList: React.FC = () => {
   const { t } = useTranslation();
@@ -34,6 +34,22 @@ export const TasksList: React.FC = () => {
     fetchTasks();
   }, [uid]);
 
+  const handleToggleTask = async (taskNumber: number) => {
+    if (!uid) return;
+
+    const updatedTasks = tasks.map((section) => ({
+      ...section,
+      tasks: section.tasks.map((task) =>
+        task.number === taskNumber
+          ? { ...task, completed: !task.completed, updatedAt: Date.now() }
+          : task
+      ),
+    }));
+
+    setTasks(updatedTasks);
+    await updateUserTasks(uid, updatedTasks);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       {tasks.map((section, sectionIndex) => {
@@ -55,7 +71,10 @@ export const TasksList: React.FC = () => {
                   key={task.number}
                   className="flex items-center justify-between gap-4 p-4 rounded-xl shadow-[0_2px_8px_theme('colors.espresso')] text-espresso"
                 >
-                  <div className="w-8 h-8 flex-shrink-0">
+                  <div
+                    className="w-8 h-8 flex-shrink-0"
+                    onClick={() => handleToggleTask(task.number)}
+                  >
                     {task.completed ? (
                       <Icon
                         name="icon-completed"
