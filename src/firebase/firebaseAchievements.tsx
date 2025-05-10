@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Achievement } from "../types/achievements";
 
@@ -50,4 +50,30 @@ export const getUserAchievements = async (userId: string) => {
     console.error("Error fetching user achievements:", error);
     throw error;
   }
+};
+export const updateUserAchievement = async (
+  uid: string,
+  achievementId: string
+) => {
+  console.log(achievementId);
+  const userAchievementsRef = doc(db, "achievements", uid);
+  const docSnap = await getDoc(userAchievementsRef);
+
+  if (!docSnap.exists()) return;
+
+  const currentAchievements: Achievement[] = docSnap.data().achievements;
+
+  const updatedAchievements = currentAchievements.map((achievement) =>
+    achievement.id === achievementId
+      ? {
+          ...achievement,
+          completed: true,
+          updatedAt: Date.now(),
+        }
+      : achievement
+  );
+
+  await updateDoc(userAchievementsRef, {
+    achievements: updatedAchievements,
+  });
 };

@@ -33,6 +33,8 @@ export const Achievements: React.FC = () => {
     fetchAchievements();
   }, [uid]);
 
+  console.log(achievements);
+
   return (
     <ul className="grid grid-cols-3 gap-4 mt-4">
       {achievements.map(({ id, icon, completed }, index) => (

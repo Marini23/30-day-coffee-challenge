@@ -6,6 +6,7 @@ import { useUserStore } from "../../store/userStore";
 import { Section } from "../../types/tasks";
 import { useEffect, useState } from "react";
 import { getUserTasks, updateUserTasks } from "../../firebase/firebaseTasks";
+import { updateUserAchievement } from "../../firebase/firebaseAchievements";
 
 export const TasksList: React.FC = () => {
   const { t } = useTranslation();
@@ -49,6 +50,24 @@ export const TasksList: React.FC = () => {
     setTasks(updatedTasks);
     await updateUserTasks(uid, updatedTasks);
   };
+  tasks.forEach((section) => {
+    console.log("Section data:", section.title); // Log the entire section
+    console.log("Tasks in section:", section.tasks); // Check if tasks exist
+    const allCompleted = section.tasks.every((task) => task.completed);
+    console.log(allCompleted);
+    const achievementId =
+      section.title === "Brewing Basics"
+        ? "brew_master"
+        : section.title === "Global Coffee Tour"
+        ? "coffee_ambassador"
+        : section.title === "Creativity & Skills"
+        ? "flavor_alchemist"
+        : "";
+    console.log(achievementId);
+    if (allCompleted) {
+      updateUserAchievement(uid, achievementId);
+    }
+  });
 
   return (
     <div className="flex flex-col gap-6">
