@@ -1,73 +1,18 @@
 import { useTranslation } from "react-i18next";
-import { defaultTasks } from "../../data/defaultTasks";
 import { Icon } from "../../utils/Icon";
 import { ProgressSection } from "../ProgressBar/ProgressSection";
-import { useUserStore } from "../../store/userStore";
 import { Section } from "../../types/tasks";
-import { useEffect, useState } from "react";
-import { getUserTasks, updateUserTasks } from "../../firebase/firebaseTasks";
-import { updateUserAchievement } from "../../firebase/firebaseAchievements";
 
-export const TasksList: React.FC = () => {
+interface TasksListProps {
+  tasks: Section[];
+  onToggleTask: (taskNumber: number) => void;
+}
+
+export const TasksList: React.FC<TasksListProps> = ({
+  tasks,
+  onToggleTask,
+}) => {
   const { t } = useTranslation();
-  const { uid } = useUserStore();
-  const [tasks, setTasks] = useState<Section[]>(defaultTasks);
-  useEffect(() => {
-    const fetchTasks = async () => {
-      if (!uid) {
-        console.log("Waiting for user ID...");
-        setTasks(defaultTasks);
-        return;
-      }
-      try {
-        const data = await getUserTasks(uid);
-        console.log(data);
-        if (data) {
-          setTasks(data);
-        } else {
-          setTasks(defaultTasks);
-        }
-      } catch (error) {
-        console.error("Failed to load achievements:", error);
-        setTasks(defaultTasks);
-      }
-    };
-    fetchTasks();
-  }, [uid]);
-
-  const handleToggleTask = async (taskNumber: number) => {
-    if (!uid) return;
-
-    const updatedTasks = tasks.map((section) => ({
-      ...section,
-      tasks: section.tasks.map((task) =>
-        task.number === taskNumber
-          ? { ...task, completed: !task.completed, updatedAt: Date.now() }
-          : task
-      ),
-    }));
-
-    setTasks(updatedTasks);
-    await updateUserTasks(uid, updatedTasks);
-  };
-  tasks.forEach((section) => {
-    console.log("Section data:", section.title); // Log the entire section
-    console.log("Tasks in section:", section.tasks); // Check if tasks exist
-    const allCompleted = section.tasks.every((task) => task.completed);
-    console.log(allCompleted);
-    const achievementId =
-      section.title === "Brewing Basics"
-        ? "brew_master"
-        : section.title === "Global Coffee Tour"
-        ? "coffee_ambassador"
-        : section.title === "Creativity & Skills"
-        ? "flavor_alchemist"
-        : "";
-    console.log(achievementId);
-    if (allCompleted) {
-      updateUserAchievement(uid, achievementId);
-    }
-  });
 
   return (
     <div className="flex flex-col gap-6">
@@ -92,7 +37,7 @@ export const TasksList: React.FC = () => {
                 >
                   <div
                     className="w-8 h-8 flex-shrink-0"
-                    onClick={() => handleToggleTask(task.number)}
+                    onClick={() => onToggleTask(task.number)}
                   >
                     {task.completed ? (
                       <Icon

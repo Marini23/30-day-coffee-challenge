@@ -1,8 +1,13 @@
-import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Achievement } from "../types/achievements";
 
+/**
+ * Creates initial achievements for a user in Firestore.
+ */
 export const createUserAchievements = async (userId: string) => {
+  if (!userId) throw new Error("createUserAchievements: Missing userId");
+
   const achievements: Achievement[] = [
     {
       id: "brew_master",
@@ -26,23 +31,25 @@ export const createUserAchievements = async (userId: string) => {
       updatedAt: Date.now(),
     },
   ];
-  const achievementDocRef = collection(db, "achievements");
-  await setDoc(doc(achievementDocRef, userId), {
-    achievements,
-  });
+
+  const achievementDocRef = doc(db, "achievements", userId); // ✅ doc ref with 2 segments
+  console.log("Creating achievements for user:", userId);
+
+  await setDoc(achievementDocRef, { achievements });
 };
 
+/**
+ * Retrieves a user's achievements from Firestore.
+ */
 export const getUserAchievements = async (userId: string) => {
-  console.log(userId);
-  if (!userId) {
-    return;
-  }
+  if (!userId) throw new Error("getUserAchievements: Missing userId");
 
   try {
-    const achievementDocRef = doc(db, "achievements", userId);
+    const achievementDocRef = doc(db, "achievements", userId); // ✅ 2 segments
     const docSnap = await getDoc(achievementDocRef);
+
     if (docSnap.exists()) {
-      return docSnap.data().achievements;
+      return docSnap.data().achievements as Achievement[];
     } else {
       return [];
     }
@@ -51,29 +58,54 @@ export const getUserAchievements = async (userId: string) => {
     throw error;
   }
 };
+
+/**
+ * Updates the completion status of a specific user achievement.
+ */
 export const updateUserAchievement = async (
   uid: string,
-  achievementId: string
+  achievementId: string,
+  isCompleted: boolean
 ) => {
-  console.log(achievementId);
-  const userAchievementsRef = doc(db, "achievements", uid);
-  const docSnap = await getDoc(userAchievementsRef);
+  if (!uid) throw new Error("updateUserAchievement: Missing userId");
 
-  if (!docSnap.exists()) return;
-
-  const currentAchievements: Achievement[] = docSnap.data().achievements;
-
-  const updatedAchievements = currentAchievements.map((achievement) =>
-    achievement.id === achievementId
-      ? {
-          ...achievement,
-          completed: true,
-          updatedAt: Date.now(),
-        }
-      : achievement
+  const userAchievementsRef = doc(db, "achievements", uid); // ✅ 2 segments
+  console.log(
+    "Updating achievement for user:",
+    uid,
+    "achievement:",
+    achievementId,
+    "status:",
+    isCompleted
   );
 
-  await updateDoc(userAchievementsRef, {
-    achievements: updatedAchievements,
+  const docSnap = await getDoc(userAchievementsRef);
+  if (!docSnap.exists()) {
+    console.warn("User achievements document does not exist.");
+    return;
+  }
+
+  const currentAchievements: Achievement[] = docSnap.data().achievements;
+  console.log(currentAchievements);
+
+  const updatedAchievements = currentAchievements.map((achievement) => {
+    console.log(achievement);
+    console.log(isCompleted);
+
+    const updatedAchievement =
+      achievement.id === achievementId
+        ? {
+            ...achievement,
+            completed: isCompleted,
+            updatedAt: Date.now(),
+          }
+        : achievement;
+
+    console.log(updatedAchievement);
+    return updatedAchievement;
   });
+
+  console.log(updatedAchievements);
+
+  await setDoc(userAchievementsRef, { achievements: updatedAchievements });
 };
