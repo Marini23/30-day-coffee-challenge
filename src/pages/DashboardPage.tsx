@@ -9,7 +9,10 @@ import { useUserStore } from "../store/userStore";
 import { useEffect, useState } from "react";
 import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
-import { getUserAchievements } from "../firebase/firebaseAchievements";
+import {
+  getUserAchievements,
+  updateUserAchievement,
+} from "../firebase/firebaseAchievements";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -27,7 +30,6 @@ export const DashboardPage: React.FC = () => {
       }
       try {
         const data = await getUserTasks(uid);
-        console.log(data);
         if (data) {
           setTasks(data);
         } else {
@@ -64,6 +66,8 @@ export const DashboardPage: React.FC = () => {
     fetchAchievements();
   }, [uid]);
 
+  console.log(achievements);
+
   const handleToggleTask = async (taskNumber: number) => {
     if (!uid) return;
     const updatedTasks = tasks.map((section) => ({
@@ -76,7 +80,34 @@ export const DashboardPage: React.FC = () => {
     }));
     setTasks(updatedTasks);
     await updateUserTasks(uid, updatedTasks);
+
+    let updatedAchievements = [...achievements];
+
+    updatedTasks.forEach((section) => {
+      const allCompleted = section.tasks.every((task) => task.completed);
+      console.log(allCompleted);
+      const achievementId =
+        section.title === "Brewing Basics"
+          ? "brew_master"
+          : section.title === "Global Coffee Tour"
+          ? "coffee_ambassador"
+          : section.title === "Creativity & Skills"
+          ? "flavor_alchemist"
+          : "";
+      console.log(achievementId);
+
+      updatedAchievements = updatedAchievements.map((achievement) =>
+        achievement.id === achievementId
+          ? { ...achievement, completed: allCompleted, updatedAt: Date.now() }
+          : achievement
+      );
+      console.log(updatedAchievements);
+      setAchievements(updatedAchievements);
+      updateUserAchievement(uid, updatedAchievements);
+    });
   };
+
+  console.log(achievements);
 
   return (
     <div className="p-4 flex flex-col gap-6">
