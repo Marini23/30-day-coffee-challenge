@@ -7,9 +7,10 @@ export const useUserStore = create<UserState>((set) => ({
   lastName: "",
   email: "",
   language: "en",
-  completedDays: [],
+  completedDays: 0,
   isLoggedIn: false,
   setUser: (user) => set((state) => ({ ...state, ...user, isLoggedIn: true })),
+  setUserCompletedDays: (count: number) => set({ completedDays: count }),
   logout: () =>
     set({
       uid: "",
@@ -17,7 +18,7 @@ export const useUserStore = create<UserState>((set) => ({
       lastName: "",
       email: "",
       language: "en",
-      completedDays: [],
+      completedDays: 0,
       isLoggedIn: false,
     }),
 }));

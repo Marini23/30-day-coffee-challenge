@@ -59,9 +59,6 @@ export const getUserAchievements = async (userId: string) => {
   }
 };
 
-/**
- * Updates the completion status of a specific user achievement.
- */
 export const updateUserAchievement = async (
   uid: string,
   updatedAchievements: Achievement[]

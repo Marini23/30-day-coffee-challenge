@@ -5,7 +5,7 @@ import { useUserStore } from "../../store/userStore";
 export const ProgressLinear: React.FC = () => {
   const { t } = useTranslation();
   const { completedDays } = useUserStore();
-  const progress: number = (completedDays.length / 30) * 100;
+  const progress: number = (completedDays / 30) * 100;
   return (
     <div className="flex flex-col justify-center items-center gap-1">
       <Progress.Root
@@ -21,7 +21,7 @@ export const ProgressLinear: React.FC = () => {
         />
       </Progress.Root>
       <p className="text-espresso text-[14px]">
-        {completedDays.length ?? 0} {t(`progress.completed`)}
+        {Math.round(progress)} {t(`progress.completed`)}
       </p>
     </div>
   );

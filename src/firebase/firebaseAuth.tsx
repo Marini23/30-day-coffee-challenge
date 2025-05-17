@@ -21,7 +21,7 @@ const createUserFromRegistration = (
   firstName: registration.firstName,
   lastName: registration.lastName,
   language: registration.language,
-  completedDays: [],
+  completedDays: 0,
 });
 
 export const SignUpWithEmailPassword = async (data: UserRegistration) => {
@@ -78,6 +78,7 @@ export const LogInWithEmailPassword = async (
 
     if (userSnap.exists()) {
       const userData = userSnap.data() as User;
+      console.log(userData);
       useUserStore.getState().setUser({
         ...userData,
       });

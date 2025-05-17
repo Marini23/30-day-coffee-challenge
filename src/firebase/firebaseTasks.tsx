@@ -205,7 +205,6 @@ export const createUserTasks = async (userId: string) => {
 };
 
 export const getUserTasks = async (userId: string) => {
-  console.log(userId);
   if (!userId) {
     return;
   }

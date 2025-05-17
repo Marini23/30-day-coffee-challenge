@@ -6,7 +6,7 @@ export type User = {
   firstName: string;
   lastName: string;
   language: "en" | "pl";
-  completedDays: number[];
+  completedDays: number;
   createdAt: Timestamp;
 };
 
@@ -29,8 +29,9 @@ export type UserState = {
   lastName: string;
   email: string;
   language: string;
-  completedDays: number[];
+  completedDays: number;
   isLoggedIn: boolean;
   setUser: (user: Partial<UserState>) => void;
+  setUserCompletedDays: (count: number) => void;
   logout: () => void;
 };

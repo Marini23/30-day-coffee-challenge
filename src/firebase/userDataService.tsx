@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User } from "../types/user";
@@ -30,7 +30,6 @@ export const fetchUser = () => {
       try {
         const userData = await getUserData(user.uid);
         if (userData) {
-          console.log("User data:", userData);
           useUserStore.getState().setUser(userData);
         }
       } catch (error) {
@@ -38,5 +37,17 @@ export const fetchUser = () => {
         toast.error("Failed to fetch user data.");
       }
     }
+  });
+};
+
+export const updateUserCompletedDays = async (
+  uid: string,
+  completedDays: number
+) => {
+  const userRef = doc(db, "users", uid);
+  useUserStore.getState().setUserCompletedDays(completedDays);
+
+  await updateDoc(userRef, {
+    completedDays: completedDays,
   });
 };

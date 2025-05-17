@@ -13,6 +13,7 @@ import {
   getUserAchievements,
   updateUserAchievement,
 } from "../firebase/firebaseAchievements";
+import { updateUserCompletedDays } from "../firebase/userDataService";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -53,7 +54,6 @@ export const DashboardPage: React.FC = () => {
       try {
         const data = await getUserAchievements(uid);
         if (data) {
-          console.log(data);
           setAchievements(data);
         } else {
           setAchievements(defaultAchievements);
@@ -65,8 +65,6 @@ export const DashboardPage: React.FC = () => {
     };
     fetchAchievements();
   }, [uid]);
-
-  console.log(achievements);
 
   const handleToggleTask = async (taskNumber: number) => {
     if (!uid) return;
@@ -81,6 +79,12 @@ export const DashboardPage: React.FC = () => {
     setTasks(updatedTasks);
     await updateUserTasks(uid, updatedTasks);
 
+    const totalCompletedTasks = updatedTasks
+      .flatMap((section) => section.tasks)
+      .filter((task) => task.completed).length;
+
+    await updateUserCompletedDays(uid, totalCompletedTasks);
+
     let updatedAchievements = [...achievements];
 
     updatedTasks.forEach((section) => {
@@ -94,20 +98,16 @@ export const DashboardPage: React.FC = () => {
           : section.title === "Creativity & Skills"
           ? "flavor_alchemist"
           : "";
-      console.log(achievementId);
 
       updatedAchievements = updatedAchievements.map((achievement) =>
         achievement.id === achievementId
           ? { ...achievement, completed: allCompleted, updatedAt: Date.now() }
           : achievement
       );
-      console.log(updatedAchievements);
       setAchievements(updatedAchievements);
       updateUserAchievement(uid, updatedAchievements);
     });
   };
-
-  console.log(achievements);
 
   return (
     <div className="p-4 flex flex-col gap-6">
