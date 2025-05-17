@@ -57,7 +57,7 @@
   },
   "progress": {
     "title": "Twój postęp",
-    "completed": "z 30 wykonano"
+    "completed": "% wykonano"
   },
   "sectionsTasks": {
     "Brewing Basics": "Podstawy parzenia",
