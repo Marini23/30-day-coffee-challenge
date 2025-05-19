@@ -6,7 +6,7 @@ import { Section } from "../types/tasks";
 import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
 import { useUserStore } from "../store/userStore";
-import { useEffect, useState } from "react";
+import { useEffect,  useState } from "react";
 import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
 import {
@@ -14,6 +14,7 @@ import {
   updateUserAchievement,
 } from "../firebase/firebaseAchievements";
 import { updateUserCompletedDays } from "../firebase/userDataService";
+import { Calendar } from "../components/Calendar/Calendar";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export const DashboardPage: React.FC = () => {
   const [tasks, setTasks] = useState<Section[]>(defaultTasks);
   const [achievements, setAchievements] =
     useState<Achievement[]>(defaultAchievements);
+  const [datesForCalendar, setDatesForCalendar] = useState<Date[] | null>(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -66,6 +68,22 @@ export const DashboardPage: React.FC = () => {
     fetchAchievements();
   }, [uid]);
 
+  useEffect(() => {
+    const completedTasks = tasks
+      .flatMap((section) => section.tasks)
+      .filter((task) => task.completed && task.updatedAt !== undefined);
+
+    const uniqueDates = Array.from(
+      new Set(
+        completedTasks.map(
+          (task) => new Date(task.updatedAt!).toISOString().split("T")[0]
+        )
+      )
+    ).map((d) => new Date(d));
+
+    setDatesForCalendar(uniqueDates);
+  }, [tasks]);
+
   const handleToggleTask = async (taskNumber: number) => {
     if (!uid) return;
     const updatedTasks = tasks.map((section) => ({
@@ -89,7 +107,7 @@ export const DashboardPage: React.FC = () => {
 
     updatedTasks.forEach((section) => {
       const allCompleted = section.tasks.every((task) => task.completed);
-      console.log(allCompleted);
+
       const achievementId =
         section.title === "Brewing Basics"
           ? "brew_master"
@@ -109,6 +127,13 @@ export const DashboardPage: React.FC = () => {
     });
   };
 
+  
+
+  
+  useEffect(() => {
+    console.log("Dates for calendar:", datesForCalendar);
+  }, [datesForCalendar]);
+
   return (
     <div className="p-4 flex flex-col gap-6">
       <section className="flex flex-col gap-2">
@@ -118,7 +143,9 @@ export const DashboardPage: React.FC = () => {
         <ProgressLinear />
         <Achievements achievements={achievements} />
       </section>
-
+      <section>
+        <Calendar completedDays={datesForCalendar} />
+      </section>
       <section>
         <TasksList tasks={tasks} onToggleTask={handleToggleTask} />
       </section>
