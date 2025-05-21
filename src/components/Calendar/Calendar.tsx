@@ -4,6 +4,7 @@ import { enGB, Locale } from "date-fns/locale";
 import { pl } from "date-fns/locale";
 import { uk } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
+import { format } from "date-fns";
 
 type CompletedCalendarProps = {
   completedDays: Date[] | null;
@@ -14,6 +15,9 @@ const localeMap: Record<string, Locale> = {
   pl: pl,
   uk: uk,
 };
+
+const capitalizeFirst = (text: string) =>
+  text.charAt(0).toUpperCase() + text.slice(1);
 
 export const Calendar: React.FC<CompletedCalendarProps> = ({
   completedDays,
@@ -31,11 +35,16 @@ export const Calendar: React.FC<CompletedCalendarProps> = ({
       onDayClick={() => {}}
       selected={completedDays}
       modifiersClassNames={{
-        selected: "bg-latte text-espresso rounded-full",
+        selected: "bg-gold text-active rounded-full",
+        today: "text-red font-semibold",
       }}
-      className="p-4"
+      className="p-4 text-espresso font-semibold"
       styles={{
         day: { pointerEvents: "none", cursor: "default" },
+      }}
+      formatters={{
+        formatCaption: (month, options) =>
+          capitalizeFirst(format(month, "LLLL yyyy", options)),
       }}
     />
   );

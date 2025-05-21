@@ -6,7 +6,7 @@ import { Section } from "../types/tasks";
 import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
 import { useUserStore } from "../store/userStore";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
 import {
@@ -127,12 +127,7 @@ export const DashboardPage: React.FC = () => {
     });
   };
 
-  
-
-  
-  useEffect(() => {
-    console.log("Dates for calendar:", datesForCalendar);
-  }, [datesForCalendar]);
+  useEffect(() => {}, [datesForCalendar]);
 
   return (
     <div className="p-4 flex flex-col gap-6">
@@ -143,7 +138,7 @@ export const DashboardPage: React.FC = () => {
         <ProgressLinear />
         <Achievements achievements={achievements} />
       </section>
-      <section>
+      <section className=" my-0 mx-auto">
         <Calendar completedDays={datesForCalendar} />
       </section>
       <section>

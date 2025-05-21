@@ -46,3 +46,13 @@ button {
   cursor: pointer;
   /* transition: border-color 0.25s; */
 }
+
+.rdp-button_previous .rdp-chevron polygon,
+.rdp-button_next .rdp-chevron polygon {
+  fill: #3e2723;
+}
+
+.rdp-button_previous:hover .rdp-chevron polygon,
+.rdp-button_next:hover .rdp-chevron polygon {
+  fill: #8aa07b;
+}
