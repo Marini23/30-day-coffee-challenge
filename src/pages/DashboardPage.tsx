@@ -49,7 +49,6 @@ export const DashboardPage: React.FC = () => {
   useEffect(() => {
     const fetchAchievements = async () => {
       if (!uid) {
-        console.log("Waiting for user ID...");
         setAchievements(defaultAchievements);
         return;
       }
@@ -138,7 +137,7 @@ export const DashboardPage: React.FC = () => {
         <ProgressLinear />
         <Achievements achievements={achievements} />
       </section>
-      <section className=" my-0 mx-auto">
+      <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')]">
         <Calendar completedDays={datesForCalendar} />
       </section>
       <section>

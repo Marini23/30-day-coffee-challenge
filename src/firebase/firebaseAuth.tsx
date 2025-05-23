@@ -22,6 +22,7 @@ const createUserFromRegistration = (
   lastName: registration.lastName,
   language: registration.language,
   completedDays: 0,
+  photoUrl: "",
 });
 
 export const SignUpWithEmailPassword = async (data: UserRegistration) => {

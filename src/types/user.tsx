@@ -8,6 +8,7 @@ export type User = {
   language: "en" | "pl";
   completedDays: number;
   createdAt: Timestamp;
+  photoUrl: string;
 };
 
 export type UserRegistration = {
@@ -23,7 +24,22 @@ export type UserLogin = {
   password: string;
 };
 
-export type UserState = {
+// export type UserState = {
+//   uid: string;
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   language: string;
+//   completedDays: number;
+//   isLoggedIn: boolean;
+//   photoUrl: string;
+//   setPhotoUrl: (url: string) => void;
+//   setUser: (user: Partial<UserState>) => void;
+//   setUserCompletedDays: (count: number) => void;
+//   logout: () => void;
+// };
+
+export interface UserState {
   uid: string;
   firstName: string;
   lastName: string;
@@ -31,7 +47,9 @@ export type UserState = {
   language: string;
   completedDays: number;
   isLoggedIn: boolean;
+  photoUrl: string;
   setUser: (user: Partial<UserState>) => void;
   setUserCompletedDays: (count: number) => void;
+  setPhotoUrl: (url: string) => void;
   logout: () => void;
-};
+}

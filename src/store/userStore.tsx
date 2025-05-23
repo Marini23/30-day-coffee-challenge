@@ -9,8 +9,10 @@ export const useUserStore = create<UserState>((set) => ({
   language: "en",
   completedDays: 0,
   isLoggedIn: false,
+  photoUrl: "",
   setUser: (user) => set((state) => ({ ...state, ...user, isLoggedIn: true })),
   setUserCompletedDays: (count: number) => set({ completedDays: count }),
+  setPhotoUrl: (url: string) => set({ photoUrl: url }),
   logout: () =>
     set({
       uid: "",
@@ -18,6 +20,7 @@ export const useUserStore = create<UserState>((set) => ({
       lastName: "",
       email: "",
       language: "en",
+      photoUrl: "",
       completedDays: 0,
       isLoggedIn: false,
     }),

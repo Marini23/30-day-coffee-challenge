@@ -3,7 +3,17 @@ import { FaChevronDown } from "react-icons/fa";
 import { useUserStore } from "../../store/userStore";
 
 export const UserProfile: React.FC = () => {
-  const { firstName, lastName, email, language } = useUserStore();
+  const { firstName, lastName, email, language, setPhotoUrl, photoUrl } =
+    useUserStore();
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPhotoUrl(url);
+    }
+  };
+
   return (
     <section className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10">
       <div className="laptop:w-1/3">
@@ -16,16 +26,34 @@ export const UserProfile: React.FC = () => {
       </div>
       <div className="laptop:w-2/3">
         <div className="flex justify-start items-center gap-8 mb-8 l">
-          <div className="flex justify-center items-center w-24 h-24 desktop:w-32 desktop:h-32 rounded-lg overflow-hidden border -2  border-solid border-espresso ">
+          {/* <div className="flex justify-center items-center w-24 h-24 desktop:w-32 desktop:h-32 rounded-lg overflow-hidden border -2  border-solid border-espresso ">
             <RxAvatar className=" w-20 h-20 desktop:w-28 desktop:h-28 text-espresso" />
+          </div> */}
+          <div className="flex justify-center items-center w-24 h-24 desktop:w-32 desktop:h-32 rounded-lg overflow-hidden border-2 border-solid border-espresso">
+            {photoUrl && photoUrl.trim() !== "" ? (
+              <img
+                src={photoUrl}
+                alt="User avatar"
+                className="w-full h-full object-cover "
+              />
+            ) : (
+              <RxAvatar className="w-20 h-20 desktop:w-28 desktop:h-28 text-espresso" />
+            )}
           </div>
           <div className="flex flex-col justify-center items-start gap-2">
-            <button
-              type="button"
-              className="flex  justify-center items-center w-30 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px]"
+            <input
+              name="file"
+              type="file"
+              id="fileUpload"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+            <label
+              htmlFor="fileUpload"
+              className="flex justify-center items-center w-30 h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer"
             >
               Upload photo
-            </button>
+            </label>
             <p className="text-espresso  tablet:text-[20px] desktop:text-[24px]">
               JPG, GIF or PNG. 1MB max.
             </p>

@@ -35,7 +35,7 @@ export const Calendar: React.FC<CompletedCalendarProps> = ({
       onDayClick={() => {}}
       selected={completedDays}
       modifiersClassNames={{
-        selected: "bg-gold text-active rounded-full",
+        selected: "bg-gold text-espresso rounded-full",
         today: "text-red font-semibold",
       }}
       className="p-4 text-espresso font-semibold"
