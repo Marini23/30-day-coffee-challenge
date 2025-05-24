@@ -185,5 +185,18 @@
       "title": "Przygoda z kubkiem",
       "description": "Zabierz kawę na spacer, do parku lub na wycieczkę."
     }
+  },
+  "settings": {
+    "title": "Dane osobowe",
+    "subtitle": "Podaj stały adres, na który możesz otrzymywać korespondencję.",
+    "uploadPhotoBtn": "Wgraj zdjęcie",
+    "uploadPhotoText": "JPG, GIF lub PNG. Max 1MB.",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "Adres e-mail",
+    "language": "Język",
+    "en": "Angielski",
+    "pl": "Polski",
+    "saveChangesBtn": "Zapisz zmiany"
   }
 }

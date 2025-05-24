@@ -185,5 +185,18 @@
       "title": "Travel Mug Adventure",
       "description": "Take coffee outside—park, hike, or walk."
     }
+  },
+  "settings": {
+    "title": "Personal Information",
+    "subtitle": "Use a permanent address where you can receive mail.",
+    "uploadPhotoBtn": "Upload photo",
+    "uploadPhotoText": "JPG, GIF or PNG. 1MB max.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "language": "Language",
+    "en": "English",
+    "pl": "Polish",
+    "saveChangesBtn": "Save changes"
   }
 }
