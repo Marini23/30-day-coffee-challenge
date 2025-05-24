@@ -51,5 +51,6 @@ export interface UserState {
   setUser: (user: Partial<UserState>) => void;
   setUserCompletedDays: (count: number) => void;
   setPhotoUrl: (url: string) => void;
+  setLanguage: (lang: string) => void;
   logout: () => void;
 }
