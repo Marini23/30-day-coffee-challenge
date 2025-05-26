@@ -55,7 +55,6 @@ export const SignUpForm: React.FC = () => {
                 })}
                 onChange={(e) => setValue("firstName", e.target.value)}
               />
-
               <p className="h-4 text-red text-[12px]  desktop:text-[14px]">
                 {errors.firstName?.message}
               </p>
@@ -81,7 +80,6 @@ export const SignUpForm: React.FC = () => {
                 })}
                 onChange={(e) => setValue("lastName", e.target.value)}
               />
-
               <p className="h-4 text-red text-[12px] desktop:text-[14px]">
                 {errors.lastName?.message}
               </p>

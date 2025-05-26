@@ -2,6 +2,9 @@ import { RxAvatar } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
 import { useUserStore } from "../../store/userStore";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { UserUpdate } from "../../types/user";
+import { useEffect } from "react";
 
 export const UserProfile: React.FC = () => {
   const { t } = useTranslation();
@@ -15,16 +18,43 @@ export const UserProfile: React.FC = () => {
     setLanguage,
   } = useUserStore();
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<UserUpdate>({
+    mode: "onChange",
+    defaultValues: {
+      firstName,
+      lastName,
+      email,
+      language,
+    },
+  });
+
+  useEffect(() => {
+    reset({ firstName, lastName, email, language });
+  }, [firstName, lastName, email, language, reset]);
+
+  const onSubmit = (data: UserUpdate) => {
+    console.log(data);
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const url = URL.createObjectURL(file);
+      console.log(url);
       setPhotoUrl(url);
     }
   };
 
   return (
-    <form className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10">
+    <form
+      className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="laptop:w-1/3">
         <h2 className="font-bold text-espresso text-[20px] tablet:text-[24px] desktop:text-[32px] ">
           {t("settings.title")}
@@ -48,11 +78,17 @@ export const UserProfile: React.FC = () => {
           </div>
           <div className="flex flex-col justify-center items-start gap-2">
             <input
-              name="file"
               type="file"
               id="fileUpload"
               className="hidden"
-              onChange={handleFileChange}
+              {...register("photoUrl", {
+                onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                  const files = e.target.files;
+                  if (files && files.length > 0) {
+                    handleFileChange(e);
+                  }
+                },
+              })}
             />
             <label
               htmlFor="fileUpload"
@@ -73,9 +109,20 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                defaultValue={firstName}
+                // defaultValue={firstName}
                 className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+                {...register("firstName", {
+                  required: t("validation.firstName.required"),
+                  minLength: {
+                    value: 2,
+                    message: t("validation.firstName.minLength"),
+                  },
+                })}
+                // onChange={(e) => setValue("firstName", e.target.value)}
               />
+              <p className="h-4 text-red text-[12px]  desktop:text-[14px]">
+                {errors.firstName?.message}
+              </p>
             </div>
             <div className="flex flex-col gap-2 tablet:w-1/2">
               <label className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px]">
@@ -83,9 +130,20 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                defaultValue={lastName}
+                // defaultValue={lastName}
                 className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+                {...register("lastName", {
+                  required: t("validation.lastName.required"),
+                  minLength: {
+                    value: 2,
+                    message: t("validation.lastName.minLength"),
+                  },
+                })}
+                // onChange={(e) => setValue("lastName", e.target.value)}
               />
+              <p className="h-4 text-red text-[12px] desktop:text-[14px]">
+                {errors.lastName?.message}
+              </p>
             </div>
           </div>
           <div className="flex flex-col gap-2">
@@ -94,9 +152,16 @@ export const UserProfile: React.FC = () => {
             </label>
             <input
               type="email"
-              defaultValue={email}
+              // defaultValue={email}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+              {...register("email", {
+                required: t("validation.email"),
+              })}
+              // onChange={(e) => setValue("email", e.target.value)}
             />
+            <p className="h-4 text-red text-[12px] desktop:text-[14px]">
+              {errors.email?.message}
+            </p>
           </div>
           <div className="relative flex flex-col gap-2">
             <label className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px]">
@@ -104,6 +169,7 @@ export const UserProfile: React.FC = () => {
             </label>
             <select
               value={language}
+              {...register("language")}
               onChange={(e) => setLanguage(e.target.value)}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso"
             >
@@ -124,6 +190,7 @@ export const UserProfile: React.FC = () => {
           </div>
           <button
             type="submit"
+            disabled={!isValid}
             className="flex  justify-center items-center w-30 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px]"
           >
             {t("settings.saveChangesBtn")}

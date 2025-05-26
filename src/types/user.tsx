@@ -24,27 +24,12 @@ export type UserLogin = {
   password: string;
 };
 
-// export type UserState = {
-//   uid: string;
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   language: string;
-//   completedDays: number;
-//   isLoggedIn: boolean;
-//   photoUrl: string;
-//   setPhotoUrl: (url: string) => void;
-//   setUser: (user: Partial<UserState>) => void;
-//   setUserCompletedDays: (count: number) => void;
-//   logout: () => void;
-// };
-
 export interface UserState {
   uid: string;
   firstName: string;
   lastName: string;
   email: string;
-  language: string;
+  language: "en" | "pl";
   completedDays: number;
   isLoggedIn: boolean;
   photoUrl: string;
@@ -53,4 +38,13 @@ export interface UserState {
   setPhotoUrl: (url: string) => void;
   setLanguage: (lang: string) => void;
   logout: () => void;
+}
+
+export interface UserUpdate {
+  uid: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  language?: "en" | "pl";
+  photoUrl?: FileList;
 }
