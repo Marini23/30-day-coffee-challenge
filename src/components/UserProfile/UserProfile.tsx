@@ -5,10 +5,12 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { UserUpdate } from "../../types/user";
 import { useEffect } from "react";
+import { updateUserProfile } from "../../firebase/userDataService";
 
 export const UserProfile: React.FC = () => {
   const { t } = useTranslation();
   const {
+    uid,
     firstName,
     lastName,
     email,
@@ -39,6 +41,20 @@ export const UserProfile: React.FC = () => {
 
   const onSubmit = (data: UserUpdate) => {
     console.log(data);
+    let photoUrlString = photoUrl;
+    if (data.photo && data.photo[0]) {
+      photoUrlString = URL.createObjectURL(data.photo[0]);
+      console.log(photoUrlString);
+      setPhotoUrl(photoUrlString);
+    }
+
+    updateUserProfile(uid, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      language: data.language,
+      photoUrl: photoUrlString,
+    });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +97,7 @@ export const UserProfile: React.FC = () => {
               type="file"
               id="fileUpload"
               className="hidden"
-              {...register("photoUrl", {
+              {...register("photo", {
                 onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
                   const files = e.target.files;
                   if (files && files.length > 0) {
@@ -170,7 +186,7 @@ export const UserProfile: React.FC = () => {
             <select
               value={language}
               {...register("language")}
-              onChange={(e) => setLanguage(e.target.value)}
+              onChange={(e) => setLanguage(e.target.value as "en" | "pl")}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso"
             >
               <option

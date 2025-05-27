@@ -36,15 +36,15 @@ export interface UserState {
   setUser: (user: Partial<UserState>) => void;
   setUserCompletedDays: (count: number) => void;
   setPhotoUrl: (url: string) => void;
-  setLanguage: (lang: string) => void;
+  setLanguage: (lang: "en" | "pl") => void;
   logout: () => void;
 }
 
 export interface UserUpdate {
-  uid: string;
   firstName?: string;
   lastName?: string;
   email?: string;
   language?: "en" | "pl";
-  photoUrl?: FileList;
+  photoUrl?: string;
+  photo?: FileList;
 }

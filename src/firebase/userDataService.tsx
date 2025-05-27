@@ -1,7 +1,7 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
-import { User } from "../types/user";
+import { User, UserUpdate } from "../types/user";
 import { useUserStore } from "../store/userStore";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -50,4 +50,32 @@ export const updateUserCompletedDays = async (
   await updateDoc(userRef, {
     completedDays: completedDays,
   });
+};
+
+export const updateUserProfile = async (uid: string, updates: UserUpdate) => {
+  const userRef = doc(db, "users", uid);
+  try {
+    const userSnap = await getDoc(userRef);
+    if (!userSnap.exists()) {
+      throw new Error("User not found");
+    }
+
+    const currentData = userSnap.data() as User;
+
+    // 2. Merge current and updates
+    const mergedData = {
+      ...currentData,
+      ...updates,
+    };
+
+    await updateDoc(userRef, mergedData);
+
+    useUserStore.getState().setUser(updates);
+
+    toast.success("Profile updated successfully");
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    toast.error("Failed to update profile");
+    throw error;
+  }
 };
