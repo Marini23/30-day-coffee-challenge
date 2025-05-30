@@ -9,7 +9,7 @@ import {
   updateUserPhoto,
   updateUserProfile,
 } from "../../firebase/userDataService";
-import { uploadImageToCloudinary } from "../../utils/uploadImagesToCloudinary";
+import { uploadImageToCloudinary } from "../../utils/UploadPhotoToCloudinary";
 
 export const UserProfile: React.FC = () => {
   const { t } = useTranslation();
