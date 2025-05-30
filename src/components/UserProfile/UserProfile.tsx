@@ -5,7 +5,11 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { UserUpdate } from "../../types/user";
 import { useEffect } from "react";
-import { updateUserProfile } from "../../firebase/userDataService";
+import {
+  updateUserPhoto,
+  updateUserProfile,
+} from "../../firebase/userDataService";
+import { uploadImageToCloudinary } from "../../utils/uploadImagesToCloudinary";
 
 export const UserProfile: React.FC = () => {
   const { t } = useTranslation();
@@ -19,6 +23,8 @@ export const UserProfile: React.FC = () => {
     photoUrl,
     setLanguage,
   } = useUserStore();
+
+  console.log(photoUrl);
 
   const {
     register,
@@ -41,36 +47,34 @@ export const UserProfile: React.FC = () => {
 
   const onSubmit = (data: UserUpdate) => {
     console.log(data);
-    let photoUrlString = photoUrl;
-    if (data.photo && data.photo[0]) {
-      photoUrlString = URL.createObjectURL(data.photo[0]);
-      console.log(photoUrlString);
-      setPhotoUrl(photoUrlString);
-    }
 
     updateUserProfile(uid, {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
       language: data.language,
-      photoUrl: photoUrlString,
     });
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      console.log(url);
-      setPhotoUrl(url);
+    if (!file || !uid) return;
+
+    const previewUrl = URL.createObjectURL(file);
+    setPhotoUrl(previewUrl);
+
+    try {
+      const uploadedUrl = await uploadImageToCloudinary(file, uid);
+      console.log(uploadedUrl);
+      await updateUserPhoto(uid, uploadedUrl);
+      console.log("Photo uploaded and Firestore updated!");
+    } catch (error) {
+      console.error("Upload failed:", error);
     }
   };
 
   return (
-    <form
-      className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <div className="flex flex-col  w-full  laptop:flex-row laptop:gap-8 px-8 py-10">
       <div className="laptop:w-1/3">
         <h2 className="font-bold text-espresso text-[20px] tablet:text-[24px] desktop:text-[32px] ">
           {t("settings.title")}
@@ -97,6 +101,7 @@ export const UserProfile: React.FC = () => {
               type="file"
               id="fileUpload"
               className="hidden"
+              disabled={!!photoUrl}
               {...register("photo", {
                 onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
                   const files = e.target.files;
@@ -108,7 +113,12 @@ export const UserProfile: React.FC = () => {
             />
             <label
               htmlFor="fileUpload"
-              className="flex justify-center items-center w-30 h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer"
+              className={`flex justify-center items-center w-30 h-8 bg-latte font-medium text-espresso rounded-lg desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer
+                ${
+                  photoUrl
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-gold focus:bg-gold"
+                }`}
             >
               {t("settings.uploadPhotoBtn")}
             </label>
@@ -117,7 +127,10 @@ export const UserProfile: React.FC = () => {
             </p>
           </div>
         </div>
-        <div className="w-full flex flex-col gap-6 tablet:max-w-180 laptop:gap-8">
+        <form
+          className="w-full flex flex-col gap-6 tablet:max-w-180 laptop:gap-8"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col gap-6 tablet:flex-row">
             <div className="w-full flex flex-col gap-2 tablet:w-1/2">
               <label className="text-[16px] tablet:text-[18px] desktop:text-[24px] text-espresso">
@@ -134,7 +147,6 @@ export const UserProfile: React.FC = () => {
                     message: t("validation.firstName.minLength"),
                   },
                 })}
-                // onChange={(e) => setValue("firstName", e.target.value)}
               />
               <p className="h-4 text-red text-[12px]  desktop:text-[14px]">
                 {errors.firstName?.message}
@@ -146,7 +158,6 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                // defaultValue={lastName}
                 className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
                 {...register("lastName", {
                   required: t("validation.lastName.required"),
@@ -155,7 +166,6 @@ export const UserProfile: React.FC = () => {
                     message: t("validation.lastName.minLength"),
                   },
                 })}
-                // onChange={(e) => setValue("lastName", e.target.value)}
               />
               <p className="h-4 text-red text-[12px] desktop:text-[14px]">
                 {errors.lastName?.message}
@@ -168,12 +178,10 @@ export const UserProfile: React.FC = () => {
             </label>
             <input
               type="email"
-              // defaultValue={email}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
               {...register("email", {
                 required: t("validation.email"),
               })}
-              // onChange={(e) => setValue("email", e.target.value)}
             />
             <p className="h-4 text-red text-[12px] desktop:text-[14px]">
               {errors.email?.message}
@@ -211,8 +219,8 @@ export const UserProfile: React.FC = () => {
           >
             {t("settings.saveChangesBtn")}
           </button>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };

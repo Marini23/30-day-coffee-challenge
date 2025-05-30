@@ -62,7 +62,6 @@ export const updateUserProfile = async (uid: string, updates: UserUpdate) => {
 
     const currentData = userSnap.data() as User;
 
-    // 2. Merge current and updates
     const mergedData = {
       ...currentData,
       ...updates,
@@ -78,4 +77,11 @@ export const updateUserProfile = async (uid: string, updates: UserUpdate) => {
     toast.error("Failed to update profile");
     throw error;
   }
+};
+
+export const updateUserPhoto = async (userId: string, photoUrl: string) => {
+  const userRef = doc(db, "users", userId);
+  await updateDoc(userRef, {
+    photoUrl,
+  });
 };
