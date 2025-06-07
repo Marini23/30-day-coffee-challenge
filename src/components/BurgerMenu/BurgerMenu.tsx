@@ -4,9 +4,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../store/userStore";
+import { useLogout } from "../../utils/Logout";
 
 export const BurgerMenu: React.FC = () => {
   const { t } = useTranslation();
+  const logout = useLogout();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const { isLoggedIn } = useUserStore();
@@ -64,6 +66,10 @@ export const BurgerMenu: React.FC = () => {
               <button
                 type="button"
                 className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                onClick={() => {
+                  toogleMenu();
+                  logout();
+                }}
               >
                 {t("header.logout")}
               </button>

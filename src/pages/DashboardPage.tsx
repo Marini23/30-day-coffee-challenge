@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import { Achievements } from "../components/Achievements/Achievements";
 import { ProgressLinear } from "../components/ProgressBar/ProgressLinear";
 import { TasksList } from "../components/Tasks/Tasks";
@@ -84,7 +85,10 @@ export const DashboardPage: React.FC = () => {
   }, [tasks]);
 
   const handleToggleTask = async (taskNumber: number) => {
-    if (!uid) return;
+    if (!uid) {
+      toast.info("Please log in to start the challenge.");
+      return;
+    }
     const updatedTasks = tasks.map((section) => ({
       ...section,
       tasks: section.tasks.map((task) =>

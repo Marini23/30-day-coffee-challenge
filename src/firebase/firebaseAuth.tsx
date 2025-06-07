@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -79,7 +80,6 @@ export const LogInWithEmailPassword = async (
 
     if (userSnap.exists()) {
       const userData = userSnap.data() as User;
-      console.log(userData);
       useUserStore.getState().setUser({
         ...userData,
       });
@@ -94,8 +94,17 @@ export const LogInWithEmailPassword = async (
       toast.error("Login error: " + error.message);
     } else {
       toast.error("An unknown login error occurred.");
-      console.error("Unknown login error:", error);
     }
     return null;
+  }
+};
+
+export const LogOut = async () => {
+  try {
+    await signOut(auth);
+    toast.success(" Successfully logged out.");
+  } catch (error) {
+    console.log(error);
+    toast.error("Logout failed.");
   }
 };

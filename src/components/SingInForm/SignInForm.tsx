@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import { InputPassword } from "../InputPassword/InputPassword";
 import icon_facebook from "../../assets/icons-facebook.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserLogin } from "../../types/user";
+import { LogInWithEmailPassword } from "../../firebase/firebaseAuth";
 
 export const SignInForm: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const {
     register,
     setValue,
@@ -16,6 +18,8 @@ export const SignInForm: React.FC = () => {
   } = useForm<UserLogin>();
   const onSubmit = (data: UserLogin) => {
     console.log("Login form Submitted:", data);
+    LogInWithEmailPassword(data.email, data.password);
+    navigate("/dashboard");
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
