@@ -7,6 +7,7 @@ import { LogInPage } from "./pages/LogInPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { useEffect } from "react";
 import { fetchUser } from "./firebase/userDataService";
+import { HomePage } from "./pages/HomePage";
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -17,7 +18,7 @@ function App(): React.JSX.Element {
     <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<div>Home</div>} />
+          <Route index element={<HomePage />} />
           <Route path="/register" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/settings" element={<SettingsPage />} />
