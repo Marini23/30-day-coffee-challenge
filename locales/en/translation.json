@@ -198,5 +198,10 @@
     "en": "English",
     "pl": "Polish",
     "saveChangesBtn": "Save changes"
+  },
+  "homepage": {
+    "title": "Join the 30‑Day Coffee Adventure!",
+    "description": "Discover a new roast, brewing method, or recipe every day.",
+    "startbutton": "Start Your Challenge"
   }
 }

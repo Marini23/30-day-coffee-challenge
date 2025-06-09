@@ -198,5 +198,10 @@
     "en": "Angielski",
     "pl": "Polski",
     "saveChangesBtn": "Zapisz zmiany"
+  },
+  "homepage": {
+    "title": "Dołącz do 30‑dniowej kawowej przygody!",
+    "description": "Odkrywaj nowy rodzaj kawy, metodę parzenia lub przepis każdego dnia.",
+    "startbutton": "Rozpocznij wyzwanie"
   }
 }
