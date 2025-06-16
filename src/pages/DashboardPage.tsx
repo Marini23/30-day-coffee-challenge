@@ -16,6 +16,7 @@ import {
 } from "../firebase/firebaseAchievements";
 import { updateUserCompletedDays } from "../firebase/userDataService";
 import { Calendar } from "../components/Calendar/Calendar";
+import { ShareModal } from "../components/ShareModal/ShareModal";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -24,6 +25,9 @@ export const DashboardPage: React.FC = () => {
   const [achievements, setAchievements] =
     useState<Achievement[]>(defaultAchievements);
   const [datesForCalendar, setDatesForCalendar] = useState<Date[] | null>(null);
+  const [showShareModal, setShowShareModal] = useState<boolean>(false);
+  const [achievementToShare, setAchievementToShare] =
+    useState<Achievement | null>(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -107,6 +111,7 @@ export const DashboardPage: React.FC = () => {
     await updateUserCompletedDays(uid, totalCompletedTasks);
 
     let updatedAchievements = [...achievements];
+    let justCompletedAchievement: Achievement | null = null;
 
     updatedTasks.forEach((section) => {
       const allCompleted = section.tasks.every((task) => task.completed);
@@ -120,34 +125,60 @@ export const DashboardPage: React.FC = () => {
           ? "flavor_alchemist"
           : "";
 
-      updatedAchievements = updatedAchievements.map((achievement) =>
-        achievement.id === achievementId
-          ? { ...achievement, completed: allCompleted, updatedAt: Date.now() }
-          : achievement
-      );
+      updatedAchievements = updatedAchievements.map((achievement) => {
+        // achievement.id === achievementId
+        //   ? { ...achievement, completed: allCompleted, updatedAt: Date.now() }
+        //   : achievement;
+        if (achievement.id === achievementId) {
+          justCompletedAchievement = {
+            ...achievement,
+            completed: allCompleted,
+            updatedAt: Date.now(),
+          };
+          console.log(justCompletedAchievement);
+          return justCompletedAchievement;
+        }
+        return achievement;
+      });
+
       setAchievements(updatedAchievements);
       updateUserAchievement(uid, updatedAchievements);
+
+      if (justCompletedAchievement && justCompletedAchievement.completed) {
+        setAchievementToShare(justCompletedAchievement);
+        setShowShareModal(true);
+      }
     });
   };
 
   useEffect(() => {}, [datesForCalendar]);
 
   return (
-    <div className="p-4 flex flex-col gap-6">
-      <section className="flex flex-col gap-2">
-        <h3 className="text-espresso text-[22px] font-bold flex justify-center items-center">
-          {t(`progress.title`)}
-        </h3>
-        <ProgressLinear />
-        <Achievements achievements={achievements} />
-      </section>
-      <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')]">
-        <Calendar completedDays={datesForCalendar} />
-      </section>
-      <section>
-        <TasksList tasks={tasks} onToggleTask={handleToggleTask} />
-      </section>
-      <div>Community</div>
-    </div>
+    <>
+      <div className="p-4 flex flex-col gap-6">
+        <section className="flex flex-col gap-2">
+          <h3 className="text-espresso text-[22px] font-bold flex justify-center items-center">
+            {t(`progress.title`)}
+          </h3>
+          <ProgressLinear />
+          <Achievements achievements={achievements} />
+        </section>
+        <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')]">
+          <Calendar completedDays={datesForCalendar} />
+        </section>
+        <section>
+          <TasksList tasks={tasks} onToggleTask={handleToggleTask} />
+        </section>
+        <div>Community</div>
+      </div>
+      {achievementToShare && (
+        <ShareModal
+          isOpen={showShareModal}
+          onClose={() => setShowShareModal(false)}
+          url={window.location.href}
+          title={t(`achievements.${achievementToShare.id}`)}
+        />
+      )}
+    </>
   );
 };
