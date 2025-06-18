@@ -7,7 +7,7 @@ import { Section } from "../types/tasks";
 import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
 import { useUserStore } from "../store/userStore";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
 import {
@@ -93,6 +93,9 @@ export const DashboardPage: React.FC = () => {
       toast.info("Please log in to start the challenge.");
       return;
     }
+
+    const prevAchievements = [...achievements];
+
     const updatedTasks = tasks.map((section) => ({
       ...section,
       tasks: section.tasks.map((task) =>
@@ -110,45 +113,41 @@ export const DashboardPage: React.FC = () => {
 
     await updateUserCompletedDays(uid, totalCompletedTasks);
 
-    let updatedAchievements = [...achievements];
-    let justCompletedAchievement: Achievement | null = null;
-
-    updatedTasks.forEach((section) => {
-      const allCompleted = section.tasks.every((task) => task.completed);
-
-      const achievementId =
-        section.title === "Brewing Basics"
-          ? "brew_master"
-          : section.title === "Global Coffee Tour"
-          ? "coffee_ambassador"
-          : section.title === "Creativity & Skills"
-          ? "flavor_alchemist"
-          : "";
-
-      updatedAchievements = updatedAchievements.map((achievement) => {
-        // achievement.id === achievementId
-        //   ? { ...achievement, completed: allCompleted, updatedAt: Date.now() }
-        //   : achievement;
-        if (achievement.id === achievementId) {
-          justCompletedAchievement = {
-            ...achievement,
-            completed: allCompleted,
-            updatedAt: Date.now(),
-          };
-          console.log(justCompletedAchievement);
-          return justCompletedAchievement;
-        }
-        return achievement;
-      });
-
-      setAchievements(updatedAchievements);
-      updateUserAchievement(uid, updatedAchievements);
-
-      if (justCompletedAchievement && justCompletedAchievement.completed) {
-        setAchievementToShare(justCompletedAchievement);
-        setShowShareModal(true);
-      }
+    const updatedAchievements = prevAchievements.map((achievement) => {
+      const section = updatedTasks.find(
+        (s) =>
+          achievement.id ===
+          (s.title === "Brewing Basics"
+            ? "brew_master"
+            : s.title === "Global Coffee Tour"
+            ? "coffee_ambassador"
+            : s.title === "Creativity & Skills"
+            ? "flavor_alchemist"
+            : "")
+      );
+      if (!section) return achievement;
+      const isNowCompleted = section.tasks.every((t) => t.completed);
+      const wasCompleted = achievement.completed;
+      return {
+        ...achievement,
+        completed: isNowCompleted,
+        updatedAt:
+          isNowCompleted && !wasCompleted ? Date.now() : achievement.updatedAt,
+      };
     });
+
+    setAchievements(updatedAchievements);
+    updateUserAchievement(uid, updatedAchievements);
+
+    const newlyCompleted = updatedAchievements.filter(
+      (achievement, i) =>
+        achievement.completed && !prevAchievements[i].completed
+    );
+
+    if (newlyCompleted.length > 0) {
+      setAchievementToShare(newlyCompleted[0]);
+      setShowShareModal(true);
+    }
   };
 
   useEffect(() => {}, [datesForCalendar]);

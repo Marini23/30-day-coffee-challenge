@@ -26,8 +26,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl p-6 w-80 shadow-lg relative">
+    <div className="fixed inset-0 bg-latte/50 flex items-center justify-center z-50">
+      <div className="bg-espresso rounded-xl p-6 w-80 h-100 shadow-lg relative">
         <button
           className="absolute top-2 right-2 text-gray-500"
           onClick={onClose}
