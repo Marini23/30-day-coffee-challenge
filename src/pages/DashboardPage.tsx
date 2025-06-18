@@ -176,6 +176,7 @@ export const DashboardPage: React.FC = () => {
           onClose={() => setShowShareModal(false)}
           url={window.location.href}
           title={t(`achievements.${achievementToShare.id}`)}
+          achievement={achievementToShare}
         />
       )}
     </>

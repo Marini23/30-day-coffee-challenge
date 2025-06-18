@@ -6,15 +6,18 @@ import {
   EmailIcon,
   FacebookMessengerShareButton,
   FacebookMessengerIcon,
-  TwitterShareButton,
-  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
 } from "react-share";
+import { Icon } from "../../utils/Icon";
+import { Achievement } from "../../types/achievements";
 
 interface ShareModalProps {
   isOpen: boolean;
   onClose: () => void;
   url: string;
   title: string;
+  achievement: Achievement;
 }
 
 export const ShareModal: React.FC<ShareModalProps> = ({
@@ -22,20 +25,27 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   onClose,
   url,
   title,
+  achievement,
 }) => {
+  console.log(achievement);
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-latte/50 flex items-center justify-center z-50">
-      <div className="bg-espresso rounded-xl p-6 w-80 h-100 shadow-lg relative">
+      <div className="bg-[url('/src/assets/share_bg.jpg')] rounded-xl p-6 w-80 h-120 shadow-lg relative">
         <button
-          className="absolute top-2 right-2 text-gray-500"
+          className="absolute top-6 right-6 text-secondary"
           onClick={onClose}
         >
           ✖
         </button>
-        <h2 className="text-lg font-bold mb-4 text-center">
-          🎉 Share your achievement!
+        <Icon
+          name={achievement.icon}
+          size={200}
+          className="fill-gold mx-auto mt-10 mb-10"
+        />
+        <h2 className="text-[22px]  font-semibold mb-10 text-secondary text-center">
+          I earned the achievement {achievement.id}!
         </h2>
         <div className="flex justify-center gap-3">
           <FacebookShareButton url={url}>
@@ -50,9 +60,9 @@ export const ShareModal: React.FC<ShareModalProps> = ({
             <EmailIcon size={40} round />
           </EmailShareButton>
 
-          <TwitterShareButton url={url} title={title}>
-            <TwitterIcon size={40} round />
-          </TwitterShareButton>
+          <LinkedinShareButton url={url} title={title}>
+            <LinkedinIcon size={40} round />
+          </LinkedinShareButton>
         </div>
       </div>
     </div>
