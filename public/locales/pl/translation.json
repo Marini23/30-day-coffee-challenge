@@ -53,7 +53,8 @@
   "achievements": {
     "brew_master": "Mistrz parzenia kawy",
     "coffee_ambassador": "Światowy ambasador kawy",
-    "flavor_alchemist": "Alchemik smaków kawy"
+    "flavor_alchemist": "Alchemik smaków kawy",
+    "share_text": "Zdobyto osiągnięcie"
   },
   "progress": {
     "title": "Twój postęp",

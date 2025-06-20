@@ -53,7 +53,8 @@
   "achievements": {
     "brew_master": "Brew Coffee Master",
     "coffee_ambassador": "World Coffee Ambassador",
-    "flavor_alchemist": "Coffee Flavor Alchemist"
+    "flavor_alchemist": "Coffee Flavor Alchemist",
+    "share_text": "Ï earned the achievement"
   },
   "progress": {
     "title": "Your progress",
