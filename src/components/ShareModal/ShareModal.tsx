@@ -7,11 +7,11 @@ import {
   WhatsappShareButton,
   TelegramIcon,
 } from "react-share";
-import { Icon } from "../../utils/Icon";
 import { Achievement } from "../../types/achievements";
 import { useTranslation } from "react-i18next";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { toPng } from "html-to-image";
+import beansIcon from "../../assets/beans-png.png";
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -29,55 +29,26 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   achievement,
 }) => {
   const { t } = useTranslation();
-  const cardRef = useRef<HTMLDivElement | null>(null);
   const [showIcons, setShowIcons] = useState<boolean>(true);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const onButtonClick = useCallback(() => {
+    if (cardRef.current === null) {
+      return;
+    }
 
-  const handleShare = async (
-    platform: "facebook" | "telegram" | "whatsapp" | "linkedin"
-  ) => {
     setShowIcons(false);
-    setTimeout(async () => {
-      if (!cardRef.current) return;
 
-      const dataUrl = await toPng(cardRef.current);
-      setShowIcons(true);
-
-      // Create blob and file
-      const blob = await (await fetch(dataUrl)).blob();
-      const file = new File([blob], "achievement.png", { type: "image/png" });
-
-      // Use Web Share API (only on supported platforms)
-      if (navigator.canShare?.({ files: [file] })) {
-        try {
-          await navigator.share({
-            title,
-            text: t("achievements.share_text"),
-            files: [file],
-          });
-        } catch (err) {
-          console.error("Share canceled", err);
-        }
-      } else {
-        // Fallback: open target platform and user manually uploads image
-        let shareUrl = "";
-        switch (platform) {
-          case "facebook":
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            break;
-          case "telegram":
-            shareUrl = `https://t.me/share/url?url=${url}&text=${title}`;
-            break;
-          case "whatsapp":
-            shareUrl = `https://api.whatsapp.com/send?text=${title} ${url}`;
-            break;
-          case "linkedin":
-            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-            break;
-        }
-        window.open(shareUrl, "_blank");
-      }
-    }, 300);
-  };
+    toPng(cardRef.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = "my-image-name.png";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [cardRef]);
 
   if (!isOpen) return null;
 
@@ -93,12 +64,11 @@ export const ShareModal: React.FC<ShareModalProps> = ({
         >
           ✖
         </button>
-        <Icon
-          name={achievement.icon}
-          size={200}
-          className="fill-gold mx-auto mt-10 mb-10"
+        <img
+          src={beansIcon}
+          alt="Beans Icon"
+          className="w-35 h-50 mx-auto mt-10 - mb-10 "
         />
-
         <h2 className="text-[22px]  font-semibold mb-10 text-secondary text-center">
           {t(`achievements.share_text`)}
           <br />{" "}
@@ -112,8 +82,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({
               <FacebookIcon size={30} round />
             </FacebookShareButton>
 
-            <button onClick={() => handleShare("facebook")}>
-              <TelegramIcon size={30} round />
+            <button>
+              <TelegramIcon size={30} round onClick={onButtonClick} />
             </button>
 
             <WhatsappShareButton url={url}>
