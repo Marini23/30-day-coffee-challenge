@@ -30,71 +30,90 @@ export const ShareModal: React.FC<ShareModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [showIcons, setShowIcons] = useState<boolean>(true);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
+
   const onButtonClick = useCallback(() => {
-    if (cardRef.current === null) {
-      return;
-    }
+    if (!cardRef.current) return;
 
     setShowIcons(false);
 
     toPng(cardRef.current, { cacheBust: true })
       .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = "my-image-name.png";
-        link.href = dataUrl;
-        link.click();
+        setGeneratedImage(dataUrl); // Show preview
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-  }, [cardRef]);
-
+  }, []);
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-latte/50 flex items-center justify-center z-50">
-      <div
-        ref={cardRef}
-        className="bg-[url('/src/assets/share_bg.jpg')] rounded-xl p-6 w-80 h-120 shadow-lg relative"
-      >
+    <div className="fixed inset-0 bg-latte/50 flex items-center justify-center z-50 ">
+      <div className="relative">
         <button
-          className="absolute top-6 right-6 text-secondary"
+          className="absolute top-6 right-6 text-secondary z-10"
           onClick={onClose}
         >
           ✖
         </button>
-        <img
-          src={beansIcon}
-          alt="Beans Icon"
-          className="w-35 h-50 mx-auto mt-10 - mb-10 "
-        />
-        <h2 className="text-[22px]  font-semibold mb-10 text-secondary text-center">
-          {t(`achievements.share_text`)}
-          <br />{" "}
-          <span className="text-gold font-bold">
-            {t(`achievements.${achievement.id}`).toUpperCase()}
-          </span>
-        </h2>
-        {showIcons && (
-          <div className="flex justify-center gap-3">
-            <FacebookShareButton url={url}>
-              <FacebookIcon size={30} round />
-            </FacebookShareButton>
+        <div
+          ref={cardRef}
+          className="bg-[url('/src/assets/share_bg.jpg')] rounded-xl p-6 w-80 h-120 shadow-lg "
+        >
+          <img
+            src={beansIcon}
+            alt="Beans Icon"
+            className="w-35 h-50 mx-auto mt-10 - mb-10 "
+          />
+          <h2 className="text-[22px]  font-semibold mb-10 text-secondary text-center">
+            {t(`achievements.share_text`)}
+            <br />{" "}
+            <span className="text-gold font-bold">
+              {t(`achievements.${achievement.id}`).toUpperCase()}
+            </span>
+          </h2>
+          {showIcons && (
+            <div className="flex justify-center gap-3">
+              <FacebookShareButton url={url}>
+                <FacebookIcon size={30} round />
+              </FacebookShareButton>
 
-            <button>
-              <TelegramIcon size={30} round onClick={onButtonClick} />
-            </button>
+              <button>
+                <TelegramIcon size={30} round onClick={onButtonClick} />
+              </button>
 
-            <WhatsappShareButton url={url}>
-              <WhatsappIcon size={30} round />
-            </WhatsappShareButton>
+              <WhatsappShareButton url={url}>
+                <WhatsappIcon size={30} round />
+              </WhatsappShareButton>
 
-            <LinkedinShareButton url={url} title={title}>
-              <LinkedinIcon size={30} round />
-            </LinkedinShareButton>
-          </div>
-        )}
+              <LinkedinShareButton url={url} title={title}>
+                <LinkedinIcon size={30} round />
+              </LinkedinShareButton>
+            </div>
+          )}
+          {generatedImage && (
+            <div className="mt-4 fixed top-0">
+              <h3 className="text-center text-secondary mb-2">
+                {t("Preview")}
+              </h3>
+              <img
+                src={generatedImage}
+                alt="Generated preview"
+                className="w-full rounded-md border"
+              />
+              <div className="flex justify-center mt-2">
+                <a
+                  href={generatedImage}
+                  download="achievement.png"
+                  className="text-sm text-secondary underline"
+                >
+                  Hello
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
