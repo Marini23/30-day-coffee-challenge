@@ -40,7 +40,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
 
     toPng(cardRef.current, { cacheBust: true })
       .then((dataUrl) => {
-        setGeneratedImage(dataUrl); // Show preview
+        setGeneratedImage(dataUrl);
       })
       .catch((err) => {
         console.error(err);
