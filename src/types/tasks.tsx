@@ -9,13 +9,3 @@ export type Section = {
   title: string;
   tasks: Task[];
 };
-
-// export type DefaultTask = {
-//   number: number;
-//   completed: boolean;
-// };
-
-// export type DefaultSection = {
-//   title: string;
-//   tasks: DefaultTask[];
-// };

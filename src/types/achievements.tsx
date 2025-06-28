@@ -4,4 +4,5 @@ export type Achievement = {
   completed: boolean;
   createdAt?: number;
   updatedAt?: number;
+  badgeUrl?: string;
 };
