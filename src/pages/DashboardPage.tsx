@@ -177,6 +177,7 @@ export const DashboardPage: React.FC = () => {
           url={window.location.href}
           title={t(`achievements.${achievementToShare.id}`)}
           achievement={achievementToShare}
+          allAchievements={achievements}
         />
       )}
     </>

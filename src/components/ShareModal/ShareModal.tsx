@@ -15,6 +15,8 @@ import beansIcon from "../../assets/beans-png.png";
 import cupIcon from "../../assets/cup_png.png";
 import earthIcon from "../../assets/earth_png.png";
 import { uploadBageToCloudinary } from "../../utils/UploadImageToCloudinary";
+import { useUserStore } from "../../store/userStore";
+import { updateUserAchievement } from "../../firebase/firebaseAchievements";
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -22,6 +24,7 @@ interface ShareModalProps {
   url: string;
   title: string;
   achievement: Achievement;
+  allAchievements: Achievement[];
 }
 
 export const ShareModal: React.FC<ShareModalProps> = ({
@@ -30,8 +33,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   url,
   title,
   achievement,
+  allAchievements,
 }) => {
   const { t } = useTranslation();
+  const { uid } = useUserStore();
   const [showIcons, setShowIcons] = useState<boolean>(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [cloudinaryUrl, setCloudinaryUrl] = useState<string | null>(null);
@@ -45,24 +50,13 @@ export const ShareModal: React.FC<ShareModalProps> = ({
 
   const selectedIcon = achievementIcons[achievement.id];
 
-  // const onButtonClick = useCallback(() => {
-  //   if (!cardRef.current) return;
-
-  //   setShowIcons(false);
-
-  //   toPng(cardRef.current, { cacheBust: true })
-  //     .then(async (dataUrl) => {
-  //       setGeneratedImage(dataUrl);
-  //       const uploadedUrl = await uploadBageToCloudinary(dataUrl);
-  //       console.log(uploadedUrl);
-  //       setCloudinaryUrl(uploadedUrl);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
-
   useEffect(() => {
+    if (achievement.shareImageUrl) {
+      setCloudinaryUrl(achievement.shareImageUrl);
+      setShowIcons(true);
+      return;
+    }
+
     if (isOpen && cardRef.current && !generatedImage) {
       toPng(cardRef.current, { cacheBust: true })
         .then(async (dataUrl) => {
@@ -70,13 +64,29 @@ export const ShareModal: React.FC<ShareModalProps> = ({
           const uploadedUrl = await uploadBageToCloudinary(dataUrl);
           setCloudinaryUrl(uploadedUrl);
           setShowIcons(true);
+          const updatedAchievement: Achievement = {
+            ...achievement,
+            shareImageUrl: uploadedUrl,
+            updatedAt: Date.now(),
+          };
+
+          const onUpdateAchievement = async (
+            updatedAchievement: Achievement
+          ) => {
+            const updatedAchievements = allAchievements.map((ach) =>
+              ach.id === updatedAchievement.id ? updatedAchievement : ach
+            );
+            await updateUserAchievement(uid, updatedAchievements);
+          };
+
+          await onUpdateAchievement(updatedAchievement);
         })
         .catch((err) => {
           console.error(err);
-          setShowIcons(true); // fallback to showing buttons anyway
+          setShowIcons(true);
         });
     }
-  }, [isOpen, generatedImage]);
+  }, [isOpen, generatedImage, achievement, allAchievements, uid]);
 
   const onShareTelegram = () => {
     if (cloudinaryUrl) {
@@ -133,27 +143,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({
               </LinkedinShareButton>
             </div>
           )}
-          {/* {generatedImage && (
-            <div className="mt-4 fixed top-0">
-              <h3 className="text-center text-secondary mb-2">
-                {t("Preview")}
-              </h3>
-              <img
-                src={generatedImage}
-                alt="Achievement preview"
-                className="w-full rounded-md border"
-              />
-              <div className="flex justify-center mt-2">
-                <a
-                  href={generatedImage}
-                  download="achievement.png"
-                  className="text-sm text-secondary underline"
-                >
-                  Hello
-                </a>
-              </div>
-            </div>
-          )} */}
         </div>
       </div>
     </div>
