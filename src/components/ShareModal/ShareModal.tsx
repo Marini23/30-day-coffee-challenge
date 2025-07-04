@@ -6,6 +6,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
   TelegramIcon,
+  TelegramShareButton,
 } from "react-share";
 import { Achievement } from "../../types/achievements";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,6 @@ import { updateUserAchievement } from "../../firebase/firebaseAchievements";
 interface ShareModalProps {
   isOpen: boolean;
   onClose: () => void;
-  url: string;
   title: string;
   achievement: Achievement;
   allAchievements: Achievement[];
@@ -30,7 +30,6 @@ interface ShareModalProps {
 export const ShareModal: React.FC<ShareModalProps> = ({
   isOpen,
   onClose,
-  url,
   title,
   achievement,
   allAchievements,
@@ -88,15 +87,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     }
   }, [isOpen, generatedImage, achievement, allAchievements, uid]);
 
-  const onShareTelegram = () => {
-    if (cloudinaryUrl) {
-      const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(
-        cloudinaryUrl
-      )}&text=${encodeURIComponent(title)}`;
-      window.open(telegramShareUrl, "_blank");
-    }
-  };
-
   if (!isOpen) return null;
 
   return (
@@ -110,7 +100,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
         </button>
         <div
           ref={cardRef}
-          className="bg-[url('/src/assets/share_bg.jpg')]  py-6 px-2 w-80 h-120 shadow-lg "
+          className="bg-[url('/src/assets/share_bg.jpg')]  py-6 px-2 w-80 h-120 shadow-lg  "
         >
           <img
             src={selectedIcon}
@@ -124,21 +114,18 @@ export const ShareModal: React.FC<ShareModalProps> = ({
               {t(`achievements.${achievement.id}`).toUpperCase()}
             </span>
           </h2>
-          {showIcons && (
+          {showIcons && cloudinaryUrl && (
             <div className="flex justify-center gap-3 mt-4 mb-auto">
-              <FacebookShareButton url={url}>
+              <FacebookShareButton url={cloudinaryUrl}>
                 <FacebookIcon size={30} round />
               </FacebookShareButton>
-
-              <button onClick={onShareTelegram}>
+              <TelegramShareButton url={cloudinaryUrl} title={title}>
                 <TelegramIcon size={30} round />
-              </button>
-
-              <WhatsappShareButton url={url}>
+              </TelegramShareButton>
+              <WhatsappShareButton url={cloudinaryUrl}>
                 <WhatsappIcon size={30} round />
               </WhatsappShareButton>
-
-              <LinkedinShareButton url={url} title={title}>
+              <LinkedinShareButton url={cloudinaryUrl} title={title}>
                 <LinkedinIcon size={30} round />
               </LinkedinShareButton>
             </div>

@@ -4,5 +4,5 @@ export type Achievement = {
   completed: boolean;
   createdAt?: number;
   updatedAt?: number;
-  shareImageUrl?: string;
+  shareImageUrl?: string | null;
 };
