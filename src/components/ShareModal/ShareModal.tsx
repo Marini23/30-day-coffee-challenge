@@ -57,10 +57,12 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     }
 
     if (isOpen && cardRef.current && !generatedImage) {
+      console.log(generatedImage);
       toPng(cardRef.current, { cacheBust: true })
         .then(async (dataUrl) => {
           setGeneratedImage(dataUrl);
           const uploadedUrl = await uploadBageToCloudinary(dataUrl);
+          console.log(uploadedUrl);
           setCloudinaryUrl(uploadedUrl);
           setShowIcons(true);
           const updatedAchievement: Achievement = {
@@ -69,15 +71,23 @@ export const ShareModal: React.FC<ShareModalProps> = ({
             updatedAt: Date.now(),
           };
 
+          console.log("🔧 Creating updated achievement:", updatedAchievement);
+
           const onUpdateAchievement = async (
             updatedAchievement: Achievement
           ) => {
             const updatedAchievements = allAchievements.map((ach) =>
               ach.id === updatedAchievement.id ? updatedAchievement : ach
             );
-            await updateUserAchievement(uid, updatedAchievements);
-          };
+            console.log(
+              "🚀 Updating user achievements in Firebase:",
+              updatedAchievements
+            );
 
+            await updateUserAchievement(uid, updatedAchievements);
+
+            console.log("✅ Firebase update complete");
+          };
           await onUpdateAchievement(updatedAchievement);
         })
         .catch((err) => {
@@ -87,6 +97,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
     }
   }, [isOpen, generatedImage, achievement, allAchievements, uid]);
 
+  console.log(cloudinaryUrl);
   if (!isOpen) return null;
 
   return (
