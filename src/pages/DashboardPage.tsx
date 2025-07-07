@@ -136,6 +136,9 @@ export const DashboardPage: React.FC = () => {
       };
     });
 
+    console.log(prevAchievements);
+    console.log(updatedAchievements);
+
     setAchievements(updatedAchievements);
     updateUserAchievement(uid, updatedAchievements);
 

@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Achievement } from "../types/achievements";
 
@@ -65,4 +65,18 @@ export const updateUserAchievement = async (
 ) => {
   const userAchievementsRef = doc(db, "achievements", uid);
   await setDoc(userAchievementsRef, { achievements: updatedAchievements });
+};
+
+export const updateUserOneAchievement = async (
+  uid: string,
+  achievement: Achievement
+) => {
+  const ref = doc(db, "achievements", uid, achievement.id);
+  await updateDoc(ref, {
+    completed: achievement.completed,
+    updatedAt: achievement.updatedAt,
+    ...(achievement.shareImageUrl && {
+      shareImageUrl: achievement.shareImageUrl,
+    }),
+  });
 };

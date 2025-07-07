@@ -41,6 +41,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   const [cloudinaryUrl, setCloudinaryUrl] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
 
+  console.log(achievement);
+
   const achievementIcons: Record<string, string> = {
     brew_master: beansIcon,
     coffee_ambassador: earthIcon,
@@ -48,56 +50,69 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   };
 
   const selectedIcon = achievementIcons[achievement.id];
+  console.log(cloudinaryUrl);
 
   useEffect(() => {
+    // Reset state when modal closes
+    if (!isOpen) {
+      setGeneratedImage(null);
+      setCloudinaryUrl(null);
+      setShowIcons(false);
+      return;
+    }
+
+    // Skip if achievement is incomplete
+    if (!achievement.completed) {
+      setShowIcons(false);
+      return;
+    }
+
+    // Use existing image if available
     if (achievement.shareImageUrl) {
       setCloudinaryUrl(achievement.shareImageUrl);
       setShowIcons(true);
       return;
     }
 
-    if (isOpen && cardRef.current && !generatedImage) {
-      console.log(generatedImage);
+    // Generate new image only for completed achievements
+    if (cardRef.current && !generatedImage) {
       toPng(cardRef.current, { cacheBust: true })
         .then(async (dataUrl) => {
           setGeneratedImage(dataUrl);
           const uploadedUrl = await uploadBageToCloudinary(dataUrl);
-          console.log(uploadedUrl);
           setCloudinaryUrl(uploadedUrl);
           setShowIcons(true);
-          const updatedAchievement: Achievement = {
-            ...achievement,
-            shareImageUrl: uploadedUrl,
-            updatedAt: Date.now(),
-          };
-
-          console.log("🔧 Creating updated achievement:", updatedAchievement);
-
-          const onUpdateAchievement = async (
-            updatedAchievement: Achievement
-          ) => {
-            const updatedAchievements = allAchievements.map((ach) =>
-              ach.id === updatedAchievement.id ? updatedAchievement : ach
-            );
-            console.log(
-              "🚀 Updating user achievements in Firebase:",
-              updatedAchievements
-            );
-
-            await updateUserAchievement(uid, updatedAchievements);
-
-            console.log("✅ Firebase update complete");
-          };
-          await onUpdateAchievement(updatedAchievement);
         })
-        .catch((err) => {
-          console.error(err);
-          setShowIcons(true);
-        });
+        .catch(console.error);
     }
-  }, [isOpen, generatedImage, achievement, allAchievements, uid]);
+  }, [isOpen, generatedImage, achievement]);
 
-  console.log(cloudinaryUrl);
+  useEffect(() => {
+    const updateFirebase = async () => {
+      if (
+        !cloudinaryUrl ||
+        !achievement.completed ||
+        cloudinaryUrl === achievement.shareImageUrl ||
+        !uid
+      )
+        return;
+
+      const updatedAchievement: Achievement = {
+        ...achievement,
+        shareImageUrl: cloudinaryUrl,
+        updatedAt: Date.now(),
+      };
+
+      const updatedAchievements = allAchievements.map((ach) =>
+        ach.id === achievement.id ? updatedAchievement : ach
+      );
+
+      await updateUserAchievement(uid, updatedAchievements);
+    };
+
+    updateFirebase();
+  }, [cloudinaryUrl, achievement, allAchievements, uid]);
+
   if (!isOpen) return null;
 
   return (
