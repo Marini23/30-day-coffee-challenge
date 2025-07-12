@@ -15,7 +15,7 @@ export const TasksList: React.FC<TasksListProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 laptop:w-2/3 laptop:my-0 laptop:mx-auto ">
       {tasks.map((section, sectionIndex) => {
         const total = section.tasks.length;
         const completed = section.tasks.filter((task) => task.completed).length;
@@ -36,7 +36,7 @@ export const TasksList: React.FC<TasksListProps> = ({
                   className="flex items-center justify-between gap-4 p-4 rounded-xl shadow-[0_2px_8px_theme('colors.espresso')] text-espresso"
                 >
                   <div
-                    className="w-8 h-8 flex-shrink-0"
+                    className="w-8 h-8 flex-shrink-0 cursor-pointer"
                     onClick={() => onToggleTask(task.number)}
                   >
                     {task.completed ? (

@@ -6,7 +6,6 @@ export const Banner: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoggedIn } = useUserStore();
-  console.log(isLoggedIn);
 
   const onClick = () => {
     navigate("/login");

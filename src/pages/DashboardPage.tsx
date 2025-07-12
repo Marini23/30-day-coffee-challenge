@@ -136,9 +136,6 @@ export const DashboardPage: React.FC = () => {
       };
     });
 
-    console.log(prevAchievements);
-    console.log(updatedAchievements);
-
     setAchievements(updatedAchievements);
     updateUserAchievement(uid, updatedAchievements);
 
@@ -158,20 +155,21 @@ export const DashboardPage: React.FC = () => {
   return (
     <>
       <div className="p-4 flex flex-col gap-6">
-        <section className="flex flex-col gap-2">
-          <h3 className="text-espresso text-[22px] font-bold flex justify-center items-center">
-            {t(`progress.title`)}
-          </h3>
-          <ProgressLinear />
-          <Achievements achievements={achievements} />
-        </section>
-        <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')]">
-          <Calendar completedDays={datesForCalendar} />
-        </section>
+        <div className=" laptop:flex laptop:items-center laptop:justify-center ">
+          <section className="flex flex-col gap-2 laptop:w-2/3">
+            <h3 className="text-espresso text-[22px] font-bold flex justify-center items-center">
+              {t(`progress.title`)}
+            </h3>
+            <ProgressLinear />
+            <Achievements achievements={achievements} />
+          </section>
+          <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')] w-80 mt-8">
+            <Calendar completedDays={datesForCalendar} />
+          </section>
+        </div>
         <section>
           <TasksList tasks={tasks} onToggleTask={handleToggleTask} />
         </section>
-        <div>Community</div>
       </div>
       {achievementToShare && (
         <ShareModal

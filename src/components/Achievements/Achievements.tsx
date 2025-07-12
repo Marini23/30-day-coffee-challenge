@@ -11,7 +11,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
   const { t } = useTranslation();
 
   return (
-    <ul className="grid grid-cols-3 gap-4 mt-4">
+    <ul className="grid grid-cols-3 gap-4 mt-4 laptop:mt-8">
       {achievements.map(({ id, icon, completed }, index) => (
         <li
           key={index}
@@ -23,7 +23,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
             className={completed ? "fill-gold" : "fill-latte"}
           />
           <p
-            className={`text-center font-bold whitespace-pre-line ${
+            className={`text-center font-bold whitespace-pre-line laptop:text-[24px] ${
               completed ? "text-gold" : "text-latte"
             }`}
           >
