@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { UserState } from "../types/user";
+import { LoadingState } from "../types/loading";
 
 export const useUserStore = create<UserState>((set) => ({
   firstName: "",
@@ -25,4 +26,9 @@ export const useUserStore = create<UserState>((set) => ({
       completedDays: 0,
       isLoggedIn: false,
     }),
+}));
+
+export const useLoadingStore = create<LoadingState>((set) => ({
+  isLoading: false,
+  setLoading: (value) => set({ isLoading: value }),
 }));
