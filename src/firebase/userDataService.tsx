@@ -24,19 +24,22 @@ const getUserData = async (uid: string): Promise<User | null> => {
   }
 };
 
-export const fetchUser = () => {
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      try {
-        const userData = await getUserData(user.uid);
-        if (userData) {
-          useUserStore.getState().setUser(userData);
+export const fetchUser = (): Promise<void> => {
+  return new Promise((resolve) => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          const userData = await getUserData(user.uid);
+          if (userData) {
+            useUserStore.getState().setUser(userData);
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          toast.error("Failed to fetch user data.");
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        toast.error("Failed to fetch user data.");
       }
-    }
+      resolve();
+    });
   });
 };
 
