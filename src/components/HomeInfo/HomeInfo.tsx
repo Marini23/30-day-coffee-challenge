@@ -1,8 +1,10 @@
 import pickingBeans from "../../assets/jpeg-optimizer_picking-coffee-beans.jpg";
 import roastingMachine from "../../assets/jpeg-optimizer_roasting-machine.jpg";
 import cappuccino from "../../assets/jpeg-optimizer_cappuccino-coffee-cup.jpg";
+import { useTranslation } from "react-i18next";
 
 export const HomeInfo: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 tablet:grid-cols-3 gap-18 items-center mt-6 p-8">
       {/* 1st Column */}
@@ -13,7 +15,7 @@ export const HomeInfo: React.FC = () => {
           className="w-full max-w-xs mx-auto"
         />
         <p className="mt-4 text-espresso text-[18px]">
-          Sign up and start your coffee journey.
+          {t(`homepage.textOne`)}
         </p>
       </div>
 
@@ -25,7 +27,7 @@ export const HomeInfo: React.FC = () => {
           className="w-full max-w-xs mx-auto"
         />
         <p className="mt-4 text-espresso text-[18px]">
-          Try a new coffee theme each day.
+          {t(`homepage.textTwo`)}
         </p>
       </div>
 
@@ -37,7 +39,7 @@ export const HomeInfo: React.FC = () => {
           className="w-full max-w-xs mx-auto"
         />
         <p className="mt-4 text-espresso text-[18px]">
-          Track your progress & share with friends.
+          {t(`homepage.textThree`)}
         </p>
       </div>
     </div>

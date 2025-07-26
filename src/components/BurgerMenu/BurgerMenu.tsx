@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
@@ -12,6 +12,19 @@ export const BurgerMenu: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const { isLoggedIn } = useUserStore();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const toogleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -41,8 +41,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   const [cloudinaryUrl, setCloudinaryUrl] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  console.log(achievement);
-
   const achievementIcons: Record<string, string> = {
     brew_master: beansIcon,
     coffee_ambassador: earthIcon,
@@ -50,7 +48,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   };
 
   const selectedIcon = achievementIcons[achievement.id];
-  console.log(cloudinaryUrl);
 
   useEffect(() => {
     // Reset state when modal closes

@@ -25,9 +25,6 @@ export const UserProfile: React.FC = () => {
     setLanguage,
   } = useUserStore();
 
-  console.log(photoUrl);
-  console.log(language);
-
   const {
     register,
     handleSubmit,
