@@ -207,6 +207,9 @@
   "homepage": {
     "title": "Join the 30‑Day Coffee Adventure!",
     "description": "Discover a new roast, brewing method, or recipe every day.",
-    "startbutton": "Start Your Challenge"
+    "startbutton": "Start Your Challenge",
+    "textOne": "Sign up and start your coffee journey.",
+    "textTwo": "Try a new coffee theme each day.",
+    "textThree": "Track your progress & share with friends."
   }
 }

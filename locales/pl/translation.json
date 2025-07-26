@@ -207,6 +207,9 @@
   "homepage": {
     "title": "Dołącz do 30‑dniowej kawowej przygody!",
     "description": "Odkrywaj nowy rodzaj kawy, metodę parzenia lub przepis każdego dnia.",
-    "startbutton": "Rozpocznij wyzwanie"
+    "startbutton": "Rozpocznij wyzwanie",
+    "textOne": "Zarejestruj się i rozpocznij swoją kawową podróż.",
+    "textTwo": "Codziennie odkrywaj nowy kawowy temat.",
+    "textThree": "Śledź swoje postępy i dziel się nimi z przyjaciółmi."
   }
 }
