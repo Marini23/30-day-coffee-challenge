@@ -23,7 +23,6 @@ function App(): React.JSX.Element {
     loadUser();
   }, [setLoading]);
 
-  console.log(isLoading);
 
   return (
     <div>

@@ -3,7 +3,7 @@
     "home": "Home",
     "register": "Sign Up",
     "login": "Log In",
-    "dashboard": "dashboard",
+    "dashboard": "Dashboard",
     "settings": "Settings",
     "logout": "Log Out",
     "day": "Day"
@@ -15,7 +15,9 @@
     "password": "Password",
     "language": "Language",
     "en": "English",
-    "pl": "Polish"
+    "pl": "Polish",
+    "ru": "Russian",
+    "ua": "Ukrainian"
   },
   "signUpForm": {
     "title": "Create an account",
@@ -198,6 +200,8 @@
     "language": "Language",
     "en": "English",
     "pl": "Polish",
+    "ru": "Russian",
+    "ua": "Ukrainian",
     "saveChangesBtn": "Save changes"
   },
   "homepage": {

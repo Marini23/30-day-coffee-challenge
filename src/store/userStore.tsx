@@ -14,7 +14,7 @@ export const useUserStore = create<UserState>((set) => ({
   setUser: (user) => set((state) => ({ ...state, ...user, isLoggedIn: true })),
   setUserCompletedDays: (count: number) => set({ completedDays: count }),
   setPhotoUrl: (url: string) => set({ photoUrl: url }),
-  setLanguage: (lang: "en" | "pl") => set({ language: lang }),
+  setLanguage: (lang: "en" | "pl" | "ua" | "ru") => set({ language: lang }),
   logout: () =>
     set({
       uid: "",

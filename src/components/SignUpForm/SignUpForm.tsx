@@ -17,7 +17,9 @@ export const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<UserRegistration>();
   const onSubmit = (data: UserRegistration) => {
-    const language: "en" | "pl" = ["en", "pl"].includes(data.language)
+    const language: "en" | "pl" | "ru" | "ua" = ["en", "pl", "ru", "ua"].includes(
+      data.language
+    )
       ? data.language
       : "en";
 
@@ -131,6 +133,18 @@ export const SignUpForm: React.FC = () => {
                   className="bg-secondary text-espresso border-none"
                 >
                   {t("inputs.pl")}
+                </option>
+                <option
+                  value="ua"
+                  className="bg-secondary text-espresso border-none"
+                >
+                  {t("inputs.ua")}
+                </option>
+                <option
+                  value="ru"
+                  className="bg-secondary text-espresso border-none"
+                >
+                  {t("inputs.ru")}
                 </option>
               </select>
               <MdKeyboardArrowDown className="absolute right-3 top-[34px] text-espresso pointer-events-none desktop:top-[38px] desktop:w-[24px] desktop:h-[24px]" />

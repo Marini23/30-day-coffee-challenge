@@ -1,3 +1,4 @@
+import i18n from "i18next";
 import { RxAvatar } from "react-icons/rx";
 import { FaChevronDown } from "react-icons/fa";
 import { useUserStore } from "../../store/userStore";
@@ -25,6 +26,7 @@ export const UserProfile: React.FC = () => {
   } = useUserStore();
 
   console.log(photoUrl);
+  console.log(language);
 
   const {
     register,
@@ -64,7 +66,7 @@ export const UserProfile: React.FC = () => {
     setPhotoUrl(previewUrl);
 
     try {
-      const uploadedUrl = await uploadImageToCloudinary(file, uid);
+      const uploadedUrl = await uploadImageToCloudinary(file);
       console.log(uploadedUrl);
       await updateUserPhoto(uid, uploadedUrl);
       console.log("Photo uploaded and Firestore updated!");
@@ -113,7 +115,7 @@ export const UserProfile: React.FC = () => {
             />
             <label
               htmlFor="fileUpload"
-              className={`flex justify-center items-center w-30 h-8 bg-latte font-medium text-espresso rounded-lg desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer
+              className={`flex justify-center items-center w-40 h-8 bg-latte font-medium text-espresso rounded-lg desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer
                 ${
                   photoUrl
                     ? "opacity-50 cursor-not-allowed"
@@ -194,7 +196,15 @@ export const UserProfile: React.FC = () => {
             <select
               value={language}
               {...register("language")}
-              onChange={(e) => setLanguage(e.target.value as "en" | "pl")}
+              onChange={(e) => {
+                const selectedLang = e.target.value as
+                  | "en"
+                  | "pl"
+                  | "ua"
+                  | "ru";
+                setLanguage(selectedLang);
+                i18n.changeLanguage(selectedLang);
+              }}
               className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso"
             >
               <option
@@ -209,13 +219,25 @@ export const UserProfile: React.FC = () => {
               >
                 {t("settings.pl")}
               </option>
+              <option
+                value="ua"
+                className="bg-secondary text-espresso borde-none hover:bg-espresso"
+              >
+                {t("settings.ua")}
+              </option>
+              <option
+                value="ru"
+                className="bg-secondary text-espresso borde-none hover:bg-espresso"
+              >
+                {t("settings.ru")}
+              </option>
             </select>
             <FaChevronDown className="absolute right-3 top-11 text-espresso pointer-events-none fill-latte desktop:top-14" />
           </div>
           <button
             type="submit"
             disabled={!isValid}
-            className="flex  justify-center items-center w-30 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px]"
+            className="flex  justify-center items-center w-50 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px]"
           >
             {t("settings.saveChangesBtn")}
           </button>

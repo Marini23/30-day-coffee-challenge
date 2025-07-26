@@ -15,7 +15,9 @@
     "password": "Hasło",
     "language": "Język",
     "en": "Angielski",
-    "pl": "Polski"
+    "pl": "Polski",
+    "ru": "Rosyjski",
+    "ua": "Ukraiński"
   },
   "signUpForm": {
     "title": "Utwórz konto",
@@ -198,6 +200,8 @@
     "language": "Język",
     "en": "Angielski",
     "pl": "Polski",
+    "ru": "Rosyjski",
+    "ua": "Ukraiński",
     "saveChangesBtn": "Zapisz zmiany"
   },
   "homepage": {

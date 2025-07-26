@@ -15,7 +15,7 @@ export const TasksList: React.FC<TasksListProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col gap-6 laptop:w-2/3 laptop:my-0 laptop:mx-auto ">
+    <div className="flex flex-col gap-6  my-0 mx-auto  ">
       {tasks.map((section, sectionIndex) => {
         const total = section.tasks.length;
         const completed = section.tasks.filter((task) => task.completed).length;
