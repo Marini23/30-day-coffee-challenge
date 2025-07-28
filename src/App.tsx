@@ -1,3 +1,4 @@
+import "flag-icons/css/flag-icons.min.css";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { SharedLayout } from "./components/SharedLayout";
@@ -22,7 +23,6 @@ function App(): React.JSX.Element {
 
     loadUser();
   }, [setLoading]);
-
 
   return (
     <div>

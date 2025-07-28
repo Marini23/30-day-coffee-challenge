@@ -88,3 +88,10 @@ export const updateUserPhoto = async (userId: string, photoUrl: string) => {
     photoUrl,
   });
 };
+
+export const updateUserLanguage = async (uid: string, language: string) => {
+  const userRef = doc(db, "users", uid);
+  await updateDoc(userRef, {
+    language: language,
+  });
+};

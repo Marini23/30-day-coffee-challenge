@@ -55,17 +55,17 @@ export const UserMenu: React.FC = () => {
             )}
           </button>
           {isComponentVisible && (
-            <div className="absolute right-0  mt-2 w-32 tablet:w-48 desktop:w-58 bg-latte  rounded-lg py-4 flex flex-col aligns-center justify-center gap-2">
+            <div className="absolute right-0  mt-2 w-32 tablet:w-48 desktop:w-58 bg-secondary  rounded-lg py-4 flex flex-col aligns-center justify-center gap-2">
               <Link
                 to="/settings"
-                className="flex aligns-center justify-center text-secondary font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
+                className="flex aligns-center justify-center text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
                 onClick={toogleDropdown}
               >
                 {t("header.settings")}
               </Link>
               <button
                 type="button"
-                className="text-secondary font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
+                className="text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
                 onClick={() => {
                   toogleDropdown();
                   logout();
