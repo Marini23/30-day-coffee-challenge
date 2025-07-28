@@ -3,6 +3,7 @@ import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "../../store/userStore";
 import { useLogout } from "../../utils/Logout";
+import { LanguageToggle } from "../LanguageToggle/LanguageToggle";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
@@ -34,11 +35,12 @@ export const UserMenu: React.FC = () => {
             {t("header.dashboard")}
           </Link>
         </nav>
+        <LanguageToggle />
         <div className="relative inline-block" ref={ref}>
           <button
             type="button"
             onClick={toogleDropdown}
-            className="  mr-2 focus:outline-none bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[40px] desktop:w-[50px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[18px] desktop:text-[24px] hover:bg-gold focus:bg-gold"
+            className="  focus:outline-none bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[40px] desktop:w-[50px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[18px] desktop:text-[24px] hover:bg-gold focus:bg-gold"
           >
             {photoUrl ? (
               <img
