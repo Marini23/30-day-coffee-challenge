@@ -62,7 +62,7 @@ export const LanguageToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => setIsOpen((prev: boolean) => !prev)}
-        className="mr-2 ml-2 bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[60px] desktop:w-[80px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[16px] desktop:text-[20px] hover:bg-gold focus:bg-gold focus:outline-none"
+        className=" ml-2  bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[46px] tablet:w-[60px] desktop:w-[80px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[12px] tablet:text-[16px] desktop:text-[20px] hover:bg-gold focus:bg-gold focus:outline-none"
       >
         <span className={`fi fi-${currentFlag} mr-1`} />
         {language.toUpperCase()}

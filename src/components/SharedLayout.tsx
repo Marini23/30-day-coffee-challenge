@@ -5,6 +5,7 @@ import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { AuthMenu } from "./AuthMenu/AuthMenu";
 import { UserMenu } from "./UserMenu/UserMenu";
 import { useUserStore } from "../store/userStore";
+import { LanguageToggle } from "./LanguageToggle/LanguageToggle";
 
 export const SharedLayout: React.FC = () => {
   const { isLoggedIn } = useUserStore();
@@ -19,6 +20,7 @@ export const SharedLayout: React.FC = () => {
           />
         </Link>
         {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+        <LanguageToggle />
         <BurgerMenu />
       </header>
       <main className="flex-grow flex flex-col  mt-16 tablet:mt-20 desktop:mt-22 ">

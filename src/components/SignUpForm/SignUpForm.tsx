@@ -6,7 +6,10 @@ import { Link } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserRegistration } from "../../types/user";
-import { SignUpWithEmailPassword } from "../../firebase/firebaseAuth";
+import {
+  SignInWithFacebook,
+  SignUpWithEmailPassword,
+} from "../../firebase/firebaseAuth";
 
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
@@ -17,13 +20,20 @@ export const SignUpForm: React.FC = () => {
     formState: { errors },
   } = useForm<UserRegistration>();
   const onSubmit = (data: UserRegistration) => {
-    const language: "en" | "pl" | "ru" | "ua" = ["en", "pl", "ru", "ua"].includes(
-      data.language
-    )
+    const language: "en" | "pl" | "ru" | "ua" = [
+      "en",
+      "pl",
+      "ru",
+      "ua",
+    ].includes(data.language)
       ? data.language
       : "en";
 
     SignUpWithEmailPassword({ ...data, language });
+  };
+
+  const handleSignUpFacebook = async () => {
+    await SignInWithFacebook();
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
@@ -174,6 +184,7 @@ export const SignUpForm: React.FC = () => {
           </div>
           <button
             type="button"
+            onClick={handleSignUpFacebook}
             className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px]"
           >
             <img

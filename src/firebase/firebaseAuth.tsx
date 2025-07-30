@@ -1,6 +1,8 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
@@ -11,7 +13,7 @@ import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
 import { useUserStore } from "../store/userStore";
 
-// Signed up
+// Sign up with email
 
 const createUserFromRegistration = (
   registration: UserRegistration,
@@ -61,7 +63,7 @@ export const SignUpWithEmailPassword = async (data: UserRegistration) => {
   }
 };
 
-// Log in
+// Log in with email
 
 export const LogInWithEmailPassword = async (
   email: string,
@@ -98,6 +100,23 @@ export const LogInWithEmailPassword = async (
     return null;
   }
 };
+
+// Sign in with Facebook
+
+const facebookProvider = new FacebookAuthProvider();
+
+export const SignInWithFacebook = async () => {
+  try {
+    const result = await signInWithPopup(auth, facebookProvider);
+    const user = result.user;
+
+    console.log("Signed up  user:", user);
+  } catch (error) {
+    console.error("Facebook sign up error:", error);
+  }
+};
+
+//Log out
 
 export const LogOut = async () => {
   try {

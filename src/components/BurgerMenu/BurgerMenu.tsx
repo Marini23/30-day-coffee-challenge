@@ -31,7 +31,7 @@ export const BurgerMenu: React.FC = () => {
   };
   return (
     <>
-      <button type="button" onClick={toogleMenu} className="tablet:hidden mr-4">
+      <button type="button" onClick={toogleMenu} className="tablet:hidden ml-2">
         {isMenuOpen ? (
           <IoCloseSharp size={28} />
         ) : (

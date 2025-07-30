@@ -3,7 +3,6 @@ import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "../../store/userStore";
 import { useLogout } from "../../utils/Logout";
-import { LanguageToggle } from "../LanguageToggle/LanguageToggle";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
@@ -35,7 +34,7 @@ export const UserMenu: React.FC = () => {
             {t("header.dashboard")}
           </Link>
         </nav>
-        <LanguageToggle />
+
         <div className="relative inline-block" ref={ref}>
           <button
             type="button"
