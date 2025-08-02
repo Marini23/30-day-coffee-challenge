@@ -20,8 +20,10 @@ export const SharedLayout: React.FC = () => {
           />
         </Link>
         {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-        <LanguageToggle />
-        <BurgerMenu />
+        <div className="flex">
+          <LanguageToggle />
+          <BurgerMenu />
+        </div>
       </header>
       <main className="flex-grow flex flex-col  mt-16 tablet:mt-20 desktop:mt-22 ">
         <Outlet />
