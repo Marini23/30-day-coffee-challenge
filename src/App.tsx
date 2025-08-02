@@ -11,6 +11,7 @@ import { fetchUser } from "./firebase/userDataService";
 import { HomePage } from "./pages/HomePage";
 import { useLoadingStore } from "./store/userStore";
 import { CoffeeLoader } from "./components/Loader/Loader";
+import { PrivacyPolicy } from "./components/PrivacyPolicy/PrivacyPolicy";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
@@ -35,6 +36,7 @@ function App(): React.JSX.Element {
             <Route path="/login" element={<LogInPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="*" element={<div>Not found</div>} />
           </Route>
         </Routes>

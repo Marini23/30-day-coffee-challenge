@@ -25,7 +25,9 @@
     "haveAccount": "Вже маєте обліковий запис?",
     "loginLink": "Увійти тут",
     "alternativeSignUp": "або",
-    "registerFacebook": "Зареєструватися через Facebook"
+    "registerFacebook": "Зареєструватися через Facebook",
+    "acceptRules": "Створюючи обліковий запис, Ви підтверджуєте, що ознайомилися з нашою ",
+    "linkPolicy": " Політикою конфіденційності."
   },
   "loginForm": {
     "title": "Раді вас бачити знову!",

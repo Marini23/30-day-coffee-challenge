@@ -25,7 +25,9 @@
     "haveAccount": "Already have an account?",
     "loginLink": "Log In here",
     "alternativeSignUp": "or",
-    "registerFacebook": "Sign up with Facebook"
+    "registerFacebook": "Sign up with Facebook",
+    "acceptRules": "By creating an account, you confirm that you have read our ",
+    "linkPolicy": "Privacy Policy."
   },
 
   "loginForm": {

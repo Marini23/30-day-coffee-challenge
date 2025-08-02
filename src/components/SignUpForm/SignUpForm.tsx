@@ -159,6 +159,17 @@ export const SignUpForm: React.FC = () => {
               </select>
               <MdKeyboardArrowDown className="absolute right-3 top-[34px] text-espresso pointer-events-none desktop:top-[38px] desktop:w-[24px] desktop:h-[24px]" />
             </div>
+            <p className="my-0 mx-auto px-8 text-center w-full text-[12px]  text-espresso desktop:text-[16px]">
+              {t("signUpForm.acceptRules")}{" "}
+              <a
+                href=" /30-day-coffee-challenge/privacy-policy"
+                className="font-bold text-espresso hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("signUpForm.linkPolicy")}
+              </a>
+            </p>
             <button
               type="submit"
               className=" mt-5 mb-2 flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px]"
@@ -166,7 +177,7 @@ export const SignUpForm: React.FC = () => {
               {t("signUpForm.registerButton")}
             </button>
           </form>
-          <p className="mt-2 flex justify-center text-[12px]  text-espresso desktop:text-[16px]">
+          <p className="mt-2 flex justify-center text-[14px]  text-espresso desktop:text-[18px]">
             {t("signUpForm.haveAccount")}
             <Link
               to="/login"
