@@ -25,7 +25,9 @@
     "haveAccount": "Уже есть аккаунт?",
     "loginLink": "Войти здесь",
     "alternativeSignUp": "или",
-    "registerFacebook": "Зарегистрироваться через Facebook"
+    "registerFacebook": "Зарегистрироваться через Facebook",
+    "acceptRules": "Создавая учётную запись, Вы подтверждаете, что ознакомились с нашей",
+    "linkPolicy": " Политикой конфиденциальности."
   },
   "loginForm": {
     "title": "С возвращением!",

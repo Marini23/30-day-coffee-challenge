@@ -25,7 +25,9 @@
     "haveAccount": "Masz już konto?",
     "loginLink": "Zaloguj się tutaj",
     "alternativeSignUp": "lub",
-    "registerFacebook": "Zarejestruj się przez Facebook"
+    "registerFacebook": "Zarejestruj się przez Facebook",
+    "acceptRules": "TZakładając konto, , potwierdzasz, że zapoznałeś się z naszej",
+    "linkPolicy": "Polityką prywatności."
   },
 
   "loginForm": {
