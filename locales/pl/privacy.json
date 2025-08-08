@@ -18,7 +18,7 @@
   "titleSecurity": "Bezpieczeństwo danych",
   "security": "Podejmujemy rozsądne kroki w celu ochrony Twoich danych przed nieuprawnionym dostępem. Stosujemy: transmisję danych przez HTTPS, zasady bezpieczeństwa Firebase, aktualizacje oprogramowania. Żadna metoda nie gwarantuje jednak 100% bezpieczeństwa.",
   "titleChangesPolicy": "Zmiany w Polityce Prywatności",
-  "ChangesPolicy": "Możemy aktualizować Politykę Prywatności. O zmianach poinformujemy przez aplikację lub e-mail. Prosimy regularnie sprawdzać treść polityki.",
+  "changesPolicy": "Możemy aktualizować Politykę Prywatności. O zmianach poinformujemy przez aplikację lub e-mail. Prosimy regularnie sprawdzać treść polityki.",
   "titleContactUs": "Kontakt",
   "contactUs": "W przypadku pytań lub wątpliwości, skontaktuj się z nami: marina.udovuchenko@gmail.com"
 }
