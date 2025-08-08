@@ -64,7 +64,7 @@ export const SignInForm: React.FC = () => {
           <p className="mt-2 flex justify-center text-[12px]  text-espresso desktop:text-[16px]">
             {t("loginForm.noHaveAccount")}
             <Link
-              to="/login"
+              to="/register"
               className="font-medium text-espresso hover:underline hover:decoration-espresso  text-[12px] desktop:text-[16px] ml-1"
             >
               {t("loginForm.registerLink")}

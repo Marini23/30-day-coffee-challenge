@@ -10,6 +10,8 @@ i18n
   .init({
     supportedLngs: ["en", "pl", "ua", "ru"],
     fallbackLng: "pl",
+    ns: ["translation", "privacy"], // all namespaces you have
+    defaultNS: "translation",
     debug: true,
     interpolation: {
       escapeValue: false,
@@ -21,7 +23,7 @@ i18n
       excludeCacheFor: ["cimode"],
     },
     backend: {
-      loadPath: "/30-day-coffee-challenge/locales/{{lng}}/translation.json",
+      loadPath: "/30-day-coffee-challenge/locales/{{lng}}/{{ns}}.json",
     },
   });
 
