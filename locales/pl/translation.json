@@ -6,6 +6,7 @@
     "dashboard": "Panel",
     "settings": "Ustawienia",
     "logout": "Wyloguj się",
+    "deleteAccount": "Usuń konto",
     "day": "Dzień"
   },
   "inputs": {
