@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Achievement } from "../types/achievements";
 
@@ -79,4 +79,15 @@ export const updateUserOneAchievement = async (
       shareImageUrl: achievement.shareImageUrl,
     }),
   });
+};
+
+export const deleteUserAchievements = async (userId: string) => {
+  try {
+    const achievementsRef = doc(db, "achievements", userId);
+    await deleteDoc(achievementsRef);
+    console.log(`Achievements for user ${userId} deleted successfully`);
+  } catch (error) {
+    console.error("Error deleting user tasks:", error);
+    throw error;
+  }
 };

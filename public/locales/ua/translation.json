@@ -6,6 +6,7 @@
     "dashboard": "Панель",
     "settings": "Налаштування",
     "logout": "Вийти",
+    "deleteAccount": "Видалити акаунт",
     "day": "День"
   },
   "inputs": {

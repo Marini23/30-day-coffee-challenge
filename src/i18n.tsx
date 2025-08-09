@@ -3,6 +3,10 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 
+const basePath = window.location.pathname.includes("30-day-coffee-challenge")
+  ? "/30-day-coffee-challenge"
+  : "";
+
 i18n
   .use(Backend)
   .use(LanguageDetector)
@@ -23,7 +27,7 @@ i18n
       excludeCacheFor: ["cimode"],
     },
     backend: {
-      loadPath: "/30-day-coffee-challenge/locales/{{lng}}/{{ns}}.json",
+      loadPath: `${basePath}/locales/{{lng}}/{{ns}}.json`,
     },
   });
 

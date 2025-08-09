@@ -16,10 +16,14 @@ export const SignInForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<UserLogin>();
-  const onSubmit = (data: UserLogin) => {
-    console.log("Login form Submitted:", data);
-    LogInWithEmailPassword(data.email, data.password);
-    navigate("/dashboard");
+  const onSubmit = async (data: UserLogin) => {
+    try {
+      console.log("Login form Submitted:", data);
+      await LogInWithEmailPassword(data.email, data.password); // wait for success
+      navigate("/dashboard"); // navigate only if login worked
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">

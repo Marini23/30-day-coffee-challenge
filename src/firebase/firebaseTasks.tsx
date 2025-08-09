@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Section } from "../types/tasks";
 
@@ -229,4 +229,16 @@ export const updateUserTasks = async (
 ) => {
   const ref = doc(db, "tasks", userId);
   await setDoc(ref, { tasksList: updatedTasks });
+};
+
+export const deleteUserTasks = async (userId: string) => {
+
+  try {
+    const tasksRef = doc(db, "tasks", userId);
+    await deleteDoc(tasksRef);
+    console.log(`Tasks for user ${userId} deleted successfully`);
+  } catch (error) {
+    console.error("Error deleting user tasks:", error);
+    throw error;
+  }
 };

@@ -1,9 +1,12 @@
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import { User, UserUpdate } from "../types/user";
 import { useUserStore } from "../store/userStore";
 import { onAuthStateChanged } from "firebase/auth";
+import { deleteUserAccount } from "./firebaseAuth";
+import { deleteUserTasks } from "./firebaseTasks";
+import { deleteUserAchievements } from "./firebaseAchievements";
 
 // get user data
 
@@ -94,4 +97,31 @@ export const updateUserLanguage = async (uid: string, language: string) => {
   await updateDoc(userRef, {
     language: language,
   });
+};
+
+export const deleteUserData = async (uid: string) => {
+  const userRef = doc(db, "users", uid);
+  try {
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      toast.error("User not found in Firestore");
+      return;
+    }
+    await deleteUserAchievements(uid);
+
+    await deleteUserTasks(uid);
+
+    await deleteDoc(userRef);
+
+    await deleteUserAccount();
+
+    useUserStore.getState().logout();
+
+    toast.success("User deleted successfully");
+  } catch (error) {
+    console.error("Error deleting user data:", error);
+    toast.error("Failed to delete user");
+    throw error;
+  }
 };
