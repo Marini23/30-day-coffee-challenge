@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { InputPassword } from "../InputPassword/InputPassword";
 import icon_facebook from "../../assets/icons-facebook.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserRegistration } from "../../types/user";
@@ -13,13 +13,14 @@ import {
 
 export const SignUpForm: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const {
     register,
     setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<UserRegistration>();
-  const onSubmit = (data: UserRegistration) => {
+  const onSubmit = async (data: UserRegistration) => {
     const language: "en" | "pl" | "ru" | "ua" = [
       "en",
       "pl",
@@ -29,7 +30,12 @@ export const SignUpForm: React.FC = () => {
       ? data.language
       : "en";
 
-    SignUpWithEmailPassword({ ...data, language });
+    try {
+      await SignUpWithEmailPassword({ ...data, language }); // ✅ Wait for signup to finish
+      navigate("/dashboard"); // ✅ Navigate after successful signup
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
   };
 
   const handleSignUpFacebook = async () => {

@@ -8,7 +8,7 @@ import { deleteUserData } from "../../firebase/userDataService";
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
   const logout = useLogout();
-  const { completedDays, firstName, lastName, photoUrl, uid } = useUserStore();
+  const { completedDays, firstName, photoUrl, uid } = useUserStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>();
 
@@ -49,9 +49,7 @@ export const UserMenu: React.FC = () => {
                 className="w-full h-full object-cover rounded-full"
               />
             ) : (
-              `${firstName?.[0]?.toUpperCase() ?? ""}${
-                lastName?.[0]?.toUpperCase() ?? ""
-              }`
+              `${firstName?.[0]?.toUpperCase() ?? ""}`
             )}
           </button>
           {isComponentVisible && (

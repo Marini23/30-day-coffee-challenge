@@ -19,8 +19,8 @@ export const SignInForm: React.FC = () => {
   const onSubmit = async (data: UserLogin) => {
     try {
       console.log("Login form Submitted:", data);
-      await LogInWithEmailPassword(data.email, data.password); // wait for success
-      navigate("/dashboard"); // navigate only if login worked
+      await LogInWithEmailPassword(data.email, data.password);
+      navigate("/dashboard");
     } catch (error) {
       console.error("Login failed:", error);
     }
