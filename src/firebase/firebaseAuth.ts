@@ -1,7 +1,9 @@
 import {
   createUserWithEmailAndPassword,
   deleteUser,
+  EmailAuthProvider,
   FacebookAuthProvider,
+  reauthenticateWithCredential,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -131,20 +133,21 @@ export const LogOut = async () => {
 
 //Delete user
 
-export const deleteUserAccount = async () => {
+export const deleteUserAccount = async (email: string, password: string) => {
   try {
     const currentUser = auth.currentUser;
     if (!currentUser) {
       toast.error("No authenticated user found");
       return;
     }
+    const credential = EmailAuthProvider.credential(email, password);
+
+    await reauthenticateWithCredential(currentUser, credential);
 
     // Delete from Firebase Auth
     await deleteUser(currentUser);
-    toast.success("User deleted successfully");
   } catch (error) {
     console.error("Error deleting user:", error);
-    toast.error("Failed to delete user");
     throw error;
   }
 };

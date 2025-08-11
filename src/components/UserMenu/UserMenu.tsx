@@ -3,12 +3,11 @@ import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "../../store/userStore";
 import { useLogout } from "../../utils/Logout";
-import { deleteUserData } from "../../firebase/userDataService";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
   const logout = useLogout();
-  const { completedDays, firstName, photoUrl, uid } = useUserStore();
+  const { completedDays, firstName, photoUrl } = useUserStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>();
 
@@ -76,7 +75,6 @@ export const UserMenu: React.FC = () => {
                 className="text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
                 onClick={() => {
                   toogleDropdown();
-                  deleteUserData(uid);
                 }}
               >
                 {t("header.deleteAccount")}

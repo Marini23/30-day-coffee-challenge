@@ -50,7 +50,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   const selectedIcon = achievementIcons[achievement.id];
 
   useEffect(() => {
-    // Reset state when modal closes
     if (!isOpen) {
       setGeneratedImage(null);
       setCloudinaryUrl(null);
@@ -58,20 +57,17 @@ export const ShareModal: React.FC<ShareModalProps> = ({
       return;
     }
 
-    // Skip if achievement is incomplete
     if (!achievement.completed) {
       setShowIcons(false);
       return;
     }
 
-    // Use existing image if available
     if (achievement.shareImageUrl) {
       setCloudinaryUrl(achievement.shareImageUrl);
       setShowIcons(true);
       return;
     }
 
-    // Generate new image only for completed achievements
     if (cardRef.current && !generatedImage) {
       toPng(cardRef.current, { cacheBust: true })
         .then(async (dataUrl) => {

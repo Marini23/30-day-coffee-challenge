@@ -99,7 +99,11 @@ export const updateUserLanguage = async (uid: string, language: string) => {
   });
 };
 
-export const deleteUserData = async (uid: string) => {
+export const deleteUserData = async (
+  uid: string,
+  email: string,
+  password: string
+) => {
   const userRef = doc(db, "users", uid);
   try {
     const userSnap = await getDoc(userRef);
@@ -114,7 +118,7 @@ export const deleteUserData = async (uid: string) => {
 
     await deleteDoc(userRef);
 
-    await deleteUserAccount();
+    await deleteUserAccount(email, password);
 
     useUserStore.getState().logout();
 
