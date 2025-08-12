@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { deleteUserData } from "../../firebase/userDataService";
 import { useLoadingStore } from "../../store/userStore";
+import { InputPassword } from "../InputPassword/InputPassword";
+import { useTranslation } from "react-i18next";
+import { UserReauthentication } from "../../types/user";
 
 interface ReauthenticateModalProps {
   isOpen: boolean;
@@ -16,14 +19,20 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
   onClose,
   email,
 }) => {
+  const { t } = useTranslation();
   const { isLoading, setLoading } = useLoadingStore();
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserReauthentication>();
 
-  const handleDelete = async () => {
+  const onSubmit = async (data: UserReauthentication) => {
     setLoading(true);
     try {
-      await deleteUserData(uid, email, password);
+      await deleteUserData(uid, email, data.password);
       onClose();
       navigate("/login");
     } catch (error) {
@@ -43,30 +52,34 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
         <p className="text-sm text-gray-600 mb-4">
           Please enter your password to confirm account deletion.
         </p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputPassword
+            register={register}
+            setValue={setValue}
+            name="password"
+            validation={{
+              required: t("validation.password.required"),
+              minLength: {
+                value: 6,
+                message: t("validation.password.minLength", { length: 6 }),
+              },
+            }}
+            error={errors.password}
+          />
 
-        <input
-          type="password"
-          placeholder="Your password"
-          className="border w-full p-2 rounded-lg mb-3"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
-            disabled={isLoading}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleDelete}
-            className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
-            disabled={isLoading || !password}
-          >
-            {isLoading ? "Deleting..." : "Delete"}
-          </button>
-        </div>
+          <div className="flex justify-end gap-2">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+              disabled={isLoading}
+            >
+              Cancel
+            </button>
+            <button className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 disabled:opacity-50">
+              {isLoading ? "Deleting..." : "Delete"}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

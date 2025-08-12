@@ -24,6 +24,11 @@ export type UserLogin = {
   password: string;
 };
 
+export type UserReauthentication = {
+  email: string;
+  password: string;
+};
+
 export interface UserState {
   uid: string;
   firstName: string;

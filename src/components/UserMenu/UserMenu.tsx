@@ -3,16 +3,25 @@ import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "../../store/userStore";
 import { useLogout } from "../../utils/Logout";
+import { useState } from "react";
+import { ReauthenticateModal } from "../ReauthenticateModal/ReauthenticateModal";
 
 export const UserMenu: React.FC = () => {
   const { t } = useTranslation();
   const logout = useLogout();
-  const { completedDays, firstName, photoUrl } = useUserStore();
+  const { completedDays, firstName, photoUrl, uid, email } = useUserStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible<HTMLDivElement>();
 
+  const [isReauthOpen, setIsReauthOpen] = useState(false);
+
   const toogleDropdown = () => {
     setIsComponentVisible(!isComponentVisible);
+  };
+
+  const handleDeleteClick = () => {
+    toogleDropdown();
+    setIsReauthOpen(true);
   };
   return (
     <>
@@ -73,9 +82,7 @@ export const UserMenu: React.FC = () => {
               <button
                 type="button"
                 className="text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
-                onClick={() => {
-                  toogleDropdown();
-                }}
+                onClick={handleDeleteClick}
               >
                 {t("header.deleteAccount")}
               </button>
@@ -83,6 +90,13 @@ export const UserMenu: React.FC = () => {
           )}
         </div>
       </div>
+      {/* Reauthenticate Modal */}
+      <ReauthenticateModal
+        isOpen={isReauthOpen}
+        onClose={() => setIsReauthOpen(false)}
+        uid={uid}
+        email={email}
+      />
     </>
   );
 };
