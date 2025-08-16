@@ -214,5 +214,11 @@
     "textOne": "Zarejestruj się i rozpocznij swoją kawową podróż.",
     "textTwo": "Codziennie odkrywaj nowy kawowy temat.",
     "textThree": "Śledź swoje postępy i dziel się nimi z przyjaciółmi."
+  },
+  "deleteAccount": {
+    "title": "Potwierdź swoje hasło",
+    "description": "Proszę wprowadzić hasło, aby potwierdzić usunięcie konta.",
+    "cancelBtn": "Anuluj",
+    "confirmBtn": "Potwierdź"
   }
 }

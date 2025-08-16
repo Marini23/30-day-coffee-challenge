@@ -214,5 +214,11 @@
     "textOne": "Sign up and start your coffee journey.",
     "textTwo": "Try a new coffee theme each day.",
     "textThree": "Track your progress & share with friends."
+  },
+  "deleteAccount": {
+    "title": "Confirm your password",
+    "description": "Please enter your password to confirm account deletion.",
+    "cancelBtn": "Cancel",
+    "confirmBtn": "Confirm"
   }
 }

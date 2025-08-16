@@ -46,11 +46,13 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Confirm your password</h2>
-        <p className="text-sm text-gray-600 mb-4">
-          Please enter your password to confirm account deletion.
+    <div className="px-4 fixed inset-0 bg-espresso/50 flex items-center justify-center z-50">
+      <div className="bg-secondary rounded-lg p-4 w-full max-w-md shadow-lg">
+        <h2 className="text-lg font-bold mb-4 text-espresso">
+          {t("deleteAccount.title")}
+        </h2>
+        <p className="text-sm text-espresso mb-4">
+          {t("deleteAccount.description")}
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputPassword
@@ -67,16 +69,21 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
             error={errors.password}
           />
 
-          <div className="flex justify-end gap-2">
+          <div className="px-4 flex justify-between ">
             <button
+              type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active text-espresso"
               disabled={isLoading}
             >
-              Cancel
+              {t("deleteAccount.cancelBtn")}
             </button>
-            <button className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 disabled:opacity-50">
-              {isLoading ? "Deleting..." : "Delete"}
+            <button
+              type="submit"
+              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active text-espresso"
+              disabled={isLoading}
+            >
+              {t("deleteAccount.confirmBtn")}
             </button>
           </div>
         </form>
