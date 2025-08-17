@@ -69,7 +69,7 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
             error={errors.password}
           />
 
-          <div className="px-4 flex justify-between ">
+          <div className="px-4 flex justify-between mt-4 ">
             <button
               type="button"
               onClick={onClose}

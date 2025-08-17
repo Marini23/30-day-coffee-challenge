@@ -8,14 +8,23 @@ export const LanguageToggle: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  console.log(language);
+
   const availableLanguages = [
     { code: "en", flag: "gb", label: "EN" },
     { code: "pl", flag: "pl", label: "PL" },
     { code: "ua", flag: "ua", label: "UA" },
-    { code: "ru", flag: "ru", label: "RU" },
+    { code: "ru", flag: "ua", label: "RU" },
   ] as const;
 
-  // Close dropdown on outside click or ESC
+  useEffect(() => {
+    const currentLang = i18n.language;
+    console.log(currentLang);
+    if (currentLang && currentLang !== language) {
+      setLanguage(currentLang as "en" | "pl" | "ua" | "ru");
+    }
+  }, [language, setLanguage]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -42,6 +51,7 @@ export const LanguageToggle: React.FC = () => {
   }, []);
 
   const handleLanguageChange = async (lang: string) => {
+    console.log(lang);
     setLanguage(lang as "en" | "pl" | "ua" | "ru");
     i18n.changeLanguage(lang);
     setIsOpen(false);
@@ -56,7 +66,6 @@ export const LanguageToggle: React.FC = () => {
   };
 
   const currentFlag = availableLanguages.find((l) => l.code === language)?.flag;
-  console.log(currentFlag);
 
   return (
     <div ref={dropdownRef} className="relative">

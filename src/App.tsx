@@ -15,6 +15,7 @@ import { PrivacyPolicy } from "./components/PrivacyPolicy/PrivacyPolicy";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
+
   useEffect(() => {
     const loadUser = async () => {
       setLoading(true);
