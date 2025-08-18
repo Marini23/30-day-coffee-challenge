@@ -168,7 +168,7 @@ export const SignUpForm: React.FC = () => {
             <p className="my-0 mx-auto px-8 text-center w-full text-[12px]  text-espresso desktop:text-[16px]">
               {t("signUpForm.acceptRules")}{" "}
               <a
-                href=" /30-day-coffee-challenge/privacy-policy"
+                href="/30-day-coffee-challenge/privacy-policy"
                 className="font-bold text-espresso hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
