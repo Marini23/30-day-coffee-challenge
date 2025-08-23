@@ -106,14 +106,18 @@ export const LogInWithEmailPassword = async (
 
 // Sign in with Facebook
 
-const facebookProvider = new FacebookAuthProvider();
-
 export const SignInWithFacebook = async () => {
   try {
-    const result = await signInWithPopup(auth, facebookProvider);
+    const provider = new FacebookAuthProvider();
+    provider.addScope("email");
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
     const user = result.user;
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential?.accessToken;
+    console.log("Facebook access token:", accessToken);
 
-    console.log("Signed up  user:", user);
+    return user;
   } catch (error) {
     console.error("Facebook sign up error:", error);
   }

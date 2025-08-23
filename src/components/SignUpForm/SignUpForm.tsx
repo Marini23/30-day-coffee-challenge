@@ -28,11 +28,11 @@ export const SignUpForm: React.FC = () => {
       "ua",
     ].includes(data.language)
       ? data.language
-      : "en";
+      : "pl";
 
     try {
-      await SignUpWithEmailPassword({ ...data, language }); // ✅ Wait for signup to finish
-      navigate("/dashboard"); // ✅ Navigate after successful signup
+      await SignUpWithEmailPassword({ ...data, language }); //
+      navigate("/dashboard"); //
     } catch (error) {
       console.error("Signup failed:", error);
     }
