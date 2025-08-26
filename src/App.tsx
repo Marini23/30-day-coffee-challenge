@@ -12,6 +12,7 @@ import { HomePage } from "./pages/HomePage";
 import { useLoadingStore } from "./store/userStore";
 import { CoffeeLoader } from "./components/Loader/Loader";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { PageNotFound } from "./pages/PageNotFound";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
@@ -38,7 +39,7 @@ function App(): React.JSX.Element {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="*" element={<div>Not found</div>} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       )}
