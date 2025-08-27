@@ -11,6 +11,7 @@ export const NotFound: React.FC = () => {
       >
         <IoMdArrowRoundBack /> Go Home
       </Link>
+      <div>Page not found</div>
     </div>
   );
 };

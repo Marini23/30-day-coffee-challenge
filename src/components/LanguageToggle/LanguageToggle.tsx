@@ -8,8 +8,6 @@ export const LanguageToggle: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  console.log(language);
-
   const availableLanguages = [
     { code: "en", flag: "gb", label: "EN" },
     { code: "pl", flag: "pl", label: "PL" },
@@ -19,7 +17,6 @@ export const LanguageToggle: React.FC = () => {
 
   useEffect(() => {
     const currentLang = i18n.language;
-    console.log(currentLang);
     if (currentLang && currentLang !== language) {
       setLanguage(currentLang as "en" | "pl" | "ua" | "ru");
     }
