@@ -39,6 +39,7 @@ export const SignUpForm: React.FC = () => {
   };
 
   const handleSignUpFacebook = async () => {
+    console.log("facebook");
     await SignInWithFacebook();
   };
   return (

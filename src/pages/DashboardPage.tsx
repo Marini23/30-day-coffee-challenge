@@ -32,7 +32,6 @@ export const DashboardPage: React.FC = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       if (!uid) {
-        console.log("Waiting for user ID...");
         setTasks(defaultTasks);
         return;
       }

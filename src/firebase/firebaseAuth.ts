@@ -16,6 +16,8 @@ import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
 import { useUserStore } from "../store/userStore";
 
+const provider = new FacebookAuthProvider();
+
 // Sign up with email
 
 const createUserFromRegistration = (
@@ -108,11 +110,10 @@ export const LogInWithEmailPassword = async (
 
 export const SignInWithFacebook = async () => {
   try {
-    const provider = new FacebookAuthProvider();
-    provider.addScope("email");
     const result = await signInWithPopup(auth, provider);
-    console.log(result);
+
     const user = result.user;
+    console.log(user);
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential?.accessToken;
     console.log("Facebook access token:", accessToken);
@@ -121,6 +122,7 @@ export const SignInWithFacebook = async () => {
   } catch (error) {
     console.error("Facebook sign up error:", error);
   }
+  console.log("facebook 2");
 };
 
 //Log out
