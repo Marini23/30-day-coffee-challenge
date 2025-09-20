@@ -117,6 +117,33 @@ export const SignInWithFacebook = async () => {
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential?.accessToken;
     console.log("Facebook access token:", accessToken);
+    const userDocRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userDocRef);
+
+    if (!userSnap.exists()) {
+      // New user → create Firestore doc
+      const newUser = {
+        uid: user.uid,
+        email: user.email ?? "",
+        firstName: user.displayName?.split(" ")[0] ?? "",
+        lastName: user.displayName?.split(" ")[1] ?? "",
+        completedDays: 0,
+        photoUrl: user.photoURL ?? "",
+        createdAt: serverTimestamp(),
+      };
+
+      await setDoc(userDocRef, newUser);
+      await createUserAchievements(user.uid);
+      await createUserTasks(user.uid);
+      useUserStore.getState().setUser(newUser);
+
+      toast.success(`Welcome, ${newUser.firstName}!`);
+    } else {
+      // Existing user → load Firestore
+      const userData = userSnap.data();
+      useUserStore.getState().setUser(userData);
+      toast.success(`Welcome back, ${userData.firstName}!`);
+    }
 
     return user;
   } catch (error) {
