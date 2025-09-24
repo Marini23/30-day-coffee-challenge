@@ -7,8 +7,8 @@ import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserRegistration } from "../../types/user";
 import {
-  SignInWithFacebook,
   SignUpWithEmailPassword,
+  SignUpWithFacebook,
 } from "../../firebase/firebaseAuth";
 
 export const SignUpForm: React.FC = () => {
@@ -40,7 +40,7 @@ export const SignUpForm: React.FC = () => {
 
   const handleSignUpFacebook = async () => {
     console.log("facebook");
-    await SignInWithFacebook();
+    await SignUpWithFacebook();
   };
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">

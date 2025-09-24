@@ -15,6 +15,7 @@ import { User, UserRegistration } from "../types/user";
 import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
 import { useUserStore } from "../store/userStore";
+import { checkIfLinked } from "../utils/CheckAuthprovider";
 
 const provider = new FacebookAuthProvider();
 
@@ -106,20 +107,46 @@ export const LogInWithEmailPassword = async (
   }
 };
 
-// Sign in with Facebook
+// Sign up with Facebook
 
-export const SignInWithFacebook = async () => {
+export const SignUpWithFacebook = async () => {
   try {
-    const currentUser = auth.currentUser;
-    console.log(currentUser);
     const result = await signInWithPopup(auth, provider);
-
     const user = result.user;
     console.log(user);
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken = credential?.accessToken;
     console.log("Facebook access token:", accessToken);
     return user;
+  } catch (error) {
+    console.error("Facebook sign up error:", error);
+  }
+ }
+
+
+// Sign in with Facebook
+
+export const SignInWithFacebook = async () => {
+  try {
+    const currentUser = auth.currentUser;
+    console.log(currentUser);
+
+    if (currentUser) {
+      const facebookLinked = checkIfLinked(currentUser, "facebook.com");
+
+      if (facebookLinked !== -1) {
+        console.log("Facebook is already linked.");
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        console.log(user);
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential?.accessToken;
+        console.log("Facebook access token:", accessToken);
+        return user;
+      } else {
+        console.log("Facebook is NOT linked yet.");
+      }
+    }
   } catch (error) {
     console.error("Facebook sign up error:", error);
   }
