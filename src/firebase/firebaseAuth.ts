@@ -3,6 +3,7 @@ import {
   deleteUser,
   EmailAuthProvider,
   FacebookAuthProvider,
+  linkWithPopup,
   reauthenticateWithCredential,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -121,36 +122,40 @@ export const SignUpWithFacebook = async () => {
   } catch (error) {
     console.error("Facebook sign up error:", error);
   }
- }
-
+};
 
 // Sign in with Facebook
 
 export const SignInWithFacebook = async () => {
   try {
     const currentUser = auth.currentUser;
-    console.log(currentUser);
+    if (!currentUser) {
+      console.error("No user is currently logged in to link with Facebook.");
+      return null;
+    }
 
-    if (currentUser) {
-      const facebookLinked = checkIfLinked(currentUser, "facebook.com");
+    const facebookLinked = checkIfLinked(currentUser, "facebook.com");
 
-      if (facebookLinked !== -1) {
-        console.log("Facebook is already linked.");
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        console.log(user);
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential?.accessToken;
-        console.log("Facebook access token:", accessToken);
-        return user;
-      } else {
-        console.log("Facebook is NOT linked yet.");
-      }
+    if (facebookLinked === -1) {
+      console.log("Linking Facebook to current user...");
+      const result = await linkWithPopup(currentUser, provider);
+      const user = result.user;
+
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential?.accessToken;
+
+      console.log("Facebook linked successfully:", user);
+      console.log("Facebook access token:", accessToken);
+      console.log(user);
+      return user;
+    } else {
+      console.log("Facebook is already linked.");
+      return currentUser;
     }
   } catch (error) {
-    console.error("Facebook sign up error:", error);
+    console.error("Facebook sign in/link error:", error);
+    return null;
   }
-  console.log("facebook 2");
 };
 
 //Log out
