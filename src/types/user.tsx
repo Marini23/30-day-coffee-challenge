@@ -19,6 +19,14 @@ export type UserRegistration = {
   language: "en" | "pl" | "ru" | "ua";
 };
 
+export type UserRegistrationFacebook = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  language: "en" | "pl" | "ru" | "ua";
+  photoUrl: string;
+};
+
 export type UserLogin = {
   email: string;
   password: string;

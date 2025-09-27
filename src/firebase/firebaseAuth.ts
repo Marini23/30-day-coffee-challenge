@@ -12,7 +12,11 @@ import {
 import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
-import { User, UserRegistration } from "../types/user";
+import {
+  User,
+  UserRegistration,
+  UserRegistrationFacebook,
+} from "../types/user";
 import { createUserAchievements } from "./firebaseAchievements";
 import { createUserTasks } from "./firebaseTasks";
 import { useUserStore } from "../store/userStore";
@@ -33,6 +37,19 @@ const createUserFromRegistration = (
   language: registration.language,
   completedDays: 0,
   photoUrl: "",
+});
+
+const createUserFromRegistrationFacebook = (
+  registration: UserRegistrationFacebook,
+  uid: string
+): Omit<User, "createdAt"> => ({
+  uid,
+  email: registration.email,
+  firstName: registration.firstName,
+  lastName: registration.lastName,
+  language: registration.language,
+  completedDays: 0,
+  photoUrl: registration.photoUrl,
 });
 
 export const SignUpWithEmailPassword = async (data: UserRegistration) => {
@@ -115,9 +132,28 @@ export const SignUpWithFacebook = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     console.log(user);
-    const credential = FacebookAuthProvider.credentialFromResult(result);
-    const accessToken = credential?.accessToken;
-    console.log("Facebook access token:", accessToken);
+    const dataUser: UserRegistrationFacebook = {
+      email: user.email || "",
+      firstName: user.displayName?.split(" ")[0] || "",
+      lastName: user.displayName?.split(" ")[1] || "",
+      language: "pl",
+      photoUrl: user.photoURL || "",
+    };
+    const newUser = createUserFromRegistrationFacebook(dataUser, user.uid);
+    await setDoc(doc(db, "users", user.uid), {
+      ...newUser,
+      createdAt: serverTimestamp(),
+    });
+
+    await createUserAchievements(user.uid);
+    await createUserTasks(user.uid);
+
+    useUserStore.getState().setUser({
+      ...newUser,
+    });
+
+    toast.success("You registered successfully!");
+
     return user;
   } catch (error) {
     console.error("Facebook sign up error:", error);

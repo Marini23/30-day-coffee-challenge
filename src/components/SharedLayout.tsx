@@ -20,9 +20,8 @@ export const SharedLayout: React.FC = () => {
             className="w-[62px] h-[50px] tablet:w-[80px] tablet:h-[60px]  desktop:w-[120px] desktop:h-[80px]"
           />
         </Link>
-        <div className="flex">
+        <div className="flex flex-1">
           {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-
           <LanguageToggle />
           <BurgerMenu />
         </div>

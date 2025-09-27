@@ -9,13 +9,23 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { useEffect } from "react";
 import { fetchUser } from "./firebase/userDataService";
 import { HomePage } from "./pages/HomePage";
-import { useLoadingStore } from "./store/userStore";
+import { useLoadingStore, useUserStore } from "./store/userStore";
 import { CoffeeLoader } from "./components/Loader/Loader";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { PageNotFound } from "./pages/PageNotFound";
+import { useTranslation } from "react-i18next";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
+  const { language } = useUserStore();
+
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    if (language) {
+      i18n.changeLanguage(language);
+    }
+  }, [language, i18n]);
 
   useEffect(() => {
     const loadUser = async () => {

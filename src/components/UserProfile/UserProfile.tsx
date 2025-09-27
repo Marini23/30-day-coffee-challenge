@@ -25,6 +25,8 @@ export const UserProfile: React.FC = () => {
     setLanguage,
   } = useUserStore();
 
+  console.log(language);
+
   const {
     register,
     handleSubmit,

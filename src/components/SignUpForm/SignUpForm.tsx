@@ -32,7 +32,7 @@ export const SignUpForm: React.FC = () => {
 
     try {
       await SignUpWithEmailPassword({ ...data, language }); //
-      navigate("/dashboard"); //
+      navigate("/dashboard");
     } catch (error) {
       console.error("Signup failed:", error);
     }
@@ -41,7 +41,9 @@ export const SignUpForm: React.FC = () => {
   const handleSignUpFacebook = async () => {
     console.log("facebook");
     await SignUpWithFacebook();
+    navigate("/dashboard");
   };
+
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
       <div className=" flex flex-col items-center justify-center  px-6 py-6 mx-auto max-w-[520px] desktop:max-w-[620px] desktop:pt-12  ">

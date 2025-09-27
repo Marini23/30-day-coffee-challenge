@@ -65,7 +65,10 @@ export const LanguageToggle: React.FC = () => {
   const currentFlag = availableLanguages.find((l) => l.code === language)?.flag;
 
   return (
-    <div ref={dropdownRef} className="relative">
+    <div
+      ref={dropdownRef}
+      className="relative flex items-center justify-center "
+    >
       <button
         type="button"
         onClick={() => setIsOpen((prev: boolean) => !prev)}
