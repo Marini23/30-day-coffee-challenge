@@ -25,7 +25,7 @@ export const UserProfile: React.FC = () => {
     setLanguage,
   } = useUserStore();
 
-  console.log(language);
+  console.log(photoUrl);
 
   const {
     register,
@@ -102,7 +102,7 @@ export const UserProfile: React.FC = () => {
               type="file"
               id="fileUpload"
               className="hidden"
-              disabled={!!photoUrl}
+              // disabled={!!photoUrl}
               {...register("photo", {
                 onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
                   const files = e.target.files;
@@ -114,12 +114,8 @@ export const UserProfile: React.FC = () => {
             />
             <label
               htmlFor="fileUpload"
-              className={`flex justify-center items-center w-40 h-8 bg-latte font-medium text-espresso rounded-lg desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer
-                ${
-                  photoUrl
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-gold focus:bg-gold"
-                }`}
+              className="flex justify-center items-center w-40 h-8 bg-latte font-medium text-espresso rounded-lg 
+             desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer hover:bg-gold focus:bg-gold"
             >
               {t("settings.uploadPhotoBtn")}
             </label>

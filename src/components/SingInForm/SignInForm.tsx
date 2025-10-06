@@ -5,7 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { InputEmail } from "../InputEmail/InputEmail";
 import { useTranslation } from "react-i18next";
 import { UserLogin } from "../../types/user";
-import { LogInWithEmailPassword } from "../../firebase/firebaseAuth";
+import {
+  LogInWithEmailPassword,
+  SignInWithFacebook,
+} from "../../firebase/firebaseAuth";
 
 export const SignInForm: React.FC = () => {
   const { t } = useTranslation();
@@ -25,6 +28,13 @@ export const SignInForm: React.FC = () => {
       console.error("Login failed:", error);
     }
   };
+
+  const handleSignInFacebook = async () => {
+    console.log("facebook");
+    await SignInWithFacebook();
+    navigate("/dashboard");
+  };
+
   return (
     <section className=" flex-grow h-full  bg-[url('/src/assets/bg-tablet.jpg')]   desktop:bg-[url('/src/assets/bg-desktop.jpg')] bg-cover bg-center">
       <div className=" flex flex-col items-center justify-center  p-6 pt-6 mx-auto max-w-[520px] desktop:max-w-[620px] desktop:pt-12  ">
@@ -83,6 +93,7 @@ export const SignInForm: React.FC = () => {
           </div>
           <button
             type="button"
+            onClick={handleSignInFacebook}
             className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px]"
           >
             <img

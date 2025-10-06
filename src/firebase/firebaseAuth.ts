@@ -165,9 +165,17 @@ export const SignUpWithFacebook = async () => {
 export const SignInWithFacebook = async () => {
   try {
     const currentUser = auth.currentUser;
+    console.log(currentUser);
     if (!currentUser) {
       console.error("No user is currently logged in to link with Facebook.");
-      return null;
+      const result = await signInWithPopup(auth, provider);
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const accessToken = credential?.accessToken;
+
+      console.log("Signed in with Facebook:", result.user);
+      console.log("Access token:", accessToken);
+
+      return result.user;
     }
 
     const facebookLinked = checkIfLinked(currentUser, "facebook.com");
