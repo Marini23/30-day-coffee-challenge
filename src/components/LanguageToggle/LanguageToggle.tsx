@@ -15,12 +15,17 @@ export const LanguageToggle: React.FC = () => {
     { code: "ru", flag: "ua", label: "RU" },
   ] as const;
 
+  // useEffect(() => {
+  //   const currentLang = i18n.language;
+  //   if (currentLang && currentLang !== language) {
+  //     setLanguage(currentLang as "en" | "pl" | "ua" | "ru");
+  //   }
+  // }, [language, setLanguage]);
   useEffect(() => {
-    const currentLang = i18n.language;
-    if (currentLang && currentLang !== language) {
-      setLanguage(currentLang as "en" | "pl" | "ua" | "ru");
+    if (i18n.language !== language) {
+      i18n.changeLanguage(language);
     }
-  }, [language, setLanguage]);
+  }, [language]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

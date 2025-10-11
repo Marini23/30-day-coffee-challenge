@@ -25,7 +25,7 @@ export const UserProfile: React.FC = () => {
     setLanguage,
   } = useUserStore();
 
-  console.log(photoUrl);
+  console.log(language);
 
   const {
     register,
@@ -115,11 +115,11 @@ export const UserProfile: React.FC = () => {
             <label
               htmlFor="fileUpload"
               className="flex justify-center items-center w-40 h-8 bg-latte font-medium text-espresso rounded-lg 
-             desktop:w-40 desktop:h-10 desktop:text-[20px] cursor-pointer hover:bg-gold focus:bg-gold"
+             desktop:w-50 desktop:h-10 desktop:text-[20px] cursor-pointer hover:bg-gold focus:bg-gold"
             >
               {t("settings.uploadPhotoBtn")}
             </label>
-            <p className="text-espresso  tablet:text-[20px] desktop:text-[24px]">
+            <p className="text-espresso  tablet:text-[20px] desktop:text-[24px] ">
               {t("settings.uploadPhotoText")}
             </p>
           </div>
