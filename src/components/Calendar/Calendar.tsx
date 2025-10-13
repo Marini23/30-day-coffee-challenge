@@ -3,6 +3,7 @@ import "react-day-picker/style.css";
 import { enGB, Locale } from "date-fns/locale";
 import { pl } from "date-fns/locale";
 import { uk } from "date-fns/locale";
+import { ru } from "date-fns/locale";
 import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
 
@@ -13,7 +14,8 @@ type CompletedCalendarProps = {
 const localeMap: Record<string, Locale> = {
   en: enGB,
   pl: pl,
-  uk: uk,
+  ua: uk,
+  ru: ru,
 };
 
 const capitalizeFirst = (text: string) =>

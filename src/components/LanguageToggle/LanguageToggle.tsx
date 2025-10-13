@@ -84,7 +84,7 @@ export const LanguageToggle: React.FC = () => {
       </button>
 
       {isOpen && (
-        <ul className="absolute right-0 mt-58 bg-secondary text-espresso rounded-lg shadow-2xl shadow-espresso/40 py-2 w-24 z-10">
+        <ul className="absolute right-0 mt-58 bg-secondary text-espresso rounded-lg shadow-2xl py-2 w-24 z-10">
           {availableLanguages.map(({ code, flag, label }) => (
             <li key={code}>
               <button

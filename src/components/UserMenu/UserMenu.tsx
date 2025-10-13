@@ -1,3 +1,4 @@
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import useComponentVisible from "../../utils/IsComponentVisible";
 import { useTranslation } from "react-i18next";
@@ -61,17 +62,24 @@ export const UserMenu: React.FC = () => {
             )}
           </button>
           {isComponentVisible && (
-            <div className="absolute right-0  mt-2 w-32 tablet:w-48 desktop:w-58 bg-secondary  rounded-lg py-4 flex flex-col aligns-center justify-center gap-2">
+            <div className="absolute right-0  mt-2 w-32 tablet:w-68   bg-secondary  rounded-lg shadow-2xl  py-4 flex flex-col aligns-center justify-center gap-2">
+              <button
+                onClick={() => setIsComponentVisible(false)}
+                className="absolute top-2 right-2 text-espresso hover:text-gold focus:text-gold"
+                aria-label="Close menu"
+              >
+                <IoClose className="text-[20px] tablet:text-[24px]" />
+              </button>
               <Link
                 to="/settings"
-                className="flex aligns-center justify-center text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
+                className="flex aligns-center justify-center text-espresso font-medium tablet:text-[24px] hover:text-gold focus:text-gold"
                 onClick={toogleDropdown}
               >
                 {t("header.settings")}
               </Link>
               <button
                 type="button"
-                className="text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
+                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold"
                 onClick={() => {
                   toogleDropdown();
                   logout();
@@ -81,7 +89,7 @@ export const UserMenu: React.FC = () => {
               </button>
               <button
                 type="button"
-                className="text-espresso font-medium tablet:text-[24px] desktop:text-[32px] hover:text-espresso focus:text-espresso"
+                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold"
                 onClick={handleDeleteClick}
               >
                 {t("header.deleteAccount")}
