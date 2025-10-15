@@ -21,7 +21,7 @@ export const Banner: React.FC = () => {
       {!isLoggedIn && (
         <button
           onClick={onClick}
-          className="text-secondary font-bold text-[14px]  mt-8 p-2  tablet:text-[20px] tablet:p-4  tablet:mt-12 desktop:text-[36px]  desktop:mt-28 rounded-xl border-2 border-secondary bg-latte/50 hover:bg-active/50 focus:bg-active/50 focus:outline-none"
+          className="text-secondary font-bold text-[14px]  mt-8 p-2  tablet:text-[20px] tablet:p-4  tablet:mt-12 desktop:text-[36px]  desktop:mt-28 rounded-xl border-2 border-secondary bg-latte/50 hover:bg-active/50 focus:bg-active/50 focus:outline-none transition-all duration-300 ease-in-out"
         >
           {t(`homepage.startbutton`)}
         </button>

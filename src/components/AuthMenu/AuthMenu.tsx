@@ -7,25 +7,25 @@ export const AuthMenu: React.FC = () => {
     <nav className="hidden tablet:flex gap-10 mr-5">
       <Link
         to="/"
-        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
       >
         {t("header.home")}
       </Link>
       <Link
         to="/dashboard"
-        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
       >
         {t("header.dashboard")}
       </Link>
       <Link
         to="/login"
-        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+        className="font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
       >
         {t("header.login")}
       </Link>
       <Link
         to="/register"
-        className=" font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+        className=" font-medium tablet:text-[20px] laptop:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
       >
         {t("header.register")}
       </Link>

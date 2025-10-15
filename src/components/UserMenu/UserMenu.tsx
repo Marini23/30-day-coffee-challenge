@@ -33,13 +33,13 @@ export const UserMenu: React.FC = () => {
         <nav className="  ml-auto flex gap-10 mr-[50px]">
           <Link
             to="/"
-            className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+            className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
             {t("header.home")}
           </Link>
           <Link
             to="/dashboard"
-            className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold"
+            className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
             {t("header.dashboard")}
           </Link>
@@ -49,7 +49,7 @@ export const UserMenu: React.FC = () => {
           <button
             type="button"
             onClick={toogleDropdown}
-            className="  focus:outline-none bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[40px] desktop:w-[50px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[18px] desktop:text-[24px] hover:bg-gold focus:bg-gold"
+            className="  focus:outline-none bg-secondary text-primary flex items-center justify-center rounded-full font-medium w-[24px] tablet:w-[40px] desktop:w-[50px] h-[24px] tablet:h-[40px] desktop:h-[50px] text-[14px] tablet:text-[18px] desktop:text-[24px] hover:bg-gold focus:bg-gold transition-all duration-300 ease-in-out"
           >
             {photoUrl ? (
               <img
@@ -65,21 +65,21 @@ export const UserMenu: React.FC = () => {
             <div className="absolute right-0  mt-2 w-32 tablet:w-68   bg-secondary  rounded-lg shadow-2xl  py-4 flex flex-col aligns-center justify-center gap-2">
               <button
                 onClick={() => setIsComponentVisible(false)}
-                className="absolute top-2 right-2 text-espresso hover:text-gold focus:text-gold"
+                className="absolute top-2 right-2 text-espresso hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
                 aria-label="Close menu"
               >
                 <IoClose className="text-[20px] tablet:text-[24px]" />
               </button>
               <Link
                 to="/settings"
-                className="flex aligns-center justify-center text-espresso font-medium tablet:text-[24px] hover:text-gold focus:text-gold"
+                className="flex aligns-center justify-center text-espresso font-medium tablet:text-[24px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
                 onClick={toogleDropdown}
               >
                 {t("header.settings")}
               </Link>
               <button
                 type="button"
-                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold"
+                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
                 onClick={() => {
                   toogleDropdown();
                   logout();
@@ -89,7 +89,7 @@ export const UserMenu: React.FC = () => {
               </button>
               <button
                 type="button"
-                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold"
+                className="text-espresso font-medium tablet:text-[24px]  hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
                 onClick={handleDeleteClick}
               >
                 {t("header.deleteAccount")}

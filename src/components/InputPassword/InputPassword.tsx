@@ -45,7 +45,7 @@ export const InputPassword = <T extends FieldValues>({
         id="password"
         aria-invalid={error ? "true" : "false"}
         autoComplete="current-password"
-        className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+        className="w-full px-3 py-2 text-[14px] text-espresso  bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px] transition-all duration-300 ease-in-out"
         {...register(name, validation)}
         onChange={(e) =>
           setValue(name, e.target.value as PathValue<T, Path<T>>)
@@ -54,13 +54,19 @@ export const InputPassword = <T extends FieldValues>({
       <button
         type="button"
         onClick={toggleVisibilityPassword}
-        className="absolute right-3 top-[34px] text-espresso hover:text-gold transition desktop:top-[40px]"
+        className="absolute right-3 top-[34px] text-espresso hover:text-gold  desktop:top-[40px] transition-all duration-300 ease-in-out"
         aria-label={isShowPassword ? "Hide password" : "Show password"}
       >
         {isShowPassword ? (
-          <PiEyeLight className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] color-espresso" />
+          <PiEyeLight
+            className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] text-espresso"
+            aria-hidden="true"
+          />
         ) : (
-          <PiEyeSlash className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] color-espresso" />
+          <PiEyeSlash
+            className="w-[16px] h-[16px] desktop:w-[22px] desktop:h-[22px] text-espresso"
+            aria-hidden="true"
+          />
         )}
       </button>
       <p className="h-4 text-red text-[12px] desktop:text-[14px]">

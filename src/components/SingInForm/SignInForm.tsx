@@ -70,7 +70,7 @@ export const SignInForm: React.FC = () => {
             />
             <button
               type="submit"
-              className=" mt-5 mb-2 flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px]"
+              className=" mt-5 mb-2 flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px] transition-all duration-300 ease-in-out"
             >
               {t("loginForm.loginButton")}
             </button>
@@ -79,7 +79,7 @@ export const SignInForm: React.FC = () => {
             {t("loginForm.noHaveAccount")}
             <Link
               to="/register"
-              className="font-medium text-espresso hover:underline hover:decoration-espresso  text-[12px] desktop:text-[16px] ml-1"
+              className="font-medium text-espresso hover:underline hover:decoration-espresso  text-[12px] desktop:text-[16px] ml-1 transition-all duration-300 ease-in-out"
             >
               {t("loginForm.registerLink")}
             </Link>
@@ -94,7 +94,7 @@ export const SignInForm: React.FC = () => {
           <button
             type="button"
             onClick={handleSignInFacebook}
-            className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px]"
+            className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px] transition-all duration-300 ease-in-out"
           >
             <img
               src={icon_facebook}

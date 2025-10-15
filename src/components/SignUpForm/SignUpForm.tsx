@@ -66,7 +66,7 @@ export const SignUpForm: React.FC = () => {
                 type="text"
                 id="firstname"
                 aria-invalid={errors.firstName ? "true" : "false"}
-                className=" w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                className=" w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px] transition-all duration-300 ease-in-out"
                 {...register("firstName", {
                   required: t("validation.firstName.required"),
                   minLength: {
@@ -91,7 +91,7 @@ export const SignUpForm: React.FC = () => {
                 type="text"
                 id="lastname"
                 aria-invalid={errors.lastName ? "true" : "false"}
-                className="w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                className="w-full px-3 py-2 text-[14px] text-espresso   bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px] transition-all duration-300 ease-in-out"
                 {...register("lastName", {
                   required: t("validation.lastName.required"),
                   minLength: {
@@ -136,7 +136,7 @@ export const SignUpForm: React.FC = () => {
               </label>
               <select
                 id="language"
-                className="appearance-none w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+                className="appearance-none w-full px-3 py-2 text-[14px] text-espresso placeholder-latte bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px] transition-all duration-300 ease-in-out"
                 {...register("language", {
                   required: true,
                 })}
@@ -172,14 +172,14 @@ export const SignUpForm: React.FC = () => {
               {t("signUpForm.acceptRules")}{" "}
               <Link
                 to="/privacy-policy"
-                className="font-bold text-espresso hover:underline"
+                className="font-bold text-espresso hover:underline transition-all duration-300 ease-in-out"
               >
                 {t("signUpForm.linkPolicy")}
               </Link>
             </p>
             <button
               type="submit"
-              className=" mt-5 mb-2 flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px]"
+              className=" mt-5 mb-2 flex justify-center items-center w-full h-8 bg-latte font-medium text-espresso  rounded-lg hover:bg-gold focus:bg-gold  desktop:h-12 desktop:text-[20px] transition-all duration-300 ease-in-out"
             >
               {t("signUpForm.registerButton")}
             </button>
@@ -188,7 +188,7 @@ export const SignUpForm: React.FC = () => {
             {t("signUpForm.haveAccount")}
             <Link
               to="/login"
-              className="font-medium text-espresso hover:underline hover:decoration-espresso  text-[12px] desktop:text-[16px] ml-1"
+              className="font-medium text-espresso hover:underline hover:decoration-espresso   text-[12px] desktop:text-[16px] ml-1 transition-all duration-300 ease-in-out"
             >
               {t("signUpForm.loginLink")}
             </Link>
@@ -203,7 +203,7 @@ export const SignUpForm: React.FC = () => {
           <button
             type="button"
             onClick={handleSignUpFacebook}
-            className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px]"
+            className=" flex  justify-center items-center w-full h-8 bg-latte font-medium text-espresso rounded-lg hover:bg-gold focus:bg-gold desktop:h-12 desktop:text-[20px] transition-all duration-300 ease-in-out"
           >
             <img
               src={icon_facebook}

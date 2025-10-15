@@ -11,7 +11,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
   const { t } = useTranslation();
 
   return (
-    <ul className="grid grid-cols-3 gap-4 mt-4 laptop:mt-8">
+    <ul className="grid grid-cols-3 gap-4 mt-4 laptop:mt-8 transition-all duration-300 ease-in-out">
       {achievements.map(({ id, icon, completed }, index) => (
         <li
           key={index}
@@ -20,12 +20,14 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
           <Icon
             name={icon}
             size={100}
-            className={completed ? "fill-gold" : "fill-latte"}
+            className={`${
+              completed ? "fill-gold" : "fill-latte"
+            } transition-colors duration-300 ease-in-out`}
           />
           <p
             className={`text-center font-bold whitespace-pre-line laptop:text-[24px] ${
               completed ? "text-gold" : "text-latte"
-            }`}
+            } transition-colors duration-300 ease-in-out`}
           >
             {t(`achievements.${id}`)}
           </p>

@@ -34,7 +34,6 @@ export const ProgressSection: React.FC<ProgressCircleProps> = ({
           style={{
             background: "#fff",
             width: "2px",
-            // This needs to be equal to props.strokeWidth
             height: `${10}%`,
           }}
         />

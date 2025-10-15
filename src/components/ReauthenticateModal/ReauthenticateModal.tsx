@@ -73,14 +73,14 @@ export const ReauthenticateModal: React.FC<ReauthenticateModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active text-espresso"
+              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active focus:bg-active text-espresso transition-all duration-300 ease-in-out"
               disabled={isLoading}
             >
               {t("deleteAccount.cancelBtn")}
             </button>
             <button
               type="submit"
-              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active text-espresso"
+              className="w-28 h-8 bg-latte/30 flex justify-center items-center  rounded-lg border border-espresso hover:bg-active focus:bg-active text-espresso transition-all duration-300 ease-in-out"
               disabled={isLoading}
             >
               {t("deleteAccount.confirmBtn")}

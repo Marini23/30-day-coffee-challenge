@@ -38,7 +38,7 @@ export const InputEmail = <T extends FieldValues>({
         id="email"
         aria-invalid={error ? "true" : "false"}
         autoComplete="off"
-        className="w-full px-3 py-2 text-[14px] text-espresso bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px]"
+        className="w-full px-3 py-2 text-[14px] text-espresso bg-transparent border-2 border-primary rounded-lg focus:outline-none focus:border-gold hover:border-gold desktop:text-[18px] transition-all duration-300 ease-in-out"
         {...register(name, validation)}
         onChange={(e) =>
           setValue(name, e.target.value as PathValue<T, Path<T>>)

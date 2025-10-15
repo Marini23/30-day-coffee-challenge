@@ -51,7 +51,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.home")}
@@ -60,7 +60,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/dashboard"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.dashboard")}
@@ -69,7 +69,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/settings"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.settings")}
@@ -78,7 +78,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <button
                 type="button"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={() => {
                   toogleMenu();
                   logout();
@@ -93,7 +93,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.home")}
@@ -103,7 +103,7 @@ export const BurgerMenu: React.FC = () => {
               {" "}
               <Link
                 to="/dashboard"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.dashboard")}
@@ -112,7 +112,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/register"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.register")}
@@ -121,7 +121,7 @@ export const BurgerMenu: React.FC = () => {
             <li>
               <Link
                 to="/login"
-                className="font-medium text-[24px] hover:text-gold focus:text-gold"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}
               >
                 {t("header.login")}

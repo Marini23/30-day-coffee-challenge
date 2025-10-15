@@ -115,7 +115,7 @@ export const UserProfile: React.FC = () => {
             <label
               htmlFor="fileUpload"
               className="flex justify-center items-center w-40 h-8 bg-latte font-medium text-espresso rounded-lg 
-             desktop:w-50 desktop:h-10 desktop:text-[20px] cursor-pointer hover:bg-gold focus:bg-gold"
+             desktop:w-50 desktop:h-10 desktop:text-[20px] cursor-pointer hover:bg-gold focus:bg-gold transition-all duration-300 ease-in-out"
             >
               {t("settings.uploadPhotoBtn")}
             </label>
@@ -136,7 +136,7 @@ export const UserProfile: React.FC = () => {
               <input
                 type="text"
                 // defaultValue={firstName}
-                className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+                className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso transition-all duration-300 ease-in-out"
                 {...register("firstName", {
                   required: t("validation.firstName.required"),
                   minLength: {
@@ -155,7 +155,7 @@ export const UserProfile: React.FC = () => {
               </label>
               <input
                 type="text"
-                className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+                className="text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso transition-all duration-300 ease-in-out"
                 {...register("lastName", {
                   required: t("validation.lastName.required"),
                   minLength: {
@@ -175,7 +175,7 @@ export const UserProfile: React.FC = () => {
             </label>
             <input
               type="email"
-              className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso"
+              className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg hover:border-espresso focus:outline-none  focus:border-espresso transition-all duration-300 ease-in-out"
               {...register("email", {
                 required: t("validation.email"),
               })}
@@ -200,29 +200,29 @@ export const UserProfile: React.FC = () => {
                 setLanguage(selectedLang);
                 i18n.changeLanguage(selectedLang);
               }}
-              className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso"
+              className=" text-espresso text-[16px] tablet:text-[18px] desktop:text-[24px] appearance-none flex justify-start items-center px-2 w-full h-10 border-latte border rounded-lg bg-transparent hover:border-espresso focus:outline-none  focus:border-espresso transition-all duration-300 ease-in-out"
             >
               <option
                 value="en"
-                className="bg-secondary text-espresso borde-none hover:bg-espresso"
+                className="bg-secondary text-espresso borde-none hover:bg-espresso transition-all duration-300 ease-in-out"
               >
                 {t("settings.en")}
               </option>
               <option
                 value="pl"
-                className="bg-secondary text-espresso border-none"
+                className="bg-secondary text-espresso border-none hover:bg-espresso transition-all duration-300 ease-in-out"
               >
                 {t("settings.pl")}
               </option>
               <option
                 value="ua"
-                className="bg-secondary text-espresso borde-none hover:bg-espresso"
+                className="bg-secondary text-espresso borde-none hover:bg-espresso transition-all duration-300 ease-in-out"
               >
                 {t("settings.ua")}
               </option>
               <option
                 value="ru"
-                className="bg-secondary text-espresso borde-none hover:bg-espresso"
+                className="bg-secondary text-espresso borde-none hover:bg-espresso transition-all duration-300 ease-in-out"
               >
                 {t("settings.ru")}
               </option>
@@ -232,7 +232,7 @@ export const UserProfile: React.FC = () => {
           <button
             type="submit"
             disabled={!isValid}
-            className="flex  justify-center items-center w-50 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px]"
+            className="flex  justify-center items-center w-50 h-8 bg-latte font-medium text-espresso flex  rounded-lg hover:bg-gold focus:bg-gold desktop:w-40 desktop:h-10 desktop:text-[20px] transition-all duration-300 ease-in-out"
           >
             {t("settings.saveChangesBtn")}
           </button>
