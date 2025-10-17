@@ -1,5 +1,5 @@
 import "flag-icons/css/flag-icons.min.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { SharedLayout } from "./components/SharedLayout";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
-  const { language } = useUserStore();
+  const { language, isLoggedIn } = useUserStore();
 
   const { i18n } = useTranslation();
 
@@ -43,7 +43,12 @@ function App(): React.JSX.Element {
       {!isLoading && (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
+            <Route
+              index
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" replace /> : <HomePage />
+              }
+            />
             <Route path="/register" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
             <Route path="/settings" element={<SettingsPage />} />
