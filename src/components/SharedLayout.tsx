@@ -13,7 +13,7 @@ export const SharedLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="flex px-4 tablet:px-8 desktop:px-12 items-center  bg-primary text-secondary h-16 tablet:h-20 desktop:h-22 w-full fixed top-0 left-0 z-50">
-        <Link to="/">
+        <Link to="/home">
           <img
             src={logo}
             alt="Logo"

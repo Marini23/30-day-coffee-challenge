@@ -6,3 +6,8 @@ export type Achievement = {
   updatedAt?: number;
   shareImageUrl?: string;
 };
+export type AchievementsState = {
+  achievements: Achievement[];
+  updateAchievement: (id: string, updatedData: Partial<Achievement>) => void;
+  setAchievements: (achievements: Achievement[]) => void;
+};

@@ -32,7 +32,7 @@ export const UserMenu: React.FC = () => {
       <div className="hidden tablet:flex flex-1 items-center justify-between  tablet:w-150 desktop:w-[600px]">
         <nav className="  ml-auto flex gap-10 mr-[50px]">
           <Link
-            to="/"
+            to="/home"
             className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
             {t("header.home")}
@@ -42,6 +42,12 @@ export const UserMenu: React.FC = () => {
             className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
             {t("header.dashboard")}
+          </Link>
+          <Link
+            to="/achievements"
+            className="font-medium tablet:text-[24px] desktop:text-[32px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
+          >
+            {t("header.achievements")}
           </Link>
         </nav>
 

@@ -1,5 +1,5 @@
 import "flag-icons/css/flag-icons.min.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { SharedLayout } from "./components/SharedLayout";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -14,6 +14,7 @@ import { CoffeeLoader } from "./components/Loader/Loader";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { useTranslation } from "react-i18next";
+import { UserAchievements } from "./components/UserAchievements/UserAchievements";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
@@ -45,15 +46,15 @@ function App(): React.JSX.Element {
           <Route path="/" element={<SharedLayout />}>
             <Route
               index
-              element={
-                isLoggedIn ? <Navigate to="/dashboard" replace /> : <HomePage />
-              }
+              element={isLoggedIn ? <DashboardPage /> : <HomePage />}
             />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/register" element={<SignUpPage />} />
             <Route path="/login" element={<LogInPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/achievements" element={<UserAchievements />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

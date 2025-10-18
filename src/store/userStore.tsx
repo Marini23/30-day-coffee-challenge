@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { UserState } from "../types/user";
 import { LoadingState } from "../types/loading";
+import { Achievement, AchievementsState } from "../types/achievements";
 
 export const useUserStore = create<UserState>((set) => ({
   firstName: "",
@@ -31,4 +32,15 @@ export const useUserStore = create<UserState>((set) => ({
 export const useLoadingStore = create<LoadingState>((set) => ({
   isLoading: false,
   setLoading: (value) => set({ isLoading: value }),
+}));
+
+export const useAchievementsStore = create<AchievementsState>((set) => ({
+  achievements: [],
+  updateAchievement: (id: string, updatedData: Partial<Achievement>) =>
+    set((state) => ({
+      achievements: state.achievements.map((a) =>
+        a.id === id ? { ...a, ...updatedData } : a
+      ),
+    })),
+  setAchievements: (achievements) => set({ achievements }),
 }));
