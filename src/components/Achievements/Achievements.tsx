@@ -1,4 +1,5 @@
 import { Icon } from "../../utils/Icon";
+import { PiShareFat } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
 
 import { Achievement } from "../../types/achievements";
@@ -31,6 +32,12 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
           >
             {t(`achievements.${id}`)}
           </p>
+          <button
+            type="button"
+            className="flex justify-center items-center gap-1 text-espresso hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
+          >
+            Share <PiShareFat />
+          </button>
         </li>
       ))}
     </ul>
