@@ -34,7 +34,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
           </p>
           <button
             type="button"
-            className="flex justify-center items-center gap-1 text-espresso hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
+            className="flex justify-center items-center gap-1 text-espresso tablet:text-[20px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
             Share <PiShareFat />
           </button>

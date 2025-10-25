@@ -6,7 +6,7 @@ import { TasksList } from "../components/Tasks/Tasks";
 import { Section } from "../types/tasks";
 import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
-import { useUserStore } from "../store/userStore";
+import { useAchievementsStore, useUserStore } from "../store/userStore";
 import React, { useEffect, useState } from "react";
 import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
@@ -21,9 +21,10 @@ import { ShareModal } from "../components/ShareModal/ShareModal";
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
   const { uid } = useUserStore();
+  const { achievements, setAchievements } = useAchievementsStore();
   const [tasks, setTasks] = useState<Section[]>(defaultTasks);
-  const [achievements, setAchievements] =
-    useState<Achievement[]>(defaultAchievements);
+  // const [achievements, setAchievements] =
+  //   useState<Achievement[]>(defaultAchievements);
   const [datesForCalendar, setDatesForCalendar] = useState<Date[] | null>(null);
   const [showShareModal, setShowShareModal] = useState<boolean>(false);
   const [achievementToShare, setAchievementToShare] =
@@ -69,7 +70,7 @@ export const DashboardPage: React.FC = () => {
       }
     };
     fetchAchievements();
-  }, [uid]);
+  }, [uid, setAchievements]);
 
   useEffect(() => {
     const completedTasks = tasks
