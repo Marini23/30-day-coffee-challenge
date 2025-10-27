@@ -36,7 +36,7 @@ export const Achievements: React.FC<AchievementsProps> = ({ achievements }) => {
             type="button"
             className="flex justify-center items-center gap-1 text-espresso tablet:text-[20px] hover:text-gold focus:text-gold transition-all duration-300 ease-in-out"
           >
-            Share <PiShareFat />
+            {t(`achievements.share_button`)} <PiShareFat />
           </button>
         </li>
       ))}
