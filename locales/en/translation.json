@@ -57,10 +57,14 @@
     }
   },
   "achievements": {
+    "title": "Your Achievements",
+    "subtitle": "Celebrate your coffee journey!",
+    "description": "Unlock achievements as you complete tasks and explore new flavors.",
     "brew_master": "Brew Coffee Master",
     "coffee_ambassador": "World Coffee Ambassador",
     "flavor_alchemist": "Coffee Flavor Alchemist",
-    "share_text": "Ï earned the achievement"
+    "share_text": "Ï earned the achievement",
+    "share_button": "Share"
   },
   "progress": {
     "title": "Your progress",

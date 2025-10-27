@@ -57,10 +57,15 @@
     }
   },
   "achievements": {
+    "title": "Twoje osiągnięcia",
+    "subtitle": "Świętuj swoją kawową podróż!",
+    "description": "Odblokowuj osiągnięcia, wykonując zadania i odkrywając nowe smaki.",
+    "footer": "Nie przestawaj — przed Tobą jeszcze więcej kawowych przygód!",
     "brew_master": "Mistrz parzenia kawy",
     "coffee_ambassador": "Światowy ambasador kawy",
     "flavor_alchemist": "Alchemik smaków kawy",
-    "share_text": "Zdobyto osiągnięcie"
+    "share_text": "Zdobyto osiągnięcie",
+    "share_button": "Udostępnij"
   },
   "progress": {
     "title": "Twój postęp",
