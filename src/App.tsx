@@ -9,16 +9,23 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { useEffect } from "react";
 import { fetchUser } from "./firebase/userDataService";
 import { HomePage } from "./pages/HomePage";
-import { useLoadingStore, useUserStore } from "./store/userStore";
+import {
+  useAchievementsStore,
+  useLoadingStore,
+  useUserStore,
+} from "./store/userStore";
 import { CoffeeLoader } from "./components/Loader/Loader";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { useTranslation } from "react-i18next";
 import { UserAchievements } from "./components/UserAchievements/UserAchievements";
+import { defaultAchievements } from "./data/defaultAchievements";
+import { getUserAchievements } from "./firebase/firebaseAchievements";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
-  const { language, isLoggedIn } = useUserStore();
+  const { language, isLoggedIn, uid } = useUserStore();
+  const { setAchievements } = useAchievementsStore();
 
   const { i18n } = useTranslation();
 
@@ -37,6 +44,27 @@ function App(): React.JSX.Element {
 
     loadUser();
   }, [setLoading]);
+
+  useEffect(() => {
+    const fetchAchievements = async () => {
+      if (!uid) {
+        setAchievements(defaultAchievements);
+        return;
+      }
+      try {
+        const data = await getUserAchievements(uid);
+        if (data) {
+          setAchievements(data);
+        } else {
+          setAchievements(defaultAchievements);
+        }
+      } catch (error) {
+        console.error("Failed to load achievements:", error);
+        setAchievements(defaultAchievements);
+      }
+    };
+    fetchAchievements();
+  }, [uid, setAchievements]);
 
   return (
     <div>

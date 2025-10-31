@@ -8,12 +8,8 @@ import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
 import { useAchievementsStore, useUserStore } from "../store/userStore";
 import React, { useEffect, useState } from "react";
-import { defaultAchievements } from "../data/defaultAchievements";
 import { Achievement } from "../types/achievements";
-import {
-  getUserAchievements,
-  updateUserAchievement,
-} from "../firebase/firebaseAchievements";
+import { updateUserAchievement } from "../firebase/firebaseAchievements";
 import { updateUserCompletedDays } from "../firebase/userDataService";
 import { Calendar } from "../components/Calendar/Calendar";
 import { ShareModal } from "../components/ShareModal/ShareModal";
@@ -23,8 +19,7 @@ export const DashboardPage: React.FC = () => {
   const { uid } = useUserStore();
   const { achievements, setAchievements } = useAchievementsStore();
   const [tasks, setTasks] = useState<Section[]>(defaultTasks);
-  // const [achievements, setAchievements] =
-  //   useState<Achievement[]>(defaultAchievements);
+
   const [datesForCalendar, setDatesForCalendar] = useState<Date[] | null>(null);
   const [showShareModal, setShowShareModal] = useState<boolean>(false);
   const [achievementToShare, setAchievementToShare] =
@@ -50,27 +45,6 @@ export const DashboardPage: React.FC = () => {
     };
     fetchTasks();
   }, [uid]);
-
-  useEffect(() => {
-    const fetchAchievements = async () => {
-      if (!uid) {
-        setAchievements(defaultAchievements);
-        return;
-      }
-      try {
-        const data = await getUserAchievements(uid);
-        if (data) {
-          setAchievements(data);
-        } else {
-          setAchievements(defaultAchievements);
-        }
-      } catch (error) {
-        console.error("Failed to load achievements:", error);
-        setAchievements(defaultAchievements);
-      }
-    };
-    fetchAchievements();
-  }, [uid, setAchievements]);
 
   useEffect(() => {
     const completedTasks = tasks
@@ -150,6 +124,11 @@ export const DashboardPage: React.FC = () => {
     }
   };
 
+  const handleShareAchievement = (achievement: Achievement) => {
+    setAchievementToShare(achievement);
+    setShowShareModal(true);
+  };
+
   useEffect(() => {}, [datesForCalendar]);
 
   return (
@@ -161,7 +140,10 @@ export const DashboardPage: React.FC = () => {
               {t(`progress.title`)}
             </h3>
             <ProgressLinear />
-            <Achievements achievements={achievements} />
+            <Achievements
+              achievements={achievements}
+              onShare={handleShareAchievement}
+            />
           </section>
           <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')] w-80 mt-8">
             <Calendar completedDays={datesForCalendar} />

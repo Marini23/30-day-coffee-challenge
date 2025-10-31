@@ -12,8 +12,6 @@ export const UserAchievements = () => {
   const [achievementToShare, setAchievementToShare] =
     useState<Achievement | null>(null);
 
-  console.log(achievements);
-
   const handleCloseModal = () => {
     setShowShareModal(false);
     setAchievementToShare(null);
