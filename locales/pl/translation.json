@@ -65,7 +65,8 @@
     "coffee_ambassador": "Światowy ambasador kawy",
     "flavor_alchemist": "Alchemik smaków kawy",
     "share_text": "Zdobyto osiągnięcie",
-    "share_button": "Udostępnij"
+    "share_button": "Udostępnij",
+    "locked_message": "To osiągnięcie nie zostało jeszcze odblokowane!"
   },
   "progress": {
     "title": "Twój postęp",

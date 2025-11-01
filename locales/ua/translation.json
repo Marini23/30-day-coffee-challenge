@@ -64,7 +64,8 @@
     "coffee_ambassador": "Кавовий Посол Світу",
     "flavor_alchemist": "Алхімік Смаків",
     "share_text": "Отримано досягнення",
-    "share_button": "Поділитися"
+    "share_button": "Поділитися",
+    "locked_message": "Це досягнення ще не відкрите!"
   },
   "progress": {
     "title": "Ваш прогрес",

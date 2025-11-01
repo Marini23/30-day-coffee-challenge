@@ -64,7 +64,8 @@
     "coffee_ambassador": "Кофейный Посол Мира",
     "flavor_alchemist": "Алхимик Вкуса",
     "share_text": "Получено достижение",
-    "share_button": "Поделиться"
+    "share_button": "Поделиться",
+    "locked_message": "Это достижение ещё не открыто!"
   },
   "progress": {
     "title": "Ваш прогресс",
