@@ -18,9 +18,9 @@ import { CoffeeLoader } from "./components/Loader/Loader";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import { useTranslation } from "react-i18next";
-import { UserAchievements } from "./components/UserAchievements/UserAchievements";
 import { defaultAchievements } from "./data/defaultAchievements";
 import { getUserAchievements } from "./firebase/firebaseAchievements";
+import { UserAchievementsPage } from "./pages/UserAchievementsPage";
 
 function App(): React.JSX.Element {
   const { isLoading, setLoading } = useLoadingStore();
@@ -82,7 +82,7 @@ function App(): React.JSX.Element {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/achievements" element={<UserAchievements />} />
+            <Route path="/achievements" element={<UserAchievementsPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

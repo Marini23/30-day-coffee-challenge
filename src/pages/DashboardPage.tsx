@@ -7,12 +7,12 @@ import { Section } from "../types/tasks";
 import { defaultTasks } from "../data/defaultTasks";
 import { getUserTasks, updateUserTasks } from "../firebase/firebaseTasks";
 import { useAchievementsStore, useUserStore } from "../store/userStore";
-import React, { useEffect, useState } from "react";
-import { Achievement } from "../types/achievements";
+import React, { useEffect, useMemo, useState } from "react";
 import { updateUserAchievement } from "../firebase/firebaseAchievements";
 import { updateUserCompletedDays } from "../firebase/userDataService";
 import { Calendar } from "../components/Calendar/Calendar";
 import { ShareModal } from "../components/ShareModal/ShareModal";
+import { useShareAchievement } from "../hooks/useShareAchievement";
 
 export const DashboardPage: React.FC = () => {
   const { t } = useTranslation();
@@ -20,10 +20,12 @@ export const DashboardPage: React.FC = () => {
   const { achievements, setAchievements } = useAchievementsStore();
   const [tasks, setTasks] = useState<Section[]>(defaultTasks);
 
-  const [datesForCalendar, setDatesForCalendar] = useState<Date[] | null>(null);
-  const [showShareModal, setShowShareModal] = useState<boolean>(false);
-  const [achievementToShare, setAchievementToShare] =
-    useState<Achievement | null>(null);
+  const {
+    showShareModal,
+    achievementToShare,
+    openShareModal,
+    closeShareModal,
+  } = useShareAchievement();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -46,21 +48,20 @@ export const DashboardPage: React.FC = () => {
     fetchTasks();
   }, [uid]);
 
-  useEffect(() => {
-    const completedTasks = tasks
-      .flatMap((section) => section.tasks)
-      .filter((task) => task.completed && task.updatedAt !== undefined);
+  const completedTasks = useMemo(
+    () =>
+      tasks.flatMap((s) => s.tasks).filter((t) => t.completed && t.updatedAt),
+    [tasks]
+  );
 
-    const uniqueDates = Array.from(
-      new Set(
-        completedTasks.map(
-          (task) => new Date(task.updatedAt!).toISOString().split("T")[0]
-        )
+  const datesForCalendar = useMemo(() => {
+    const unique = new Set(
+      completedTasks.map(
+        (t) => new Date(t.updatedAt!).toISOString().split("T")[0]
       )
-    ).map((d) => new Date(d));
-
-    setDatesForCalendar(uniqueDates);
-  }, [tasks]);
+    );
+    return [...unique].map((d) => new Date(d));
+  }, [completedTasks]);
 
   const handleToggleTask = async (taskNumber: number) => {
     if (!uid) {
@@ -118,15 +119,9 @@ export const DashboardPage: React.FC = () => {
         achievement.completed && !prevAchievements[i].completed
     );
 
-    if (newlyCompleted.length > 0) {
-      setAchievementToShare(newlyCompleted[0]);
-      setShowShareModal(true);
+    if (newlyCompleted) {
+      openShareModal(newlyCompleted[0]);
     }
-  };
-
-  const handleShareAchievement = (achievement: Achievement) => {
-    setAchievementToShare(achievement);
-    setShowShareModal(true);
   };
 
   useEffect(() => {}, [datesForCalendar]);
@@ -142,7 +137,7 @@ export const DashboardPage: React.FC = () => {
             <ProgressLinear />
             <Achievements
               achievements={achievements}
-              onShare={handleShareAchievement}
+              onShare={openShareModal}
             />
           </section>
           <section className=" my-0 mx-auto rounded-xl shadow-[0_1px_4px_theme('colors.espresso')] w-80 mt-8">
@@ -156,7 +151,7 @@ export const DashboardPage: React.FC = () => {
       {achievementToShare && (
         <ShareModal
           isOpen={showShareModal}
-          onClose={() => setShowShareModal(false)}
+          onClose={closeShareModal}
           title={t(`achievements.${achievementToShare.id}`)}
           achievement={achievementToShare}
           allAchievements={achievements}

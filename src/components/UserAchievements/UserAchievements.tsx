@@ -1,21 +1,31 @@
-import { useState } from "react";
 import { useAchievementsStore } from "../../store/userStore";
-import { Achievement } from "../../types/achievements";
 import { ShareModal } from "../ShareModal/ShareModal";
 import { useTranslation } from "react-i18next";
 import { Achievements } from "../Achievements/Achievements";
+import { useShareAchievement } from "../../hooks/useShareAchievement";
 
 export const UserAchievements = () => {
   const { t } = useTranslation();
   const { achievements } = useAchievementsStore();
-  const [showShareModal, setShowShareModal] = useState<boolean>(false);
-  const [achievementToShare, setAchievementToShare] =
-    useState<Achievement | null>(null);
+  const {
+    showShareModal,
+    achievementToShare,
+    openShareModal,
+    closeShareModal,
+  } = useShareAchievement();
+  // const [showShareModal, setShowShareModal] = useState<boolean>(false);
+  // const [achievementToShare, setAchievementToShare] =
+  //   useState<Achievement | null>(null);
 
-  const handleCloseModal = () => {
-    setShowShareModal(false);
-    setAchievementToShare(null);
-  };
+  // const handleCloseModal = () => {
+  //   setShowShareModal(false);
+  //   setAchievementToShare(null);
+  // };
+
+  // const handleShareAchievement = (achievement: Achievement) => {
+  //   setAchievementToShare(achievement);
+  //   setShowShareModal(true);
+  // };
 
   return (
     <section className="p-4 flex flex-col gap-6">
@@ -28,10 +38,7 @@ export const UserAchievements = () => {
       <p className="text-espresso text-[20px] tablet:text-[24px] text-center mb-8 ">
         {t(`achievements.description`)}
       </p>
-      <Achievements
-        achievements={achievements}
-        // onShare={handleShareAchievement}
-      />
+      <Achievements achievements={achievements} onShare={openShareModal} />
       <button
         type="button"
         className="text-espresso font-semibold text-[20px] tablet:text-[32px]  text-center   mt-10 "
@@ -42,7 +49,7 @@ export const UserAchievements = () => {
       {achievementToShare && (
         <ShareModal
           isOpen={showShareModal}
-          onClose={handleCloseModal}
+          onClose={closeShareModal}
           title={t(`achievements.${achievementToShare.id}`)}
           achievement={achievementToShare}
           allAchievements={achievements}

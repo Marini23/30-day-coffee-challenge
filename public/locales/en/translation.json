@@ -64,7 +64,8 @@
     "coffee_ambassador": "World Coffee Ambassador",
     "flavor_alchemist": "Coffee Flavor Alchemist",
     "share_text": "Ï earned the achievement",
-    "share_button": "Share"
+    "share_button": "Share",
+    "locked_message": "This achievement is not unlocked yet!"
   },
   "progress": {
     "title": "Your progress",

@@ -17,10 +17,8 @@ export const Achievements: React.FC<AchievementsProps> = ({
 
   const handleShareClick = (achievement: Achievement) => {
     if (!achievement.completed) {
-      toast.info(
-        t("achievements.locked_message") ||
-          "This achievement is not unlocked yet!"
-      );
+      const message = t("achievements.locked_message");
+      toast.info(message);
       return;
     }
     onShare?.(achievement);
