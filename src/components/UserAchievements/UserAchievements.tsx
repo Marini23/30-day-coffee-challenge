@@ -3,6 +3,7 @@ import { ShareModal } from "../ShareModal/ShareModal";
 import { useTranslation } from "react-i18next";
 import { Achievements } from "../Achievements/Achievements";
 import { useShareAchievement } from "../../hooks/useShareAchievement";
+import { Link } from "react-router-dom";
 
 export const UserAchievements = () => {
   const { t } = useTranslation();
@@ -13,19 +14,6 @@ export const UserAchievements = () => {
     openShareModal,
     closeShareModal,
   } = useShareAchievement();
-  // const [showShareModal, setShowShareModal] = useState<boolean>(false);
-  // const [achievementToShare, setAchievementToShare] =
-  //   useState<Achievement | null>(null);
-
-  // const handleCloseModal = () => {
-  //   setShowShareModal(false);
-  //   setAchievementToShare(null);
-  // };
-
-  // const handleShareAchievement = (achievement: Achievement) => {
-  //   setAchievementToShare(achievement);
-  //   setShowShareModal(true);
-  // };
 
   return (
     <section className="p-4 flex flex-col gap-6">
@@ -39,13 +27,12 @@ export const UserAchievements = () => {
         {t(`achievements.description`)}
       </p>
       <Achievements achievements={achievements} onShare={openShareModal} />
-      <button
-        type="button"
-        className="text-espresso font-semibold text-[20px] tablet:text-[32px]  text-center   mt-10 "
+      <Link
+        to="/dashboard"
+        className="px-6 py-2 text-espresso font-semibold text-[20px] tablet:text-[32px] text-center hover:text-active hover:underline focus:text-active focus:underline transition-all duration-300 ease-in-out"
       >
-        {" "}
-        {t(`achievements.footer`)}
-      </button>
+        {t("achievements.footer")}
+      </Link>
       {achievementToShare && (
         <ShareModal
           isOpen={showShareModal}

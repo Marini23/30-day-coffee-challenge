@@ -8,7 +8,7 @@
     "settings": "Settings",
     "logout": "Log Out",
     "deleteAccount": "Delete account",
-    "day": "Day"
+    "day": "Cup"
   },
   "inputs": {
     "firstname": "First name",
@@ -58,8 +58,9 @@
   },
   "achievements": {
     "title": "Your Achievements",
-    "subtitle": "Celebrate your coffee journey!",
+    "subtitle": "Enjoy your coffee journey!",
     "description": "Unlock achievements as you complete tasks and explore new flavors.",
+    "footer": "Don’t stop — even more coffee adventures await you!",
     "brew_master": "Brew Coffee Master",
     "coffee_ambassador": "World Coffee Ambassador",
     "flavor_alchemist": "Coffee Flavor Alchemist",
