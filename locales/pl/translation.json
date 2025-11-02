@@ -8,7 +8,7 @@
     "settings": "Ustawienia",
     "logout": "Wyloguj się",
     "deleteAccount": "Usuń konto",
-    "day": "Dzień"
+    "day": "Kubek"
   },
   "inputs": {
     "firstname": "Imię",
@@ -58,7 +58,7 @@
   },
   "achievements": {
     "title": "Twoje osiągnięcia",
-    "subtitle": "Świętuj swoją kawową podróż!",
+    "subtitle": "Ciesz się swoją kawową podróżą!",
     "description": "Odblokowuj osiągnięcia, wykonując zadania i odkrywając nowe smaki.",
     "footer": "Nie przestawaj — przed Tobą jeszcze więcej kawowych przygód!",
     "brew_master": "Mistrz parzenia kawy",
