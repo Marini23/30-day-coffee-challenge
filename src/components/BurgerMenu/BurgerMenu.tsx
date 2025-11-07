@@ -68,6 +68,15 @@ export const BurgerMenu: React.FC = () => {
             </li>
             <li>
               <Link
+                to="/achievements"
+                className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
+                onClick={toogleMenu}
+              >
+                {t("header.achievements")}
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/settings"
                 className="font-medium text-[24px] hover:text-gold focus:text-gold transition-colors duration-300 ease-in-out"
                 onClick={toogleMenu}

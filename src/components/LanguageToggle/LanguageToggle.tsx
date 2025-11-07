@@ -47,7 +47,6 @@ export const LanguageToggle: React.FC = () => {
   }, []);
 
   const handleLanguageChange = async (lang: string) => {
-    console.log(lang);
     setLanguage(lang as "en" | "pl" | "ua" | "ru");
     i18n.changeLanguage(lang);
     setIsOpen(false);

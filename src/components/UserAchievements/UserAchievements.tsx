@@ -17,7 +17,7 @@ export const UserAchievements = () => {
 
   return (
     <section className="p-4 flex flex-col gap-6">
-      <h1 className="text-espresso text-[48px] font-bold text-center mt-4 ">
+      <h1 className="text-espresso text-[32px] tablet:text-[38px] laptop:text-[48px] font-bold text-center mt-4 ">
         {t(`achievements.title`)}
       </h1>
       <p className="text-espresso font-semibold text-[20px] tablet:text-[32px] text-center ">
